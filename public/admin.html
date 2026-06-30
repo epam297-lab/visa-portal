@@ -404,10 +404,10 @@ function showDash() {
     {id:"payments", icon:"fa-coins", label:"Payments"}
   ];
   var countryItems = [
-    {id:"norway", label:"Norway", flag:"🇳🇴"},
-    {id:"serbia", label:"Serbia", flag:"🇷🇸"},
-    {id:"slovakia", label:"Slovakia", flag:"🇸🇰"},
-    {id:"australia", label:"Australia", flag:"🇦🇺"}
+    {id:"norway", label:"Norway"},
+    {id:"serbia", label:"Serbia"},
+    {id:"slovakia", label:"Slovakia"},
+    {id:"australia", label:"Australia"}
   ];
   var h = '<div class="nav-section-title">Main Menu</div>';
   menuItems.forEach((item,i)=>{
@@ -627,7 +627,7 @@ function renderRegister() {
     + '<div class="form-grid">'
     + '<div class="form-group" style="grid-column:1/-1"><label><i class="fas fa-user" style="color:#0f3460;width:16px"></i> Full Name</label><input id="rName" required placeholder="e.g. John Doe" style="background:#f8f9fb"></div>'
     + '<div class="form-group"><label><i class="fas fa-id-card" style="color:#0f3460;width:16px"></i> Passport Number</label><input id="rPass" required placeholder="e.g. AB123456" style="background:#f8f9fb"></div>'
-    + '<div class="form-group"><label><i class="fas fa-flag" style="color:#0f3460;width:16px"></i> Country</label><select id="rCountry" required onchange="updateNorwaySteps()" style="background:#f8f9fb"><option value="">-- Select Country --</option><option value="Norway">🇳🇴 Norway</option><option value="Serbia">🇷🇸 Serbia</option><option value="Slovakia">🇸🇰 Slovakia</option><option value="Australia">🇦🇺 Australia</option></select></div>'
+    + '<div class="form-group"><label><i class="fas fa-flag" style="color:#0f3460;width:16px"></i> Country</label><select id="rCountry" required onchange="updateNorwaySteps()" style="background:#f8f9fb"><option value="">-- Select Country --</option><option value="Norway">Norway</option><option value="Serbia">Serbia</option><option value="Slovakia">Slovakia</option><option value="Australia">Australia</option></select></div>'
     + '</div></div>'
     
     + '<!-- Visa Details -->'
@@ -1004,7 +1004,7 @@ function renderPaymentsPanel() {
   el.innerHTML = '<h1>Payments</h1><div class="search-bar" style="margin:16px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
     + '<input type="text" id="paySearch" placeholder="Search by name or passport..." oninput="filterPayments()" style="max-width:250px">'
     + '<select id="payCountryFilter" onchange="filterPayments()" style="width:auto;min-width:130px;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px">'
-    + '<option value="">All Countries</option><option value="Norway">🇳🇴 Norway</option><option value="Serbia">🇷🇸 Serbia</option><option value="Slovakia">🇸🇰 Slovakia</option><option value="Australia">🇦🇺 Australia</option></select>'
+    + '<option value="">All Countries</option><option value="Norway">Norway</option><option value="Serbia">Serbia</option><option value="Slovakia">Slovakia</option><option value="Australia">Australia</option></select>'
     + '<button class="btn btn-gold" onclick="openPay()" style="margin-left:auto"><i class="fas fa-plus"></i> Record Payment</button></div>'
     + '<div style="overflow-x:auto"><table><thead><tr><th>Client</th><th>Passport</th><th>Country</th><th>Total Paid</th><th>Payments</th><th>Date Range</th><th>Actions</th></tr></thead><tbody id="pBody"></tbody></table></div>'
     + '<div id="payTotalInfo" style="margin-top:12px;font-size:14px;color:#888;text-align:right"></div>';
