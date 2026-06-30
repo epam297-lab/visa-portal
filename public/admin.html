@@ -259,7 +259,7 @@ select{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         <input type="text" id="lUser" placeholder="Username" value="admin">
         <div class="pwd-wrap">
           <input type="password" id="lPass" placeholder="Password" value="admin123">
-          <button type="button" class="pwd-toggle" id="pwdToggle" onclick="togglePwdVis()" title="Show/Hide password">Ã°ÂÂÂ</button>
+          <button type="button" class="pwd-toggle" id="pwdToggle" onclick="togglePwdVis()" title="Show/Hide password">ÃÂ°ÃÂÃÂÃÂ</button>
         </div>
         <div class="rm-wrap">
           <label><input type="checkbox" id="rememberMe" checked> Remember me</label>
@@ -272,12 +272,12 @@ select{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
     <!-- Forgot Password Section -->
     <div id="fpSection">
-      <h2 style="font-size:20px;color:#1a1a2e;margin-bottom:10px">Ã°ÂÂÂ Reset Password</h2>
+      <h2 style="font-size:20px;color:#1a1a2e;margin-bottom:10px">ÃÂ°ÃÂÃÂÃÂ Reset Password</h2>
       <p style="font-size:13px;color:#888;margin-bottom:16px">Set a new password for the admin account.</p>
       <input type="password" id="fpNewPwd" placeholder="Enter new password" style="width:100%;padding:12px;margin:6px 0;border:2px solid #e8ecf1;border-radius:8px;font-size:14px">
       <input type="password" id="fpConfirmPwd" placeholder="Confirm new password" style="width:100%;padding:12px;margin:6px 0;border:2px solid #e8ecf1;border-radius:8px;font-size:14px">
       <button class="btn btn-gold" onclick="resetPassword()" style="width:100%;padding:14px;margin:6px 0;font-size:16px;font-weight:700;border-radius:10px">Reset Password</button>
-      <button class="btn btn-primary" onclick="hideForgotPwd()" style="width:100%;padding:10px;margin:4px 0;border-radius:10px">Ã¢ÂÂ Back to Login</button>
+      <button class="btn btn-primary" onclick="hideForgotPwd()" style="width:100%;padding:10px;margin:4px 0;border-radius:10px">ÃÂ¢ÃÂÃÂ Back to Login</button>
       <div id="fpMessage" style="margin-top:10px;font-size:13px"></div>
     </div>
 
@@ -334,8 +334,8 @@ var API = "/api";
 function togglePwdVis() {
   var pwd = document.getElementById("lPass");
   var btn = document.getElementById("pwdToggle");
-  if (pwd.type === "password") { pwd.type = "text"; btn.textContent = "Ã°ÂÂÂ"; btn.title = "Hide password"; }
-  else { pwd.type = "password"; btn.textContent = "Ã°ÂÂÂ"; btn.title = "Show password"; }
+  if (pwd.type === "password") { pwd.type = "text"; btn.textContent = "ÃÂ°ÃÂÃÂÃÂ"; btn.title = "Hide password"; }
+  else { pwd.type = "password"; btn.textContent = "ÃÂ°ÃÂÃÂÃÂ"; btn.title = "Show password"; }
 }
 
 // Forgot password
@@ -358,7 +358,7 @@ function resetPassword() {
   localStorage.setItem("adminPass", newPwd);
   localStorage.setItem("adminUser", "admin");
   document.getElementById("lPass").value = newPwd;
-  msg.innerHTML = '<span style="color:#27ae60">Ã¢ÂÂ Password updated! You can now login.</span>';
+  msg.innerHTML = '<span style="color:#27ae60">ÃÂ¢ÃÂÃÂ Password updated! You can now login.</span>';
   document.getElementById("fpNewPwd").value = "";
   document.getElementById("fpConfirmPwd").value = "";
   setTimeout(function() { hideForgotPwd(); login(); }, 800);
@@ -404,10 +404,10 @@ function showDash() {
     {id:"payments", icon:"fa-coins", label:"Payments"}
   ];
   var countryItems = [
-    {id:"norway", label:"Norway", flag:"Ã°ÂÂÂ³Ã°ÂÂÂ´"},
-    {id:"serbia", label:"Serbia", flag:"Ã°ÂÂÂ·Ã°ÂÂÂ¸"},
-    {id:"slovakia", label:"Slovakia", flag:"Ã°ÂÂÂ¸Ã°ÂÂÂ°"},
-    {id:"australia", label:"Australia", flag:"Ã°ÂÂÂ¦Ã°ÂÂÂº"}
+    {id:"norway", label:"Norway", flag:"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´"},
+    {id:"serbia", label:"Serbia", flag:"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸"},
+    {id:"slovakia", label:"Slovakia", flag:"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°"},
+    {id:"australia", label:"Australia", flag:"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"}
   ];
   var h = '<div class="nav-section-title">Main Menu</div>';
   menuItems.forEach((item,i)=>{
@@ -519,7 +519,7 @@ function renderDashboard() {
     });
     var totalPay = 0;
     pays.forEach(function(p){ totalPay += Number(p.amount) || 0; });
-    var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+    var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
     var h = "";
     cl.slice(0,5).forEach(function(c){
       var total = (Number(c.amount)||0) + (payTotalMap[c.id]||0);
@@ -540,7 +540,7 @@ function renderDashboard() {
     var sumHtml = '';
     sumHtml += '<div style="background:#fff;border-radius:12px;border:1px solid #e8ecf1;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
       + '<h4 style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px">Clients by Country</h4>';
-    var cFlags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+    var cFlags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
     Object.keys(byCountry).forEach(function(co){
       sumHtml += '<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid #f5f5f5">'
         + '<span>'+(cFlags[co]||'')+' '+co+'</span><strong style="color:#1a1a2e">'+byCountry[co]+'</strong></div>';
@@ -555,7 +555,7 @@ function renderDashboard() {
     
     // ---------- Draw CSS-based charts ----------
     
-    // 1) Status Distribution Ã¢ÂÂ horizontal bars
+    // 1) Status Distribution ÃÂ¢ÃÂÃÂ horizontal bars
     var stepLabels = ["Pending","Processing","Document Verification","Interview Scheduling","Embassy Review","Re-submission","Confirmation","Approved","Rejected","Cancelled"];
     var stepColors = ["#f39c12","#e67e22","#3498db","#9b59b6","#e74c3c","#e74c3c","#2ecc71","#27ae60","#c0392b","#95a5a6"];
     var stepIcons = ["fa-clock","fa-cog","fa-search","fa-calendar","fa-building","fa-redo","fa-check","fa-stamp","fa-times","fa-ban"];
@@ -581,13 +581,13 @@ function renderDashboard() {
     sHtml += '</div>';
     document.getElementById("statusChart").innerHTML = sHtml;
     
-    // 2) Clients by Country Ã¢ÂÂ horizontal bars with flags
+    // 2) Clients by Country ÃÂ¢ÃÂÃÂ horizontal bars with flags
     var byCountry = {};
     cl.forEach(function(c){ byCountry[c.country] = (byCountry[c.country]||0) + 1; });
     var countryNames = Object.keys(byCountry);
     var countryData = countryNames.map(function(n){ return byCountry[n]; });
     var countryColors = ["#e94560","#3498db","#2ecc71","#f39c12","#9b59b6"];
-    var cFlags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+    var cFlags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
     
     var maxCountry = 1;
     countryData.forEach(function(v){ if (v > maxCountry) maxCountry = v; });
@@ -627,7 +627,7 @@ function renderRegister() {
     + '<div class="form-grid">'
     + '<div class="form-group" style="grid-column:1/-1"><label><i class="fas fa-user" style="color:#0f3460;width:16px"></i> Full Name</label><input id="rName" required placeholder="e.g. John Doe" style="background:#f8f9fb"></div>'
     + '<div class="form-group"><label><i class="fas fa-id-card" style="color:#0f3460;width:16px"></i> Passport Number</label><input id="rPass" required placeholder="e.g. AB123456" style="background:#f8f9fb"></div>'
-    + '<div class="form-group"><label><i class="fas fa-flag" style="color:#0f3460;width:16px"></i> Country</label><select id="rCountry" required onchange="updateNorwaySteps()" style="background:#f8f9fb"><option value="">-- Select Country --</option><option value="Norway">Ã°ÂÂÂ³Ã°ÂÂÂ´ Norway</option><option value="Serbia">Ã°ÂÂÂ·Ã°ÂÂÂ¸ Serbia</option><option value="Slovakia">Ã°ÂÂÂ¸Ã°ÂÂÂ° Slovakia</option><option value="Australia">Ã°ÂÂÂ¦Ã°ÂÂÂº Australia</option></select></div>'
+    + '<div class="form-group"><label><i class="fas fa-flag" style="color:#0f3460;width:16px"></i> Country</label><select id="rCountry" required onchange="updateNorwaySteps()" style="background:#f8f9fb"><option value="">-- Select Country --</option><option value="Norway">ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´ Norway</option><option value="Serbia">ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸ Serbia</option><option value="Slovakia">ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ° Slovakia</option><option value="Australia">ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº Australia</option></select></div>'
     + '</div></div>'
     
     + '<!-- Visa Details -->'
@@ -712,7 +712,7 @@ function filterClients() {
 
 function displayClientTable(clients, payTotalMap) {
   var h = "";
-  var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   clients.forEach(function(c){
     var total = (Number(c.amount)||0) + ((payTotalMap||{})[c.id]||0);
     var flag = flags[c.country] || "";
@@ -735,7 +735,7 @@ function displayClientTable(clients, payTotalMap) {
 function renderCountry(tab) {
   var names = {"norway":"Norway","serbia":"Serbia","slovakia":"Slovakia","australia":"Australia"};
   var n = names[tab]||"Norway";
-  var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   var flag = flags[n] || "";
   var el = document.getElementById("mainContent");
   el.innerHTML = '<div style="max-width:1400px">'
@@ -781,7 +781,7 @@ function filterCountryClients(country) {
 
 function displayCountryTable(clients, payTotalMap) {
   var h = "";
-  var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   clients.forEach(function(c){
     var total = (Number(c.amount)||0) + ((payTotalMap||{})[c.id]||0);
     var flag = flags[c.country] || "";
@@ -822,18 +822,18 @@ function renderDocuments() {
     + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 16px;display:flex;align-items:center;gap:8px"><i class="fas fa-upload" style="color:#e94560"></i> Upload Document</h3>'
     + '<div class="form-group"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Document Type</label>'
     + '<select id="docTypeSelect" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;margin-bottom:8px;background:#f8f9fb">'
-    + '<option value="Passport Copy">Ã°ÂÂÂ Passport Copy</option>'
-    + '<option value="Medical Report">Ã°ÂÂÂ¥ Medical Report</option>'
-    + '<option value="Good Conduct">Ã°ÂÂÂ® Good Conduct / Police Clearance</option>'
-    + '<option value="Photo">Ã°ÂÂÂ¸ Passport Photo</option>'
-    + '<option value="Application Form">Ã°ÂÂÂ Application Form</option>'
-    + '<option value="Bank Statement">Ã°ÂÂÂ° Bank Statement</option>'
-    + '<option value="Travel Insurance">Ã°ÂÂÂ¡Ã¯Â¸Â Travel Insurance</option>'
-    + '<option value="Flight Itinerary">Ã¢ÂÂÃ¯Â¸Â Flight Itinerary</option>'
-    + '<option value="Accommodation">Ã°ÂÂÂ¨ Accommodation Proof</option>'
-    + '<option value="Employment Letter">Ã°ÂÂÂ¼ Employment Letter</option>'
-    + '<option value="Invitation Letter">Ã¢ÂÂÃ¯Â¸Â Invitation Letter</option>'
-    + '<option value="Other">Ã°ÂÂÂ Other</option></select></div>'
+    + '<option value="Passport Copy">ÃÂ°ÃÂÃÂÃÂ Passport Copy</option>'
+    + '<option value="Medical Report">ÃÂ°ÃÂÃÂÃÂ¥ Medical Report</option>'
+    + '<option value="Good Conduct">ÃÂ°ÃÂÃÂÃÂ® Good Conduct / Police Clearance</option>'
+    + '<option value="Photo">ÃÂ°ÃÂÃÂÃÂ¸ Passport Photo</option>'
+    + '<option value="Application Form">ÃÂ°ÃÂÃÂÃÂ Application Form</option>'
+    + '<option value="Bank Statement">ÃÂ°ÃÂÃÂÃÂ° Bank Statement</option>'
+    + '<option value="Travel Insurance">ÃÂ°ÃÂÃÂÃÂ¡ÃÂ¯ÃÂ¸ÃÂ Travel Insurance</option>'
+    + '<option value="Flight Itinerary">ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ Flight Itinerary</option>'
+    + '<option value="Accommodation">ÃÂ°ÃÂÃÂÃÂ¨ Accommodation Proof</option>'
+    + '<option value="Employment Letter">ÃÂ°ÃÂÃÂÃÂ¼ Employment Letter</option>'
+    + '<option value="Invitation Letter">ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ Invitation Letter</option>'
+    + '<option value="Other">ÃÂ°ÃÂÃÂÃÂ Other</option></select></div>'
     + '<div class="form-group"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Custom Label <span style="color:#aaa;font-weight:400;text-transform:none">(optional)</span></label>'
     + '<input type="text" id="docCustomLabel" placeholder="e.g. John_Passport_2026" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;margin-bottom:8px;background:#f8f9fb"></div>'
     + '<div class="form-group"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Choose File</label>'
@@ -870,7 +870,7 @@ function loadDocClientList() {
     var sel = document.getElementById("docClientSelect");
     var h = '';
     cl.forEach(function(c){
-      var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+      var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
       h += '<option value="'+c.id+'">'+(flags[c.country]||'')+' '+c.name+' ('+c.passport+')</option>';
     });
     sel.innerHTML = h;
@@ -884,7 +884,7 @@ function filterDocClientList() {
   var sel = document.getElementById("docClientSelect");
   var cl = window._docClients || [];
   var h = '';
-  var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   cl.forEach(function(c, i){
     var match = !q || c.name.toLowerCase().includes(q) || (c.passport||'').toLowerCase().includes(q);
     if (match) h += '<option value="'+c.id+'">'+(flags[c.country]||'')+' '+c.name+' ('+c.passport+')</option>';
@@ -901,7 +901,7 @@ function onDocClientSelect() {
   var client = null;
   cl.forEach(function(c){ if (c.id === id) client = c; });
   if (!client) return;
-  var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   document.getElementById("docClientInfo").style.display = "block";
   document.getElementById("docClientInfo").innerHTML = '<strong>'+(flags[client.country]||'')+' '+client.name+'</strong> &middot; Passport: '+client.passport+' &middot; Status: '+client.step;
   window._docSelectedClientId = id;
@@ -924,7 +924,7 @@ function refreshDocList() {
       return;
     }
     empty.style.display = "none";
-    var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+    var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
     var cl = window._docClients || [];
     var clientMap = {};
     cl.forEach(function(c){ clientMap[c.id] = c; });
@@ -935,7 +935,7 @@ function refreshDocList() {
       var dt = d.uploadedAt || '';
       if (dt) { var dd = new Date(dt); if (!isNaN(dd.getTime())) { dt = String(dd.getDate()).padStart(2,'0')+'/'+String(dd.getMonth()+1).padStart(2,'0')+'/'+dd.getFullYear(); } }
       var label = d.category || 'Document';
-      if (d.originalName) label += ' Ã¢ÂÂ '+d.originalName;
+      if (d.originalName) label += ' ÃÂ¢ÃÂÃÂ '+d.originalName;
       h += '<tr style="border-bottom:1px solid #f0f2f5">'
         + '<td style="padding:10px 12px;font-size:13px;font-weight:600;color:#1a1a2e">'+flag+' '+(c.name||'Unknown')+'</td>'
         + '<td style="padding:10px 12px;font-size:13px;color:#333">'
@@ -980,13 +980,13 @@ function submitDocFromPage() {
   .then(function(r){ return r.json(); })
   .then(function(d){
     if (d.error) { msg.innerHTML = '<span style="color:#e74c3c">'+d.error+'</span>'; return; }
-    msg.innerHTML = '<span style="color:#27ae60">Ã¢ÂÂ Uploaded successfully!</span>';
+    msg.innerHTML = '<span style="color:#27ae60">ÃÂ¢ÃÂÃÂ Uploaded successfully!</span>';
     document.getElementById("docFileInput2").value = "";
     document.getElementById("docCustomLabel").value = "";
-    showToast("Ã¢ÂÂ "+customLabel+" uploaded!", "success");
+    showToast("ÃÂ¢ÃÂÃÂ "+customLabel+" uploaded!", "success");
     refreshDocList();
   })
-  .catch(function(){ msg.innerHTML = '<span style="color:#e74c3c">Upload failed Ã¢ÂÂ server error</span>'; });
+  .catch(function(){ msg.innerHTML = '<span style="color:#e74c3c">Upload failed ÃÂ¢ÃÂÃÂ server error</span>'; });
 }
 
 function filterDocTable() {
@@ -1003,7 +1003,7 @@ function renderPaymentsPanel() {
   el.innerHTML = '<h1>Payments</h1><div class="search-bar" style="margin:16px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
     + '<input type="text" id="paySearch" placeholder="Search by name or passport..." oninput="filterPayments()" style="max-width:250px">'
     + '<select id="payCountryFilter" onchange="filterPayments()" style="width:auto;min-width:130px;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px">'
-    + '<option value="">All Countries</option><option value="Norway">Ã°ÂÂÂ³Ã°ÂÂÂ´ Norway</option><option value="Serbia">Ã°ÂÂÂ·Ã°ÂÂÂ¸ Serbia</option><option value="Slovakia">Ã°ÂÂÂ¸Ã°ÂÂÂ° Slovakia</option><option value="Australia">Ã°ÂÂÂ¦Ã°ÂÂÂº Australia</option></select>'
+    + '<option value="">All Countries</option><option value="Norway">ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´ Norway</option><option value="Serbia">ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸ Serbia</option><option value="Slovakia">ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ° Slovakia</option><option value="Australia">ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº Australia</option></select>'
     + '<button class="btn btn-gold" onclick="openPay()" style="margin-left:auto"><i class="fas fa-plus"></i> Record Payment</button></div>'
     + '<div style="overflow-x:auto"><table><thead><tr><th>Client</th><th>Passport</th><th>Country</th><th>Total Paid</th><th>Payments</th><th>Date Range</th><th>Actions</th></tr></thead><tbody id="pBody"></tbody></table></div>'
     + '<div id="payTotalInfo" style="margin-top:12px;font-size:14px;color:#888;text-align:right"></div>';
@@ -1057,7 +1057,7 @@ function groupAndDisplayPayments(payments, clientMap) {
   var h = "";
   var grandTotal = 0;
   var totalPayments = 0;
-  var countryFlag = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var countryFlag = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   
   clientOrder.forEach(function(cid){
     var pays = groups[cid];
@@ -1094,7 +1094,7 @@ function viewClientPayments(clientId) {
   var pays = all.filter(function(p){ return p.clientId === clientId; });
   var clientInfo = clientMap[clientId] || {};
   var clientName = clientInfo.name || "N/A";
-  var countryFlag = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var countryFlag = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   var flag = countryFlag[clientInfo.country] || "";
   
   var rows = "";
@@ -1155,7 +1155,7 @@ function editPay(id) {
   if (!pay) { alert("Payment not found"); return; }
   var clientInfo = clientMap[pay.clientId] || {};
   window._editingPayId = pay.id || pay._id;
-  var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   var flag = flags[clientInfo.country] || "";
   var payDate = pay.createdAt ? pay.createdAt.split('T')[0] : new Date().toISOString().split('T')[0];
   var html = '<div class="modal-overlay" id="editPayOverlay" style="display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000;padding:20px">'
@@ -1196,7 +1196,7 @@ function saveEditPay() {
 
 // Delete Payment
 function deletePay(id, clientName, amount) {
-  if (!confirm("Ã¢ÂÂ Ã¯Â¸Â Delete Payment\n\nClient: "+clientName+"\nAmount: Ksh "+amount+"\n\nThis action cannot be undone. Continue?")) return;
+  if (!confirm("ÃÂ¢ÃÂÃÂ ÃÂ¯ÃÂ¸ÃÂ Delete Payment\n\nClient: "+clientName+"\nAmount: Ksh "+amount+"\n\nThis action cannot be undone. Continue?")) return;
   af(API+"/payments/"+id, {method:"DELETE"}).then(function(r){
     if (r) { loadPayments(); }
     else { alert("Failed to delete payment"); }
@@ -1214,7 +1214,7 @@ function viewClient(id) {
     var countries = ["Norway","Serbia","Slovakia","Australia"];
     var cops = "";
     countries.forEach(function(co){cops += '<option value="'+co+'"'+(co===c.country?" selected":"")+'>'+co+'</option>';});
-    var countryFlag = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+    var countryFlag = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
     var flag = countryFlag[c.country] || "";
     
     document.getElementById("viewContent").innerHTML =
@@ -1335,7 +1335,7 @@ function updateClient(id) {
   };
   af(API+"/clients/"+id,{method:"PUT", body:data}).then(function(r){
     if (r) { 
-      alert("Ã¢ÂÂ Client updated successfully! Changes are now live.");
+      alert("ÃÂ¢ÃÂÃÂ Client updated successfully! Changes are now live.");
       closeView();
       // Refresh the current page to show updated data
       var activeTab = document.querySelector(".nav-item.active");
@@ -1374,7 +1374,7 @@ function openPay() {
 function closePay() { document.getElementById("payModal").style.display = "none"; }
 function renderPayClientOptions(clients) {
   var o = "";
-  var flags = {"Norway":"Ã°ÂÂÂ³Ã°ÂÂÂ´","Serbia":"Ã°ÂÂÂ·Ã°ÂÂÂ¸","Slovakia":"Ã°ÂÂÂ¸Ã°ÂÂÂ°","Australia":"Ã°ÂÂÂ¦Ã°ÂÂÂº"};
+  var flags = {"Norway":"ÃÂ°ÃÂÃÂÃÂ³ÃÂ°ÃÂÃÂÃÂ´","Serbia":"ÃÂ°ÃÂÃÂÃÂ·ÃÂ°ÃÂÃÂÃÂ¸","Slovakia":"ÃÂ°ÃÂÃÂÃÂ¸ÃÂ°ÃÂÃÂÃÂ°","Australia":"ÃÂ°ÃÂÃÂÃÂ¦ÃÂ°ÃÂÃÂÃÂº"};
   clients.forEach(function(c){
     var flag = flags[c.country] || "";
     o += '<option value="'+c.id+'" data-name="'+c.name+'" data-pass="'+c.passport+'" data-country="'+c.country+'">'+flag+' '+c.name+' ('+c.passport+') - '+c.country+'</option>';
