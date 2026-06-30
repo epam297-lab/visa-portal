@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Visa Admin</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+body{background:#f0f2f5}
+#loginPage{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f0f23 0%,#1a1a2e 40%,#0f3460 100%);position:relative;overflow:hidden}
+#loginPage::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(233,69,96,0.15),transparent 70%);top:-200px;right:-200px;pointer-events:none;animation:floatGlow 8s ease-in-out infinite}
+#loginPage::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(15,52,96,0.2),transparent 70%);bottom:-100px;left:-100px;pointer-events:none;animation:floatGlow 8s ease-in-out infinite reverse}
+@keyframes floatGlow{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-20px) scale(1.1)}}
+.login-box{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);padding:44px 40px 36px;border-radius:20px;width:420px;text-align:center;position:relative;z-index:1;box-shadow:0 25px 80px rgba(0,0,0,0.3),0 0 0 1px rgba(255,255,255,0.08)}
+.login-box .login-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#e94560,#c0392b);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:28px;color:#fff;box-shadow:0 8px 24px rgba(233,69,96,0.3)}
+.login-box h1{font-size:22px;margin:0 0 4px;color:#1a1a2e;font-weight:800;letter-spacing:-0.5px}
+.login-box .subtitle{font-size:13px;color:#888;margin:0 0 24px}
+.login-box input{width:100%;padding:13px 16px;margin:6px 0;border:2px solid #e8ecf1;border-radius:10px;font-size:14px;background:#f8f9fb;transition:all 0.2s}
+.login-box input:focus{background:#fff;border-color:#0f3460;box-shadow:0 0 0 3px rgba(15,52,96,0.1)}
+.login-box button[type=submit]{width:100%;padding:14px;background:linear-gradient(135deg,#0f3460,#1a4a7a);color:#fff;border:none;border-radius:10px;font-size:15px;cursor:pointer;font-weight:700;margin-top:8px;transition:all 0.2s;box-shadow:0 4px 16px rgba(15,52,96,0.25)}
+.login-box button[type=submit]:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(15,52,96,0.35)}
+.login-box button[type=submit]:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.login-footer{font-size:12px;color:#aaa;margin-top:20px;padding-top:16px;border-top:1px solid #eee;display:flex;justify-content:center;gap:16px}
+.login-footer a{color:#0f3460;text-decoration:none;font-weight:600}
+#dashboardPage{display:none}
+.topbar{background:#fff;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;flex-wrap:wrap;gap:8px}
+.sidebar{width:220px;background:#1a1a2e;padding:16px;color:#fff;min-height:calc(100vh - 70px);flex-shrink:0;overflow-y:auto}
+.sidebar div{padding:10px 12px;cursor:pointer;border-radius:8px;margin:3px 0;color:rgba(255,255,255,0.8);transition:all 0.15s}
+.sidebar div:hover{background:rgba(255,255,255,0.1);color:#fff}
+.sidebar .active{background:rgba(255,255,255,0.18);font-weight:700;color:#fff;border-left:3px solid #e94560}
+.nav-section-title{padding:10px 12px 3px;font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+.nav-divider{height:1px;background:rgba(255,255,255,0.07);margin:8px 0}
+.content{flex:1;padding:24px;overflow-y:auto;min-width:0}
+.app-layout{display:flex;min-height:calc(100vh - 70px)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid #e8ecf1;font-size:13px}
+th{background:#f8f9fa;color:#666;text-transform:uppercase;font-size:11px;letter-spacing:0.5px}
+.stat-card{background:#fff;padding:20px;border-radius:12px;border:1px solid #e8ecf1;display:inline-block;margin:8px;min-width:140px}
+.stat-number{font-size:24px;font-weight:800}
+.stat-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.stat-label{font-size:12px;color:#888}
+input,select,textarea{padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;width:100%;outline:none;transition:border 0.15s;box-sizing:border-box}
+input:focus,select:focus,textarea:focus{border-color:#0f3460}
+select{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn{padding:8px 18px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:6px;transition:all 0.15s;white-space:nowrap}
+.btn-primary{background:#0f3460;color:#fff}.btn-primary:hover{background:#1a4a7a}
+.btn-gold{background:#e94560;color:#fff}.btn-gold:hover{background:#d63850}
+.btn-danger{background:#e74c3c;color:#fff}.btn-danger:hover{background:#c0392b}
+.btn-sm{padding:5px 10px;font-size:11px}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-pending{background:#fff3cd;color:#856404}
+.badge-checking{background:#cce5ff;color:#004085}
+.badge-resubmit{background:#f8d7da;color:#721c24}
+.badge-confirmed{background:#d4edda;color:#155724}
+.badge-visa-approved{background:#d4edda;color:#155724}
+.badge-rejected{background:#f8d7da;color:#721c24}
+.badge-cancelled{background:#e2e3e5;color:#383d41}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.full{grid-column:1/-1}
+.form-group{margin-bottom:8px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:#666;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.3px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000;padding:20px}
+.modal{background:#fff;border-radius:16px;padding:24px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.link-box{background:#f0f4f9;padding:10px;border-radius:8px;font-size:12px;word-break:break-all;display:flex;align-items:center;gap:8px;margin:8px 0;flex-wrap:wrap}
+.btn-group{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.search-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.search-bar input{max-width:300px;width:100%}
+.view-field{margin:10px 0}
+.view-field label{display:block;font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px}
+.view-field .val{font-size:15px;font-weight:500;color:#222}
+.payment-history{margin-top:16px}
+.payment-history h4{font-size:14px;margin-bottom:6px;color:#1a1a2e;border-bottom:2px solid #e94560;padding-bottom:4px;display:inline-block}
+.payment-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:13px}
+.payment-item .pa{color:#27ae60;font-weight:700}
+/* ============ RESPONSIVE FOR ALL SCREENS ============ */
+/* Large screens 30" (2560px) and ultra-wide */
+@media(min-width:2000px){
+  .content{max-width:1600px;margin:0 auto;padding:40px}
+  .stat-card{min-width:200px;padding:30px}
+  .stat-number{font-size:32px}
+  .stat-label{font-size:15px}
+  .stat-icon{width:56px;height:56px;font-size:26px}
+  th,td{padding:16px 24px;font-size:15px}
+  th{font-size:13px}
+  .topbar{padding:20px 40px}
+  .topbar > div:first-child{font-size:26px!important}
+  .sidebar{width:280px;padding:20px}
+  .sidebar div{padding:14px 16px;font-size:15px}
+  .nav-section-title{font-size:13px}
+  .form-grid{grid-template-columns:1fr 1fr 1fr;gap:20px}
+  .form-grid-3{grid-template-columns:1fr 1fr 1fr;gap:20px}
+  .modal{max-width:800px;padding:40px}
+  .btn{padding:12px 28px;font-size:15px}
+  input,select,textarea{padding:14px;font-size:15px}
+}
+
+/* Medium-large screens 24" (1920px) */
+@media(min-width:1600px) and (max-width:1999px){
+  .content{max-width:1400px;margin:0 auto;padding:32px}
+  .stat-card{min-width:170px;padding:24px}
+  .stat-number{font-size:28px}
+  .sidebar{width:250px}
+  .form-grid{grid-template-columns:1fr 1fr 1fr}
+}
+
+/* Desktop 19" (1440px) */
+@media(min-width:1200px) and (max-width:1599px){
+  .content{padding:28px}
+  .stat-card{min-width:160px}
+}
+
+/* Small laptops 15" (1366px) */
+@media(min-width:992px) and (max-width:1366px){
+  .content{padding:20px}
+  .sidebar{width:200px;padding:12px}
+  .sidebar div{padding:8px 10px;font-size:12.5px}
+  .stat-card{min-width:130px;padding:16px;display:inline-block}
+  .stat-number{font-size:20px}
+  th,td{padding:10px 12px;font-size:12px}
+}
+
+/* Tablets and small screens 14" and below */
+@media(max-width:991px){
+  .app-layout{flex-direction:column}
+  .sidebar{width:100%;min-height:auto;padding:10px;display:flex;flex-wrap:wrap;gap:4px;max-height:120px;overflow-y:auto}
+  .sidebar div{flex:1 1 auto;min-width:80px;text-align:center;padding:8px 6px;margin:2px;font-size:12px}
+  .sidebar .nav-section-title,.sidebar .nav-divider{display:none}
+  .content{padding:16px}
+  .topbar{padding:12px 16px}
+  .form-grid,.form-grid-3{grid-template-columns:1fr}
+  .search-bar input{max-width:100%}
+  .modal{padding:16px;max-width:100%}
+  .login-box{width:90%;max-width:400px;padding:30px 20px}
+}
+
+/* Mobile phones */
+@media(max-width:480px){
+  .sidebar{max-height:100px}
+  .sidebar div{font-size:11px;min-width:60px;padding:6px 4px}
+  .content{padding:12px}
+  .topbar{padding:10px 12px;flex-direction:column;align-items:flex-start}
+  .topbar > div:last-child{width:100%;display:flex;justify-content:space-between}
+  .stat-card{min-width:100%;display:block;margin:8px 0}
+  .btn{padding:6px 14px;font-size:12px}
+  .modal{padding:12px}
+}
+
+/* Login enhancements */
+.pwd-wrap{position:relative;width:100%}
+.pwd-wrap input{padding-right:44px!important}
+.pwd-toggle{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;border:none;color:#999;cursor:pointer;padding:10px;font-size:16px;font-family:inherit;border-radius:8px}
+.pwd-toggle:hover{color:#1a1a2e;background:rgba(0,0,0,0.04)}
+.rm-wrap{display:flex;align-items:center;justify-content:space-between;margin:10px 0 6px;font-size:13px}
+.rm-wrap label{display:flex;align-items:center;gap:6px;cursor:pointer;color:#555;text-transform:none;letter-spacing:0;font-weight:500}
+.rm-wrap input[type=checkbox]{width:16px;height:16px;margin:0;cursor:pointer;accent-color:#0f3460}
+.fp-link{color:#0f3460;cursor:pointer;font-size:13px;font-weight:600;background:none;border:none;font-family:inherit;text-decoration:none;transition:color 0.2s}
+.fp-link:hover{color:#e94560;text-decoration:underline}
+#fpSection{display:none;text-align:center;padding:10px 0}
+#fpSection h2{font-size:20px;color:#1a1a2e;margin-bottom:10px}
+#fpSection p{font-size:13px;color:#888;margin-bottom:16px}
+
+/* Toast notifications */
+.toast-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;max-width:380px}
+.toast{padding:14px 18px;border-radius:10px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,0.12);animation:slideIn .3s ease;cursor:pointer;font-family:system-ui,sans-serif}
+.toast-success{background:#d4edda;color:#155724;border-left:4px solid #28a745}
+.toast-error{background:#f8d7da;color:#721c24;border-left:4px solid #dc3545}
+.toast-info{background:#d1ecf1;color:#0c5460;border-left:4px solid #17a2b8}
+.toast i{font-size:18px}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0;transform:translateX(100%)}}
+
+/* Dark mode */
+.dark-mode{background:#1a1a2e!important}
+.dark-mode .topbar{background:#16213e!important;border-bottom-color:#2a2a4a!important}
+.dark-mode .sidebar{background:#0f0f23!important}
+.dark-mode .content{background:#1a1a2e!important}
+.dark-mode .stat-card,.dark-mode table{background:#16213e!important;border-color:#2a2a4a!important}
+.dark-mode td,.dark-mode th{color:#ccc!important;border-color:#2a2a4a!important}
+.dark-mode th{background:#0f0f23!important;color:#888!important}
+.dark-mode .modal{background:#16213e!important;border-color:#2a2a4a!important}
+.dark-mode .modal h2{color:#fff!important}
+.dark-mode .link-box{background:#0f0f23!important}
+.dark-mode input,.dark-mode select,.dark-mode textarea{background:#0f0f23!important;border-color:#2a2a4a!important;color:#ddd!important}
+.dark-mode .login-box{background:#16213e!important}
+.dark-mode .login-box h1,.dark-mode h1{color:#fff!important}
+.dark-mode .badge-pending{background:#3d3200!important;color:#ffc107!important}
+</style>
+</head>
+<body>
+
+<div id="loginPage">
+  <div class="login-box">
+    <div class="login-icon"><i class="fas fa-passport"></i></div>
+    <h1>Visa Agency</h1>
+    <p class="subtitle">Admin Dashboard Login</p>
+    
+    <!-- Login Form -->
+    <div id="loginFormSection">
+      <form onsubmit="event.preventDefault(); login();">
+        <input type="text" id="lUser" placeholder="Username" value="admin">
+        <div class="pwd-wrap">
+          <input type="password" id="lPass" placeholder="Password" value="admin123">
+          <button type="button" class="pwd-toggle" id="pwdToggle" onclick="togglePwdVis()" title="Show/Hide password">👁</button>
+        </div>
+        <div class="rm-wrap">
+          <label><input type="checkbox" id="rememberMe" checked> Remember me</label>
+          <button type="button" class="fp-link" onclick="showForgotPwd()">Forgot password?</button>
+        </div>
+        <button type="submit" id="loginBtn" style="background:linear-gradient(135deg,#0f3460,#1a4a7a)">Sign In</button>
+        <div id="loginError" style="color:#e74c3c;margin-top:12px;font-size:13px;font-weight:600;min-height:20px"></div>
+      </form>
+    </div>
+
+    <!-- Forgot Password Section -->
+    <div id="fpSection">
+      <h2 style="font-size:20px;color:#1a1a2e;margin-bottom:10px">🔑 Reset Password</h2>
+      <p style="font-size:13px;color:#888;margin-bottom:16px">Set a new password for the admin account.</p>
+      <input type="password" id="fpNewPwd" placeholder="Enter new password" style="width:100%;padding:12px;margin:6px 0;border:2px solid #e8ecf1;border-radius:8px;font-size:14px">
+      <input type="password" id="fpConfirmPwd" placeholder="Confirm new password" style="width:100%;padding:12px;margin:6px 0;border:2px solid #e8ecf1;border-radius:8px;font-size:14px">
+      <button class="btn btn-gold" onclick="resetPassword()" style="width:100%;padding:14px;margin:6px 0;font-size:16px;font-weight:700;border-radius:10px">Reset Password</button>
+      <button class="btn btn-primary" onclick="hideForgotPwd()" style="width:100%;padding:10px;margin:4px 0;border-radius:10px">← Back to Login</button>
+      <div id="fpMessage" style="margin-top:10px;font-size:13px"></div>
+    </div>
+
+    <div class="login-footer">
+      <span><i class="fas fa-shield-alt"></i> Secure Login</span>
+      <span><i class="fas fa-lock"></i> Encrypted</span>
+    </div>
+  </div>
+</div>
+
+<div id="dashboardPage">
+  <div class="topbar">
+    <div style="font-size:20px;font-weight:800;color:#e94560"><i class="fas fa-passport"></i> VisaAgency</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="btn" id="exportBtn" onclick="exportClientsCSV()" style="background:#0f3460;color:#fff;padding:8px 12px;font-size:12px" title="Export clients as CSV"><i class="fas fa-download"></i> Export</button>
+      <button class="btn" id="darkModeBtn" onclick="toggleDarkMode()" style="background:#1a1a2e;color:#fff;padding:8px 12px;font-size:12px" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="btn" style="background:#1a1a2e;color:#fff" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="app-layout">
+    <div class="sidebar" id="sidebar"></div>
+    <div class="content" id="mainContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="viewModal" onclick="if(event.target===this)closeView()"><div class="modal"><div id="viewContent"></div></div></div>
+<div class="modal-overlay" id="payModal" onclick="if(event.target===this)closePay()"><div class="modal"><h2>Record Payment</h2>
+<div class="search-bar" style="margin:8px 0"><input type="text" id="payClientSearch" placeholder="Search client by name or passport..." oninput="filterPayClientOptions()"></div>
+<select id="payClient" style="margin:8px 0;height:auto" size="5"></select>
+<input type="number" id="payAmount" placeholder="Enter amount in Ksh" style="margin:8px 0">
+<select id="payMethod" style="margin:8px 0"><option>Cash</option><option>M-Pesa</option><option>Bank Transfer</option><option>Card</option></select>
+<label style="display:block;font-size:12px;font-weight:600;color:#666;margin:8px 0 2px;text-transform:uppercase;letter-spacing:0.3px">Payment Date</label>
+<input type="date" id="payDate" style="margin:2px 0 8px">
+<div class="btn-group"><button class="btn btn-gold" onclick="recordPay()">Record Payment</button><button class="btn btn-primary" onclick="closePay()">Cancel</button></div></div></div>
+
+<script>
+var g_token = localStorage.getItem("adminToken") || "";
+var API = "/api";
+
+// Auto-login: check saved credentials
+(function autoLogin() {
+  var savedUser = localStorage.getItem("adminUser");
+  var savedPass = localStorage.getItem("adminPass");
+  if (g_token) { showDash(); loadAll(); return; }
+  if (savedUser && savedPass) {
+    document.getElementById("lUser").value = savedUser;
+    document.getElementById("lPass").value = savedPass;
+    document.getElementById("rememberMe").checked = true;
+    setTimeout(function() { login(); }, 300);
+  }
+})();
+
+// Password visibility toggle
+function togglePwdVis() {
+  var pwd = document.getElementById("lPass");
+  var btn = document.getElementById("pwdToggle");
+  if (pwd.type === "password") { pwd.type = "text"; btn.textContent = "🙈"; btn.title = "Hide password"; }
+  else { pwd.type = "password"; btn.textContent = "👁"; btn.title = "Show password"; }
+}
+
+// Forgot password
+function showForgotPwd() {
+  document.getElementById("loginFormSection").style.display = "none";
+  document.getElementById("fpSection").style.display = "block";
+  document.getElementById("fpMessage").textContent = "";
+}
+function hideForgotPwd() {
+  document.getElementById("loginFormSection").style.display = "block";
+  document.getElementById("fpSection").style.display = "none";
+}
+function resetPassword() {
+  var newPwd = document.getElementById("fpNewPwd").value.trim();
+  var confirmPwd = document.getElementById("fpConfirmPwd").value.trim();
+  var msg = document.getElementById("fpMessage");
+  if (!newPwd || newPwd.length < 4) { msg.innerHTML = '<span style="color:#e74c3c">Password must be at least 4 characters.</span>'; return; }
+  if (newPwd !== confirmPwd) { msg.innerHTML = '<span style="color:#e74c3c">Passwords do not match.</span>'; return; }
+  // Save new password to localStorage
+  localStorage.setItem("adminPass", newPwd);
+  localStorage.setItem("adminUser", "admin");
+  document.getElementById("lPass").value = newPwd;
+  msg.innerHTML = '<span style="color:#27ae60">✅ Password updated! You can now login.</span>';
+  document.getElementById("fpNewPwd").value = "";
+  document.getElementById("fpConfirmPwd").value = "";
+  setTimeout(function() { hideForgotPwd(); login(); }, 800);
+}
+
+function login() {
+  var btn = document.getElementById("loginBtn");
+  btn.disabled = true; btn.textContent = "Logging in...";
+  var user = document.getElementById("lUser").value;
+  var pass = document.getElementById("lPass").value;
+  var remember = document.getElementById("rememberMe").checked;
+  
+  fetch(API+"/admin/login", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:user,password:pass})})
+  .then(r=>r.json())
+  .then(d=>{
+    if (d.token) {
+      localStorage.setItem("adminToken", d.token); g_token = d.token;
+      if (remember) { localStorage.setItem("adminUser", user); localStorage.setItem("adminPass", pass); }
+      showDash(); loadAll();
+    } else { document.getElementById("loginError").textContent = d.error||"Login failed"; btn.disabled = false; btn.textContent = "Sign In"; }
+  })
+  .catch(()=>{ 
+    // Fallback: check saved/remembered credentials when no backend
+    var savedPass = localStorage.getItem("adminPass") || "admin123";
+    if (user === "admin" && pass === savedPass) {
+      localStorage.setItem("adminToken", "local-demo"); g_token = "local-demo";
+      if (remember) { localStorage.setItem("adminUser", user); localStorage.setItem("adminPass", pass); }
+      showDash(); loadAll();
+    } else {
+      document.getElementById("loginError").textContent = "Connection error or invalid credentials"; btn.disabled = false; btn.textContent = "Sign In";
+    }
+  });
+}
+
+function showDash() {
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("dashboardPage").style.display = "block";
+  var menuItems = [
+    {id:"dashboard", icon:"fa-chart-pie", label:"Dashboard"},
+    {id:"register", icon:"fa-user-plus", label:"Register Client"},
+    {id:"clients", icon:"fa-users", label:"All Clients"},
+    {id:"documents", icon:"fa-file-alt", label:"Documents"},
+    {id:"payments", icon:"fa-coins", label:"Payments"}
+  ];
+  var countryItems = [
+    {id:"norway", label:"Norway", flag:"🇳🇴"},
+    {id:"serbia", label:"Serbia", flag:"🇷🇸"},
+    {id:"slovakia", label:"Slovakia", flag:"🇸🇰"},
+    {id:"australia", label:"Australia", flag:"🇦🇺"}
+  ];
+  var h = '<div class="nav-section-title">Main Menu</div>';
+  menuItems.forEach((item,i)=>{
+    h += '<div class="nav-item'+(i===0?" active":"")+'" onclick="switchTab(\''+item.id+'\', this)"><i class="fas '+item.icon+'"></i> <span>'+item.label+'</span></div>';
+  });
+  h += '<div class="nav-divider"></div>';
+  h += '<div class="nav-section-title">By Country</div>';
+  countryItems.forEach(item=>{ h += '<div class="nav-item" onclick="switchTab(\''+item.id+'\', this)"><span>'+item.flag+'</span> <span>'+item.label+'</span></div>'; });
+  document.getElementById("sidebar").innerHTML = h;
+}
+
+function switchTab(tab, el) {
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
+  if (el) el.classList.add("active");
+  renderPage(tab);
+}
+
+function renderPage(tab) {
+  if (tab === "dashboard") renderDashboard();
+  else if (tab === "register") renderRegister();
+  else if (tab === "clients") renderClients();
+  else if (tab === "documents") renderDocuments();
+  else if (tab === "payments") renderPaymentsPanel();
+  else renderCountry(tab);
+}
+
+function af(url, opts) {
+  if (!opts) opts = {};
+  if (!opts.headers) opts.headers = {};
+  opts.headers["Authorization"] = "Bearer "+g_token;
+  if (opts.body && typeof opts.body === "object") {
+    opts.headers["Content-Type"] = "application/json";
+    opts.body = JSON.stringify(opts.body);
+  }
+  return fetch(url, opts).then(r=>{ if (r.status===401) { logout(); return null; } return r.json(); }).catch(()=>null);
+}
+
+function loadAll() { renderPage("dashboard"); }
+
+function bclass(s) {
+  var m = {"Pending":"pending","Checking Documents":"checking","Re-submit Documents":"resubmit","Documents Confirmed":"confirmed","Under Processing":"checking","Decision Made":"confirmed","Ready for Collection / Couriered":"visa-approved","Visa Approved":"visa-approved","Rejected":"rejected","Cancelled":"cancelled"};
+  return m[s]||"pending";
+}
+
+function getCountryLink(country, id) {
+  if (!country) return window.location.origin+"/";
+  var c = country.toLowerCase();
+  if (c === "norway") return window.location.origin+"/pages/norway-landing.html";
+  if (c === "serbia") return window.location.origin+"/pages/serbia-auth.html";
+  if (c === "slovakia") return window.location.origin+"/pages/slovakia-landing.html";
+  if (c === "australia") return window.location.origin+"/pages/australia-landing.html";
+  return window.location.origin+"/track/"+c+"?id="+id;
+}
+
+function renderDashboard() {
+  var el = document.getElementById("mainContent");
+  el.innerHTML = '<div style="max-width:1400px">'
+    + '<div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">'
+    + '<div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a1a2e,#e94560);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(233,69,96,0.25)"><i class="fas fa-chart-pie"></i></div>'
+    + '<div><h1 style="font-size:24px;font-weight:800;color:#1a1a2e;margin:0">Dashboard</h1>'
+    + '<p style="color:#888;font-size:13px;margin:3px 0 0">Overview of all visa applications</p></div></div>'
+    + '<div id="statsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:24px"></div>'
+    + '<div style="display:grid;grid-template-columns:1.7fr 1.3fr;gap:20px;margin-bottom:20px">'
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 14px;display:flex;align-items:center;gap:8px"><i class="fas fa-chart-pie" style="color:#e94560"></i> Status Distribution</h3>'
+    + '<div id="statusChart" style="width:100%;min-height:200px"></div></div>'
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 14px;display:flex;align-items:center;gap:8px"><i class="fas fa-globe" style="color:#e94560"></i> Clients by Country</h3>'
+    + '<div id="countryChart" style="width:100%;min-height:200px"></div></div></div>'
+    + '<div style="display:grid;grid-template-columns:2fr 1fr;gap:20px">'
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 14px;display:flex;align-items:center;gap:8px"><i class="fas fa-clock" style="color:#e94560"></i> Recent Applications</h3>'
+    + '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#f8f9fb">'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Client</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Country</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Amount</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Status</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Date</th>'
+    + '</tr></thead><tbody id="recentBody"></tbody></table></div></div>'
+    + '<div id="summaryCards" style="display:flex;flex-direction:column;gap:12px"></div></div></div>';
+  
+  af(API+"/stats").then(s=>{
+    if (!s) return;
+    var items = [
+      {label:"Total Clients", val:s.totalClients, color:"#e94560", icon:"fa-users", bg:"#fdf0f0"},
+      {label:"Pending", val:s.pending, color:"#f39c12", icon:"fa-clock", bg:"#fef9e7"},
+      {label:"Checking", val:s.documentVerification, color:"#3498db", icon:"fa-search", bg:"#ebf5fb"},
+      {label:"Re-submit", val:s.resubmission, color:"#e74c3c", icon:"fa-redo", bg:"#fdedec"},
+      {label:"Confirmed", val:s.confirmation, color:"#2ecc71", icon:"fa-check", bg:"#eafaf1"},
+      {label:"Approved", val:s.approved, color:"#27ae60", icon:"fa-stamp", bg:"#d5f5e3"},
+      {label:"Rejected", val:s.denied, color:"#c0392b", icon:"fa-times", bg:"#f2d7d5"}
+    ];
+    var h = "";
+    items.forEach(i=>{ 
+      h += '<div style="background:#fff;border-radius:12px;border:1px solid #e8ecf1;padding:16px;display:flex;align-items:center;gap:14px;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,0.03)" onmouseover="this.style.boxShadow=\'0 4px 16px rgba(0,0,0,0.08)\';this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.boxShadow=\'0 1px 4px rgba(0,0,0,0.03)\';this.style.transform=\'translateY(0)\'">'
+        + '<div style="width:44px;height:44px;border-radius:12px;background:'+i.bg+';display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas '+i.icon+'" style="font-size:18px;color:'+i.color+'"></i></div>'
+        + '<div><div style="font-size:22px;font-weight:800;color:'+i.color+'">'+i.val+'</div><div style="font-size:12px;color:#888">'+i.label+'</div></div></div>';
+    });
+    document.getElementById("statsGrid").innerHTML = h;
+  });
+  
+  Promise.all([af(API+"/clients"), af(API+"/payments")]).then(function(res){
+    var cl = res[0];
+    var pays = res[1] || [];
+    if (!cl) return;
+    var payTotalMap = {};
+    pays.forEach(function(pay){
+      payTotalMap[pay.clientId] = (payTotalMap[pay.clientId] || 0) + (Number(pay.amount) || 0);
+    });
+    var totalPay = 0;
+    pays.forEach(function(p){ totalPay += Number(p.amount) || 0; });
+    var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+    var h = "";
+    cl.slice(0,5).forEach(function(c){
+      var total = (Number(c.amount)||0) + (payTotalMap[c.id]||0);
+      var flag = flags[c.country] || "";
+      var dateStr = c.createdAt || "";
+      if (dateStr) { var d = new Date(dateStr); if (!isNaN(d.getTime())) { dateStr = String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear(); } }
+      h += '<tr style="border-bottom:1px solid #f0f2f5"><td style="padding:10px 12px;font-size:13px"><strong style="color:#1a1a2e">'+c.name+'</strong></td>'
+        + '<td style="padding:10px 12px;font-size:13px">'+flag+' '+c.country+'</td>'
+        + '<td style="padding:10px 12px;font-size:13px;font-weight:700;color:#27ae60">Ksh '+total.toLocaleString()+'</td>'
+        + '<td style="padding:10px 12px"><span class="badge badge-'+bclass(c.step)+'">'+c.step+'</span></td>'
+        + '<td style="padding:10px 12px;font-size:12px;color:#888">'+dateStr+'</td></tr>';
+    });
+    document.getElementById("recentBody").innerHTML = h;
+    
+    // Summary cards
+    var byCountry = {};
+    cl.forEach(function(c){ byCountry[c.country] = (byCountry[c.country]||0) + 1; });
+    var sumHtml = '';
+    sumHtml += '<div style="background:#fff;border-radius:12px;border:1px solid #e8ecf1;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+      + '<h4 style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px">Clients by Country</h4>';
+    var cFlags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+    Object.keys(byCountry).forEach(function(co){
+      sumHtml += '<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid #f5f5f5">'
+        + '<span>'+(cFlags[co]||'')+' '+co+'</span><strong style="color:#1a1a2e">'+byCountry[co]+'</strong></div>';
+    });
+    sumHtml += '<div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:13px;font-weight:700;border-top:2px solid #e8ecf1;margin-top:4px">'
+      + '<span>Total</span><strong style="color:#e94560">'+cl.length+'</strong></div></div>';
+    sumHtml += '<div style="background:#fff;border-radius:12px;border:1px solid #e8ecf1;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+      + '<div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;font-weight:600">Total Payments</div>'
+      + '<div style="font-size:22px;font-weight:800;color:#27ae60;margin-top:4px">Ksh '+totalPay.toLocaleString()+'</div></div>'
+      + '<div style="width:44px;height:44px;border-radius:12px;background:#eafaf1;display:flex;align-items:center;justify-content:center"><i class="fas fa-coins" style="font-size:20px;color:#27ae60"></i></div></div></div>';
+    document.getElementById("summaryCards").innerHTML = sumHtml;
+    
+    // ---------- Draw CSS-based charts ----------
+    
+    // 1) Status Distribution — horizontal bars
+    var stepLabels = ["Pending","Processing","Document Verification","Interview Scheduling","Embassy Review","Re-submission","Confirmation","Approved","Rejected","Cancelled"];
+    var stepColors = ["#f39c12","#e67e22","#3498db","#9b59b6","#e74c3c","#e74c3c","#2ecc71","#27ae60","#c0392b","#95a5a6"];
+    var stepIcons = ["fa-clock","fa-cog","fa-search","fa-calendar","fa-building","fa-redo","fa-check","fa-stamp","fa-times","fa-ban"];
+    var stepCounts = {};
+    stepLabels.forEach(function(s){ stepCounts[s] = 0; });
+    cl.forEach(function(c){ var st = c.step; if (stepCounts[st] !== undefined) stepCounts[st]++; });
+    
+    var maxStep = 1;
+    stepLabels.forEach(function(s){ if (stepCounts[s] > maxStep) maxStep = stepCounts[s]; });
+    
+    var sHtml = '<div style="display:flex;flex-direction:column;gap:10px">';
+    stepLabels.forEach(function(s,i){
+      var count = stepCounts[s] || 0;
+      if (count === 0) return;
+      var pct = Math.max(8, (count / maxStep) * 100);
+      sHtml += '<div style="display:flex;align-items:center;gap:10px">'
+        + '<i class="fas '+stepIcons[i]+'" style="width:16px;color:'+stepColors[i]+';font-size:13px;text-align:center"></i>'
+        + '<span style="font-size:12px;font-weight:600;color:#444;min-width:80px">'+s+'</span>'
+        + '<div style="flex:1;height:24px;background:#f0f2f5;border-radius:6px;overflow:hidden">'
+        + '<div style="height:100%;width:'+pct+'%;background:'+stepColors[i]+';border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;transition:width 0.6s;min-width:28px">'
+        + '<span style="color:#fff;font-size:11px;font-weight:700">'+count+'</span></div></div></div>';
+    });
+    sHtml += '</div>';
+    document.getElementById("statusChart").innerHTML = sHtml;
+    
+    // 2) Clients by Country — horizontal bars with flags
+    var byCountry = {};
+    cl.forEach(function(c){ byCountry[c.country] = (byCountry[c.country]||0) + 1; });
+    var countryNames = Object.keys(byCountry);
+    var countryData = countryNames.map(function(n){ return byCountry[n]; });
+    var countryColors = ["#e94560","#3498db","#2ecc71","#f39c12","#9b59b6"];
+    var cFlags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+    
+    var maxCountry = 1;
+    countryData.forEach(function(v){ if (v > maxCountry) maxCountry = v; });
+    
+    var cHtml = '<div style="display:flex;flex-direction:column;gap:12px">';
+    countryNames.forEach(function(n,i){
+      var count = byCountry[n];
+      var pct = Math.max(10, (count / maxCountry) * 100);
+      cHtml += '<div style="display:flex;align-items:center;gap:10px">'
+        + '<span style="font-size:18px">'+(cFlags[n]||'')+'</span>'
+        + '<span style="font-size:12px;font-weight:600;color:#444;min-width:60px">'+n+'</span>'
+        + '<div style="flex:1;height:28px;background:#f0f2f5;border-radius:6px;overflow:hidden">'
+        + '<div style="height:100%;width:'+pct+'%;background:'+countryColors[i]+';border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;transition:width 0.6s;min-width:30px">'
+        + '<span style="color:#fff;font-size:13px;font-weight:700">'+count+'</span></div></div></div>';
+    });
+    cHtml += '</div>';
+    document.getElementById("countryChart").innerHTML = cHtml;
+  });
+}
+
+function renderRegister() {
+  var el = document.getElementById("mainContent");
+  el.innerHTML = '<div style="display:flex;justify-content:center;width:100%">'
+    + '<div style="max-width:720px;width:100%">'
+    
+    + '<div style="text-align:center;margin-bottom:24px">'
+    + '<div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#1a1a2e,#0f3460);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:#fff;font-size:28px"><i class="fas fa-user-plus"></i></div>'
+    + '<h1 style="font-size:24px;font-weight:800;color:#1a1a2e;margin:0">Register New Client</h1>'
+    + '<p style="color:#888;font-size:14px;margin:6px 0 0">Fill in the details below to create a new visa application</p>'
+    + '</div>'
+    
+    + '<div style="background:#fff;padding:32px;border-radius:16px;border:1px solid #e8ecf1;box-shadow:0 4px 20px rgba(0,0,0,0.06)"><form id="regForm">'
+    
+    + '<!-- Personal Information -->'
+    + '<div style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #f0f2f5">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 16px;display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:8px;background:#0f3460;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px"><i class="fas fa-user"></i></span> Personal Information</h3>'
+    + '<div class="form-grid">'
+    + '<div class="form-group" style="grid-column:1/-1"><label><i class="fas fa-user" style="color:#0f3460;width:16px"></i> Full Name</label><input id="rName" required placeholder="e.g. John Doe" style="background:#f8f9fb"></div>'
+    + '<div class="form-group"><label><i class="fas fa-id-card" style="color:#0f3460;width:16px"></i> Passport Number</label><input id="rPass" required placeholder="e.g. AB123456" style="background:#f8f9fb"></div>'
+    + '<div class="form-group"><label><i class="fas fa-flag" style="color:#0f3460;width:16px"></i> Country</label><select id="rCountry" required onchange="updateNorwaySteps()" style="background:#f8f9fb"><option value="">-- Select Country --</option><option value="Norway">🇳🇴 Norway</option><option value="Serbia">🇷🇸 Serbia</option><option value="Slovakia">🇸🇰 Slovakia</option><option value="Australia">🇦🇺 Australia</option></select></div>'
+    + '</div></div>'
+    
+    + '<!-- Visa Details -->'
+    + '<div style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #f0f2f5">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 16px;display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:8px;background:#0f3460;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px"><i class="fas fa-passport"></i></span> Visa Details</h3>'
+    + '<div class="form-grid">'
+    + '<div class="form-group"><label><i class="fas fa-tag" style="color:#0f3460;width:16px"></i> Visa Type</label><select id="rVisa" style="background:#f8f9fb"><option>Tourist</option><option>Student</option><option>Business</option><option>Work</option></select></div>'
+    + '<div class="form-group"><label><i class="fas fa-calendar-alt" style="color:#0f3460;width:16px"></i> Remaining Days</label><input type="number" id="rDays" value="30" style="background:#f8f9fb"></div>'
+    + '<div class="form-group" style="grid-column:1/-1"><label><i class="fas fa-tasks" style="color:#0f3460;width:16px"></i> Current Status</label><select id="rStep" style="background:#f8f9fb"><option>Pending</option><option>Checking Documents</option><option>Re-submit Documents</option><option>Documents Confirmed</option><option>Under Processing</option><option>Decision Made</option><option>Ready for Collection / Couriered</option><option>Visa Approved</option><option>Rejected</option><option>Cancelled</option></select></div>'
+    + '</div></div>'
+    
+    + '<!-- Account Access -->'
+    + '<div style="margin-bottom:8px">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 16px;display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:8px;background:#0f3460;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px"><i class="fas fa-lock"></i></span> Client Access</h3>'
+    + '<div class="form-grid">'
+    + '<div class="form-group"><label><i class="fas fa-key" style="color:#0f3460;width:16px"></i> Client Password</label><input id="rPwd" placeholder="Set a login password for the client" style="background:#f8f9fb"></div>'
+    + '</div></div>'
+    
+    + '<div style="text-align:center;margin-top:24px;padding-top:20px;border-top:1px solid #f0f2f5">'
+    + '<button type="submit" class="btn" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:14px 48px;font-size:15px;font-weight:700;border:none;border-radius:10px;cursor:pointer;font-family:inherit;transition:all .2s" onmouseover="this.style.opacity=\'0.9\'" onmouseout="this.style.opacity=\'1\'"><i class="fas fa-plus-circle"></i> Register Client</button>'
+    + '</div></form><div id="regMsg" style="margin-top:12px;display:none"></div></div></div></div>';
+  document.getElementById("regForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var d = {name:document.getElementById("rName").value,passport:document.getElementById("rPass").value,country:document.getElementById("rCountry").value,visaType:document.getElementById("rVisa").value,amount:0,remainingDays:parseInt(document.getElementById("rDays").value)||0,step:document.getElementById("rStep").value,password:document.getElementById("rPwd").value};
+    af(API+"/clients",{method:"POST",body:d}).then(function(r){
+      var msg = document.getElementById("regMsg");
+      msg.style.display = "block";
+      if (r && r.id) {
+        var link = getCountryLink(r.country, r.id);
+        msg.innerHTML = '<div style="color:#27ae60;background:#d4edda;padding:12px;border-radius:8px;text-align:center">? Successfully Registered! <br><div class="link-box" style="margin-top:8px"><a href="'+link+'" target="_blank">'+link+'</a><button class="btn btn-primary btn-sm" onclick="navigator.clipboard.writeText(\''+link+'\')">Copy</button></div></div>';
+        document.getElementById("regForm").reset();
+      } else {
+        msg.innerHTML = '<div style="color:#e74c3c;background:#f8d7da;padding:12px;border-radius:8px;text-align:center">? Registration failed. Please try again.</div>';
+      }
+    });
+  });
+}
+
+function renderClients() {
+  var el = document.getElementById("mainContent");
+  el.innerHTML = '<div style="max-width:1400px">'
+    + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">'
+    + '<div><h1 style="font-size:24px;font-weight:800;color:#1a1a2e;margin:0"><i class="fas fa-users" style="color:#0f3460"></i> All Clients</h1>'
+    + '<p style="color:#888;font-size:13px;margin:4px 0 0">View and manage all visa applications</p></div>'
+    + '<div style="display:flex;gap:8px"><input type="text" id="clientSearch" placeholder="&#x1F50D; Search by name or passport..." oninput="filterClients()" style="padding:10px 16px;border:2px solid #e8ecf1;border-radius:10px;font-size:13px;width:280px;background:#f8f9fb"></div></div>'
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#f8f9fb">'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Client</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Passport</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Country</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Visa</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Amount</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Days</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Status</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Date</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Action</th>'
+    + '</tr></thead><tbody id="clientsBody"></tbody></table></div></div></div>';
+  Promise.all([af(API+"/clients"), af(API+"/payments")]).then(function(res){
+    var cl = res[0];
+    var pays = res[1] || [];
+    if (!cl) return;
+    var payTotalMap = {};
+    pays.forEach(function(pay){
+      payTotalMap[pay.clientId] = (payTotalMap[pay.clientId] || 0) + (Number(pay.amount) || 0);
+    });
+    window._allClients = cl;
+    window._payTotalMap = payTotalMap;
+    displayClientTable(cl, payTotalMap);
+  });
+}
+
+function filterClients() {
+  var q = document.getElementById("clientSearch").value.toLowerCase().trim();
+  var all = window._allClients || [];
+  var payTotalMap = window._payTotalMap || {};
+  if (!q) { displayClientTable(all, payTotalMap); return; }
+  var filtered = all.filter(function(c){
+    return (c.name || "").toLowerCase().includes(q) || (c.passport || "").toLowerCase().includes(q);
+  });
+  displayClientTable(filtered, payTotalMap);
+}
+
+function displayClientTable(clients, payTotalMap) {
+  var h = "";
+  var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  clients.forEach(function(c){
+    var total = (Number(c.amount)||0) + ((payTotalMap||{})[c.id]||0);
+    var flag = flags[c.country] || "";
+    var dateStr = c.createdAt || "";
+    if (dateStr) { var d = new Date(dateStr); if (!isNaN(d.getTime())) { dateStr = String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear(); } }
+    h += '<tr style="border-bottom:1px solid #f0f2f5;transition:background .15s" onmouseover="this.style.background=\'#f8f9fb\'" onmouseout="this.style.background=\'transparent\'">'
+      + '<td style="padding:14px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">'+(c.name?c.name.charAt(0).toUpperCase():'?')+'</div><div><strong style="font-size:14px;color:#1a1a2e">'+c.name+'</strong></div></div></td>'
+      + '<td style="padding:14px 16px;font-size:13px;color:#555;font-family:monospace">'+c.passport+'</td>'
+      + '<td style="padding:14px 16px;font-size:13px">'+flag+' '+c.country+'</td>'
+      + '<td style="padding:14px 16px;font-size:13px;color:#555">'+(c.visaType||"Tourist")+'</td>'
+      + '<td style="padding:14px 16px;font-size:13px;font-weight:700;color:#27ae60">Ksh '+total.toLocaleString()+'</td>'
+      + '<td style="padding:14px 16px;font-size:13px;color:#555">'+(c.remainingDays||0)+'</td>'
+      + '<td style="padding:14px 16px"><span class="badge badge-'+bclass(c.step)+'">'+c.step+'</span></td>'
+      + '<td style="padding:14px 16px;font-size:12px;color:#888">'+dateStr+'</td>'
+      + '<td style="padding:14px 16px"><button class="btn btn-primary btn-sm" onclick="viewClient(\''+c.id+'\')" style="background:#0f3460;color:#fff;padding:6px 14px;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background=\'#1a4a7a\'" onmouseout="this.style.background=\'#0f3460\'"><i class="fas fa-eye"></i> View</button></td></tr>';
+  });
+  document.getElementById("clientsBody").innerHTML = h;
+}
+
+function renderCountry(tab) {
+  var names = {"norway":"Norway","serbia":"Serbia","slovakia":"Slovakia","australia":"Australia"};
+  var n = names[tab]||"Norway";
+  var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  var flag = flags[n] || "";
+  var el = document.getElementById("mainContent");
+  el.innerHTML = '<div style="max-width:1400px">'
+    + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">'
+    + '<div><h1 style="font-size:24px;font-weight:800;color:#1a1a2e;margin:0">'+flag+' '+n+' Applications</h1>'
+    + '<p style="color:#888;font-size:13px;margin:4px 0 0">Manage all '+n+' visa applications</p></div>'
+    + '<div><input type="text" id="countryClientSearch" placeholder="&#x1F50D; Search by name or passport..." oninput="filterCountryClients(\''+n+'\')" style="padding:10px 16px;border:2px solid #e8ecf1;border-radius:10px;font-size:13px;width:280px;background:#f8f9fb"></div></div>'
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#f8f9fb">'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Client</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Passport</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Visa</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Amount</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Days</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Status</th>'
+    + '<th style="padding:14px 16px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Action</th>'
+    + '</tr></thead><tbody id="cBody"></tbody></table></div></div></div>';
+  Promise.all([af(API+"/clients?country="+encodeURIComponent(n)), af(API+"/payments")]).then(function(res){
+    var cl = res[0];
+    var pays = res[1] || [];
+    if (!cl) return;
+    var payTotalMap = {};
+    pays.forEach(function(pay){
+      payTotalMap[pay.clientId] = (payTotalMap[pay.clientId] || 0) + (Number(pay.amount) || 0);
+    });
+    window._countryClients = cl;
+    window._currentCountry = n;
+    window._countryPayTotalMap = payTotalMap;
+    displayCountryTable(cl, payTotalMap);
+  });
+}
+
+function filterCountryClients(country) {
+  var q = document.getElementById("countryClientSearch").value.toLowerCase().trim();
+  var all = window._countryClients || [];
+  var payTotalMap = window._countryPayTotalMap || {};
+  if (!q) { displayCountryTable(all, payTotalMap); return; }
+  var filtered = all.filter(function(c){
+    return (c.name || "").toLowerCase().includes(q) || (c.passport || "").toLowerCase().includes(q);
+  });
+  displayCountryTable(filtered, payTotalMap);
+}
+
+function displayCountryTable(clients, payTotalMap) {
+  var h = "";
+  var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  clients.forEach(function(c){
+    var total = (Number(c.amount)||0) + ((payTotalMap||{})[c.id]||0);
+    var flag = flags[c.country] || "";
+    h += '<tr style="border-bottom:1px solid #f0f2f5;transition:background .15s" onmouseover="this.style.background=\'#f8f9fb\'" onmouseout="this.style.background=\'transparent\'">'
+      + '<td style="padding:14px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">'+(c.name?c.name.charAt(0).toUpperCase():'?')+'</div><div><strong style="font-size:14px;color:#1a1a2e">'+c.name+'</strong></div></div></td>'
+      + '<td style="padding:14px 16px;font-size:13px;color:#555;font-family:monospace">'+c.passport+'</td>'
+      + '<td style="padding:14px 16px;font-size:13px;color:#555">'+(c.visaType||"Tourist")+'</td>'
+      + '<td style="padding:14px 16px;font-size:13px;font-weight:700;color:#27ae60">Ksh '+total.toLocaleString()+'</td>'
+      + '<td style="padding:14px 16px;font-size:13px;color:#555">'+(c.remainingDays||0)+'</td>'
+      + '<td style="padding:14px 16px"><span class="badge badge-'+bclass(c.step)+'">'+c.step+'</span></td>'
+      + '<td style="padding:14px 16px"><button class="btn btn-primary btn-sm" onclick="viewClient(\''+c.id+'\')" style="background:#0f3460;color:#fff;padding:6px 14px;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit" onmouseover="this.style.background=\'#1a4a7a\'" onmouseout="this.style.background=\'#0f3460\'"><i class="fas fa-eye"></i> View</button></td></tr>';
+  });
+  document.getElementById("cBody").innerHTML = h;
+}
+
+function renderDocuments() {
+  var el = document.getElementById("mainContent");
+  el.innerHTML = '<div style="max-width:1100px">'
+    + '<div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">'
+    + '<div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#1a1a2e,#0f3460);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 4px 12px rgba(15,52,96,0.25)"><i class="fas fa-file-alt"></i></div>'
+    + '<div><h1 style="font-size:24px;font-weight:800;color:#1a1a2e;margin:0">Documents</h1>'
+    + '<p style="color:#888;font-size:13px;margin:3px 0 0">Upload and manage client documents</p></div></div>'
+    
+    // Client selector + upload form in one card
+    + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">'
+    
+    // Left: Select client + file upload
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 16px;display:flex;align-items:center;gap:8px"><i class="fas fa-user" style="color:#0f3460"></i> Select Client</h3>'
+    + '<div class="form-group"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px"><i class="fas fa-search"></i> Search &amp; Select Client</label>'
+    + '<input type="text" id="docClientSearch" placeholder="Type client name or passport..." oninput="filterDocClientList()" style="margin-bottom:8px;background:#f8f9fb">'
+    + '<select id="docClientSelect" size="5" style="width:100%;padding:8px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;min-height:140px"></select></div>'
+    + '<div id="docClientInfo" style="display:none;margin-top:10px;padding:10px 14px;background:#f0f7ff;border-radius:8px;border-left:3px solid #0f3460;font-size:13px"></div>'
+    + '</div>'
+    
+    // Right: Upload form
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 16px;display:flex;align-items:center;gap:8px"><i class="fas fa-upload" style="color:#e94560"></i> Upload Document</h3>'
+    + '<div class="form-group"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Document Type</label>'
+    + '<select id="docTypeSelect" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;margin-bottom:8px;background:#f8f9fb">'
+    + '<option value="Passport Copy">📄 Passport Copy</option>'
+    + '<option value="Medical Report">🏥 Medical Report</option>'
+    + '<option value="Good Conduct">👮 Good Conduct / Police Clearance</option>'
+    + '<option value="Photo">📸 Passport Photo</option>'
+    + '<option value="Application Form">📋 Application Form</option>'
+    + '<option value="Bank Statement">💰 Bank Statement</option>'
+    + '<option value="Travel Insurance">🛡️ Travel Insurance</option>'
+    + '<option value="Flight Itinerary">✈️ Flight Itinerary</option>'
+    + '<option value="Accommodation">🏨 Accommodation Proof</option>'
+    + '<option value="Employment Letter">💼 Employment Letter</option>'
+    + '<option value="Invitation Letter">✉️ Invitation Letter</option>'
+    + '<option value="Other">📁 Other</option></select></div>'
+    + '<div class="form-group"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Custom Label <span style="color:#aaa;font-weight:400;text-transform:none">(optional)</span></label>'
+    + '<input type="text" id="docCustomLabel" placeholder="e.g. John_Passport_2026" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;margin-bottom:8px;background:#f8f9fb"></div>'
+    + '<div class="form-group"><label style="font-size:12px;font-weight:600;color:#666;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Choose File</label>'
+    + '<input type="file" id="docFileInput2" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;background:#f8f9fb"></div>'
+    + '<div id="docUploadMsg" style="margin-top:8px;font-size:13px"></div>'
+    + '<button class="btn" onclick="submitDocFromPage()" style="width:100%;padding:12px;background:linear-gradient(135deg,#e94560,#c0392b);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:6px"><i class="fas fa-cloud-upload-alt"></i> Upload Document</button>'
+    + '</div></div>'
+    
+    // Document list
+    + '<div style="background:#fff;border-radius:14px;border:1px solid #e8ecf1;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">'
+    + '<h3 style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0;display:flex;align-items:center;gap:8px"><i class="fas fa-list" style="color:#0f3460"></i> <span id="docListTitle">Uploaded Documents</span></h3>'
+    + '<div style="display:flex;gap:6px">'
+    + '<input type="text" id="docSearchInput" placeholder="Search documents..." oninput="filterDocTable()" style="width:180px;padding:8px 12px;border:2px solid #e8ecf1;border-radius:8px;font-size:12px;background:#f8f9fb">'
+    + '<button class="btn btn-primary btn-sm" onclick="refreshDocList()" title="Refresh"><i class="fas fa-sync-alt"></i></button></div></div>'
+    + '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse"><thead><tr style="background:#f8f9fb">'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Client</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">File Name</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Type</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Date</th>'
+    + '<th style="padding:10px 12px;text-align:left;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #e8ecf1">Actions</th>'
+    + '</tr></thead><tbody id="docTableBody"></tbody></table></div>'
+    + '<div id="docEmptyState" style="text-align:center;padding:40px 20px;color:#aaa;display:none"><i class="fas fa-folder-open" style="font-size:40px;display:block;margin-bottom:10px;color:#ddd"></i>No documents found. Select a client and upload files above.</div></div></div>';
+  
+  // Load clients into selector
+  loadDocClientList();
+  refreshDocList();
+}
+
+function loadDocClientList() {
+  af(API+"/clients").then(function(cl){
+    if (!cl) return;
+    window._docClients = cl;
+    var sel = document.getElementById("docClientSelect");
+    var h = '';
+    cl.forEach(function(c){
+      var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+      h += '<option value="'+c.id+'">'+(flags[c.country]||'')+' '+c.name+' ('+c.passport+')</option>';
+    });
+    sel.innerHTML = h;
+    sel.onchange = function(){ onDocClientSelect(); };
+    if (cl.length > 0) { sel.selectedIndex = 0; onDocClientSelect(); }
+  });
+}
+
+function filterDocClientList() {
+  var q = document.getElementById("docClientSearch").value.toLowerCase().trim();
+  var sel = document.getElementById("docClientSelect");
+  var cl = window._docClients || [];
+  var h = '';
+  var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  cl.forEach(function(c, i){
+    var match = !q || c.name.toLowerCase().includes(q) || (c.passport||'').toLowerCase().includes(q);
+    if (match) h += '<option value="'+c.id+'">'+(flags[c.country]||'')+' '+c.name+' ('+c.passport+')</option>';
+  });
+  sel.innerHTML = h;
+  if (sel.options.length > 0) { sel.selectedIndex = 0; onDocClientSelect(); }
+}
+
+function onDocClientSelect() {
+  var sel = document.getElementById("docClientSelect");
+  var cl = window._docClients || [];
+  var id = sel.value;
+  if (!id) return;
+  var client = null;
+  cl.forEach(function(c){ if (c.id === id) client = c; });
+  if (!client) return;
+  var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  document.getElementById("docClientInfo").style.display = "block";
+  document.getElementById("docClientInfo").innerHTML = '<strong>'+(flags[client.country]||'')+' '+client.name+'</strong> &middot; Passport: '+client.passport+' &middot; Status: '+client.step;
+  window._docSelectedClientId = id;
+  refreshDocList();
+}
+
+function refreshDocList() {
+  var id = window._docSelectedClientId;
+  var tbody = document.getElementById("docTableBody");
+  var empty = document.getElementById("docEmptyState");
+  if (!id) {
+    if (tbody) tbody.innerHTML = '';
+    if (empty) empty.style.display = "block";
+    return;
+  }
+  af(API+"/documents/"+id).then(function(docs){
+    if (!docs || docs.length === 0) {
+      tbody.innerHTML = '';
+      empty.style.display = "block";
+      return;
+    }
+    empty.style.display = "none";
+    var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+    var cl = window._docClients || [];
+    var clientMap = {};
+    cl.forEach(function(c){ clientMap[c.id] = c; });
+    var h = '';
+    docs.forEach(function(d){
+      var c = clientMap[d.clientId] || {};
+      var flag = flags[c.country] || '';
+      var dt = d.uploadedAt || '';
+      if (dt) { var dd = new Date(dt); if (!isNaN(dd.getTime())) { dt = String(dd.getDate()).padStart(2,'0')+'/'+String(dd.getMonth()+1).padStart(2,'0')+'/'+dd.getFullYear(); } }
+      var label = d.category || 'Document';
+      if (d.originalName) label += ' — '+d.originalName;
+      h += '<tr style="border-bottom:1px solid #f0f2f5">'
+        + '<td style="padding:10px 12px;font-size:13px;font-weight:600;color:#1a1a2e">'+flag+' '+(c.name||'Unknown')+'</td>'
+        + '<td style="padding:10px 12px;font-size:13px;color:#333">'
+        + '<i class="fas fa-file" style="color:#0f3460;margin-right:6px"></i>'+(d.customLabel || d.originalName || 'Unnamed')+'</td>'
+        + '<td style="padding:10px 12px"><span class="badge" style="background:#e8ecf1;color:#333;padding:3px 10px;border-radius:12px;font-size:11px">'+(d.category||'Other')+'</span></td>'
+        + '<td style="padding:10px 12px;font-size:12px;color:#888">'+dt+'</td>'
+        + '<td style="padding:10px 12px"><div style="display:flex;gap:4px">'
+        + '<a href="'+d.url+'" target="_blank" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>'
+        + '<button class="btn btn-sm btn-danger" onclick="confirmDeleteDoc(\''+d._id+'\')"><i class="fas fa-trash"></i></button></div></td></tr>';
+    });
+    tbody.innerHTML = h;
+    document.getElementById("docListTitle").textContent = 'Uploaded Documents ('+docs.length+')';
+  });
+}
+
+function confirmDeleteDoc(docId) {
+  if (!confirm("Delete this document permanently?")) return;
+  af(API+"/documents/"+docId, {method:"DELETE"}).then(function(r){
+    if (r && r.success) { showToast("Document deleted", "success"); refreshDocList(); }
+    else showToast("Delete failed", "error");
+  });
+}
+
+function submitDocFromPage() {
+  var clientId = window._docSelectedClientId;
+  if (!clientId) { showToast("Please select a client first", "error"); return; }
+  var file = document.getElementById("docFileInput2").files[0];
+  if (!file) { showToast("Please select a file to upload", "error"); return; }
+  var category = document.getElementById("docTypeSelect").value;
+  var customLabel = document.getElementById("docCustomLabel").value.trim() || file.name;
+  
+  var msg = document.getElementById("docUploadMsg");
+  msg.innerHTML = '<span style="color:#888"><i class="fas fa-spinner fa-pulse"></i> Uploading...</span>';
+  
+  var fd = new FormData();
+  fd.append("file", file);
+  fd.append("clientId", clientId);
+  fd.append("category", category);
+  fd.append("customLabel", customLabel);
+  
+  fetch(API+"/upload", {method:"POST", headers:{"Authorization":"Bearer "+g_token}, body:fd})
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if (d.error) { msg.innerHTML = '<span style="color:#e74c3c">'+d.error+'</span>'; return; }
+    msg.innerHTML = '<span style="color:#27ae60">✅ Uploaded successfully!</span>';
+    document.getElementById("docFileInput2").value = "";
+    document.getElementById("docCustomLabel").value = "";
+    showToast("✅ "+customLabel+" uploaded!", "success");
+    refreshDocList();
+  })
+  .catch(function(){ msg.innerHTML = '<span style="color:#e74c3c">Upload failed — server error</span>'; });
+}
+
+function filterDocTable() {
+  var q = document.getElementById("docSearchInput").value.toLowerCase().trim();
+  var rows = document.querySelectorAll("#docTableBody tr");
+  rows.forEach(function(r){
+    var match = !q || r.textContent.toLowerCase().includes(q);
+    r.style.display = match ? "" : "none";
+  });
+}
+
+function renderPaymentsPanel() {
+  var el = document.getElementById("mainContent");
+  el.innerHTML = '<h1>Payments</h1><div class="search-bar" style="margin:16px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
+    + '<input type="text" id="paySearch" placeholder="Search by name or passport..." oninput="filterPayments()" style="max-width:250px">'
+    + '<select id="payCountryFilter" onchange="filterPayments()" style="width:auto;min-width:130px;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px">'
+    + '<option value="">All Countries</option><option value="Norway">🇳🇴 Norway</option><option value="Serbia">🇷🇸 Serbia</option><option value="Slovakia">🇸🇰 Slovakia</option><option value="Australia">🇦🇺 Australia</option></select>'
+    + '<button class="btn btn-gold" onclick="openPay()" style="margin-left:auto"><i class="fas fa-plus"></i> Record Payment</button></div>'
+    + '<div style="overflow-x:auto"><table><thead><tr><th>Client</th><th>Passport</th><th>Country</th><th>Total Paid</th><th>Payments</th><th>Date Range</th><th>Actions</th></tr></thead><tbody id="pBody"></tbody></table></div>'
+    + '<div id="payTotalInfo" style="margin-top:12px;font-size:14px;color:#888;text-align:right"></div>';
+  loadPayments();
+}
+
+function loadPayments() {
+  Promise.all([af(API+"/payments"), af(API+"/clients")]).then(function(res){
+    var p = res[0];
+    var cl = res[1] || [];
+    if (!p) return;
+    var clientMap = {};
+    cl.forEach(function(c){ clientMap[c.id] = c; });
+    window._allPayments = p;
+    window._clientMap = clientMap;
+    groupAndDisplayPayments(p, clientMap);
+  });
+}
+
+function filterPayments() {
+  var q = document.getElementById("paySearch").value.toLowerCase().trim();
+  var countryFilter = document.getElementById("payCountryFilter").value;
+  var all = window._allPayments || [];
+  var clientMap = window._clientMap || {};
+  // Filter payments, then group by client
+  var filtered = all.filter(function(pay){
+    var clientInfo = clientMap[pay.clientId] || {};
+    var name = (pay.clientName || clientInfo.name || "").toLowerCase();
+    var pass = (pay.clientPassport || clientInfo.passport || "").toLowerCase();
+    var clientCountry = clientInfo.country || "";
+    var matchesSearch = !q || name.includes(q) || pass.includes(q);
+    var matchesCountry = !countryFilter || clientCountry === countryFilter;
+    return matchesSearch && matchesCountry;
+  });
+  groupAndDisplayPayments(filtered, clientMap);
+}
+
+function groupAndDisplayPayments(payments, clientMap) {
+  // Group payments by clientId
+  var groups = {};
+  var clientOrder = [];
+  payments.forEach(function(pay){
+    var cid = pay.clientId;
+    if (!groups[cid]) {
+      groups[cid] = [];
+      clientOrder.push(cid);
+    }
+    groups[cid].push(pay);
+  });
+  
+  var h = "";
+  var grandTotal = 0;
+  var totalPayments = 0;
+  var countryFlag = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  
+  clientOrder.forEach(function(cid){
+    var pays = groups[cid];
+    var clientInfo = clientMap[cid] || {};
+    var clientName = clientInfo.name || pays[0].clientName || cid || "N/A";
+    var clientPass = clientInfo.passport || pays[0].clientPassport || "";
+    var clientCountry = clientInfo.country || "-";
+    var flag = countryFlag[clientCountry] || "";
+    var clientTotal = 0;
+    var payCount = pays.length;
+    pays.forEach(function(p){ clientTotal += Number(p.amount) || 0; });
+    grandTotal += clientTotal;
+    totalPayments += payCount;
+    // Show first and last payment date
+    var dates = pays.map(function(p){ return p.createdAt || ""; }).filter(function(d){ return d; }).sort();
+    var dateRange = dates.length > 0 ? dates[0] : "-";
+    if (dates.length > 1) dateRange = dates[0] + " - " + dates[dates.length-1];
+    
+    h += '<tr><td><strong>'+clientName+'</strong></td><td>'+(clientPass||"")+'</td><td>'+flag+' '+clientCountry+'</td>'
+      + '<td><span style="color:#27ae60;font-weight:700">Ksh '+clientTotal.toLocaleString()+'</span></td>'
+      + '<td><span class="badge" style="background:#e8ecf1;color:#555">'+payCount+' payment(s)</span></td>'
+      + '<td style="font-size:12px;color:#888">'+dateRange+'</td>'
+      + '<td><button class="btn btn-primary btn-sm" onclick="viewClientPayments(\''+cid+'\')" title="View all payments"><i class="fas fa-list"></i> View</button></td></tr>';
+  });
+  document.getElementById("pBody").innerHTML = h;
+  var totalEl = document.getElementById("payTotalInfo");
+  if (totalEl) totalEl.innerHTML = '<strong>Total: Ksh '+grandTotal.toLocaleString()+'</strong> | <span style="color:#888">'+totalPayments+' payment(s) across '+clientOrder.length+' client(s)</span>';
+}
+
+// View all payments for a client
+function viewClientPayments(clientId) {
+  var all = window._allPayments || [];
+  var clientMap = window._clientMap || {};
+  var pays = all.filter(function(p){ return p.clientId === clientId; });
+  var clientInfo = clientMap[clientId] || {};
+  var clientName = clientInfo.name || "N/A";
+  var countryFlag = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  var flag = countryFlag[clientInfo.country] || "";
+  
+  var rows = "";
+  var total = 0;
+  pays.forEach(function(pay){
+    var amt = Number(pay.amount) || 0;
+    total += amt;
+    // Format date
+    var d = pay.createdAt || "";
+    if (d) { var dt = new Date(d); if (!isNaN(dt.getTime())) {
+      d = String(dt.getDate()).padStart(2,'0')+'/'+String(dt.getMonth()+1).padStart(2,'0')+'/'+dt.getFullYear();
+    }}
+    rows += '<tr><td><span style="color:#27ae60;font-weight:700">Ksh '+amt.toLocaleString()+'</span></td>'
+      + '<td>'+pay.method+'</td><td>'+d+'</td>'
+      + '<td><button class="btn btn-primary btn-sm" onclick="editPay(\''+pay.id+'\')" style="margin-right:4px"><i class="fas fa-edit"></i></button>'
+      + '<button class="btn btn-danger btn-sm" onclick="deletePay(\''+pay.id+'\',\''+(clientName.replace(/\'/g,"\\'"))+'\',\''+pay.amount+'\')"><i class="fas fa-trash"></i></button></td></tr>';
+  });
+  
+  var html = '<div class="modal-overlay" id="viewPayOverlay" style="display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000;padding:20px">'
+    + '<div class="modal" style="max-width:650px"><h2><i class="fas fa-credit-card"></i> Payment History</h2>'
+    + '<p style="color:#888;font-size:14px;margin:8px 0 16px">Client: <strong>'+clientName+'</strong> '+flag+' '+(clientInfo.country||"")+' | Passport: '+(clientInfo.passport||"")+'</p>'
+    + '<div style="overflow-x:auto"><table style="width:100%"><thead><tr><th>Amount</th><th>Method</th><th>Date</th><th>Actions</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+    + '<p style="text-align:right;margin-top:12px;font-size:15px;font-weight:700;color:#27ae60">Total: Ksh '+total.toLocaleString()+'</p>'
+    + '<div class="btn-group"><button class="btn btn-gold" onclick="addPayFromView(\''+clientId+'\')"><i class="fas fa-plus"></i> Add Payment</button>'
+    + '<button class="btn btn-primary" onclick="closeViewPay()">Close</button></div></div></div>';
+  var div = document.createElement("div");
+  div.id = "viewPayWrapper";
+  div.innerHTML = html;
+  document.body.appendChild(div);
+}
+
+function closeViewPay() {
+  var el = document.getElementById("viewPayWrapper");
+  if (el) el.remove();
+}
+
+function addPayFromView(clientId) {
+  closeViewPay();
+  // Open record payment modal with client pre-selected
+  openPay();
+  // After clients load, select the right one
+  setTimeout(function(){
+    var sel = document.getElementById("payClient");
+    if (sel) {
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === clientId) { sel.selectedIndex = i; break; }
+      }
+    }
+  }, 500);
+}
+
+// Edit Payment Modal
+function editPay(id) {
+  var all = window._allPayments || [];
+  var clientMap = window._clientMap || {};
+  var pay = null;
+  for (var i = 0; i < all.length; i++) { if (all[i].id === id || all[i]._id === id) { pay = all[i]; break; } }
+  if (!pay) { alert("Payment not found"); return; }
+  var clientInfo = clientMap[pay.clientId] || {};
+  window._editingPayId = pay.id || pay._id;
+  var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  var flag = flags[clientInfo.country] || "";
+  var payDate = pay.createdAt ? pay.createdAt.split('T')[0] : new Date().toISOString().split('T')[0];
+  var html = '<div class="modal-overlay" id="editPayOverlay" style="display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000;padding:20px">'
+    + '<div class="modal" style="max-width:450px"><h2><i class="fas fa-edit"></i> Edit Payment</h2>'
+    + '<p style="color:#888;font-size:13px;margin:8px 0 16px">Client: <strong>'+(clientInfo.name||"N/A")+'</strong> '+flag+' '+(clientInfo.country||"")+'</p>'
+    + '<div class="form-group"><label>Amount (Ksh)</label><input type="number" id="editPayAmount" value="'+pay.amount+'" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px"></div>'
+    + '<div class="form-group"><label>Payment Method</label><select id="editPayMethod" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px">'
+    + '<option'+(pay.method==="Cash"?" selected":"")+'>Cash</option>'
+    + '<option'+(pay.method==="M-Pesa"?" selected":"")+'>M-Pesa</option>'
+    + '<option'+(pay.method==="Bank Transfer"?" selected":"")+'>Bank Transfer</option>'
+    + '<option'+(pay.method==="Card"?" selected":"")+'>Card</option></select></div>'
+    + '<div class="form-group"><label>Payment Date</label><input type="date" id="editPayDate" value="'+payDate+'" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px"></div>'
+    + '<div class="btn-group" style="margin-top:16px">'
+    + '<button class="btn btn-gold" onclick="saveEditPay()"><i class="fas fa-save"></i> Save</button>'
+    + '<button class="btn btn-primary" onclick="closeEditPay()">Cancel</button></div></div></div>';
+  var div = document.createElement("div");
+  div.id = "editPayWrapper";
+  div.innerHTML = html;
+  document.body.appendChild(div);
+}
+
+function closeEditPay() {
+  var el = document.getElementById("editPayWrapper");
+  if (el) el.remove();
+}
+
+function saveEditPay() {
+  var id = window._editingPayId;
+  var amount = document.getElementById("editPayAmount").value;
+  var method = document.getElementById("editPayMethod").value;
+  var dt = document.getElementById("editPayDate").value;
+  if (!amount || amount <= 0) { alert("Enter a valid amount"); return; }
+  af(API+"/payments/"+id, {method:"PUT", body:{amount:parseInt(amount), method:method, createdAt:dt}}).then(function(r){
+    if (r) { closeEditPay(); loadPayments(); }
+    else { alert("Failed to update payment"); }
+  });
+}
+
+// Delete Payment
+function deletePay(id, clientName, amount) {
+  if (!confirm("⚠️ Delete Payment\n\nClient: "+clientName+"\nAmount: Ksh "+amount+"\n\nThis action cannot be undone. Continue?")) return;
+  af(API+"/payments/"+id, {method:"DELETE"}).then(function(r){
+    if (r) { loadPayments(); }
+    else { alert("Failed to delete payment"); }
+  });
+}
+
+function viewClient(id) {
+  af(API+"/clients/"+id).then(function(c){
+    if (!c) return;
+    window._viewingClient = c;
+    var link = getCountryLink(c.country, c.id);
+    var steps = getStepsByCountry(c.country);
+    var sopts = "";
+    steps.forEach(function(s){sopts += '<option value="'+s+'"'+(s===c.step?" selected":"")+'>'+s+'</option>';});
+    var countries = ["Norway","Serbia","Slovakia","Australia"];
+    var cops = "";
+    countries.forEach(function(co){cops += '<option value="'+co+'"'+(co===c.country?" selected":"")+'>'+co+'</option>';});
+    var countryFlag = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+    var flag = countryFlag[c.country] || "";
+    
+    document.getElementById("viewContent").innerHTML =
+      // Header with avatar
+      '<div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:18px;border-bottom:2px solid #f0f2f5">'
+      + '<div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1a1a2e,#e94560);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:700;box-shadow:0 3px 10px rgba(233,69,96,0.3)">'+ (c.name ? c.name.charAt(0).toUpperCase() : '?') +'</div>'
+      + '<div><h2 style="font-size:20px;font-weight:800;color:#1a1a2e;margin:0">'+c.name+'</h2>'
+      + '<p style="font-size:13px;color:#888;margin:3px 0 0">'+flag+' '+c.country+' <span style="color:#ddd;margin:0 6px">|</span> '+(c.visaType||"Tourist")+(c.visaSubType?" ("+c.visaSubType+")":"")+'</p></div></div>'
+      
+      // Personal Info Section
+      + '<div style="margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid #f0f2f5">'
+      + '<h3 style="font-size:13px;font-weight:700;color:#1a1a2e;margin:0 0 14px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.5px"><span style="width:24px;height:24px;border-radius:6px;background:#0f3460;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px"><i class="fas fa-user"></i></span> Personal Information</h3>'
+      + '<div class="form-grid" style="grid-template-columns:1fr 1fr">'
+      + '<div class="form-group" style="grid-column:1/-1"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-id-card" style="color:#0f3460;width:14px"></i> Passport Number</label>'
+      + '<input type="text" id="vPass" value="'+(c.passport||"")+'" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb;box-sizing:border-box"></div>'
+      + '<div class="form-group"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-flag" style="color:#0f3460;width:14px"></i> Country</label>'
+      + '<select id="vCountry" onchange="updateCountryLink(); updateViewStepDepend();" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb;box-sizing:border-box">'+cops+'</select></div>'
+      + '<div class="form-group"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-tag" style="color:#0f3460;width:14px"></i> Visa Type</label>'
+      + '<select id="vVisaType" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb;box-sizing:border-box">'
+      + '<option'+(c.visaType==="Tourist"?" selected":"")+'>Tourist</option><option'+(c.visaType==="Student"?" selected":"")+'>Student</option>'
+      + '<option'+(c.visaType==="Business"?" selected":"")+'>Business</option><option'+(c.visaType==="Work"?" selected":"")+'>Work</option>'
+      + '<option'+(c.visaType==="Visitor"?" selected":"")+'>Visitor</option><option'+(c.visaType==="Schengen"?" selected":"")+'>Schengen</option>'
+      + '<option'+(c.visaType==="Work Visa"?" selected":"")+'>Work Visa</option></select></div>'
+      + '<div class="form-group"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-tags" style="color:#0f3460;width:14px"></i> Visa Sub Type</label>'
+      + '<input type="text" id="vVisaSub" value="'+(c.visaSubType||"")+'" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb;box-sizing:border-box"></div>'
+      + '</div></div>'
+      
+      // Status Section
+      + '<div style="margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid #f0f2f5">'
+      + '<h3 style="font-size:13px;font-weight:700;color:#1a1a2e;margin:0 0 14px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.5px"><span style="width:24px;height:24px;border-radius:6px;background:#0f3460;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px"><i class="fas fa-tasks"></i></span> Application Status</h3>'
+      + '<div class="form-grid" style="grid-template-columns:1fr 1fr">'
+      + '<div class="form-group" style="grid-column:1/-1"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-chart-line" style="color:#0f3460;width:14px"></i> Current Status</label>'
+      + '<select id="vStep" onchange="updateViewStepDepend()" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb;box-sizing:border-box">'+sopts+'</select></div>'
+      + '<div class="form-group"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-calendar-alt" style="color:#0f3460;width:14px"></i> Remaining Days</label>'
+      + '<input type="number" id="vDays" value="'+(c.remainingDays||0)+'" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb;box-sizing:border-box"></div>'
+      + '</div></div>'
+      
+      // Access Section
+      + '<div style="margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid #f0f2f5">'
+      + '<h3 style="font-size:13px;font-weight:700;color:#1a1a2e;margin:0 0 14px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.5px"><span style="width:24px;height:24px;border-radius:6px;background:#0f3460;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px"><i class="fas fa-lock"></i></span> Client Access</h3>'
+      + '<div class="form-grid" style="grid-template-columns:1fr 1fr">'
+      + '<div class="form-group"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-key" style="color:#0f3460;width:14px"></i> Password</label>'
+      + '<input type="text" id="vPwd" value="'+(c.password||"")+'" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb;box-sizing:border-box"></div>'
+      + '</div></div>'
+      
+      // Link & Notes
+      + '<div style="margin-bottom:8px">'
+      + '<div class="form-group" style="margin-bottom:14px"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-link" style="color:#0f3460;width:14px"></i> Application Link</label>'
+      + '<div style="display:flex;align-items:center;gap:8px;background:#f0f4f9;padding:10px 14px;border-radius:8px;font-size:12px;word-break:break-all;border:1px solid #e8ecf1">'
+      + '<a href="'+link+'" target="_blank" id="vLink" style="flex:1;color:#0f3460">'+link+'</a>'
+      + '<button class="btn btn-primary btn-sm" onclick="navigator.clipboard.writeText(document.getElementById(\'vLink\').textContent)" style="white-space:nowrap;padding:5px 12px;background:#0f3460;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit">Copy</button></div></div>'
+      + '<div class="form-group"><label style="font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block"><i class="fas fa-sticky-note" style="color:#0f3460;width:14px"></i> Notes</label>'
+      + '<textarea id="vNotes" rows="2" style="width:100%;padding:11px 14px;border:2px solid #e8ecf1;border-radius:8px;font-size:13px;font-family:inherit;resize:vertical;background:#f8f9fb;box-sizing:border-box">'+(c.notes||"")+'</textarea></div>'
+      + '</div>'
+      
+      // Documents Section
+      + '<div style="margin-bottom:8px;padding-top:4px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+      + '<h3 style="font-size:13px;font-weight:700;color:#1a1a2e;margin:0;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.5px"><span style="width:24px;height:24px;border-radius:6px;background:#0f3460;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px"><i class="fas fa-file"></i></span> Documents</h3>'
+      + '<button onclick="openDocUpload(\''+c.id+'\')" style="padding:5px 12px;background:#0f3460;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:4px"><i class="fas fa-upload"></i> Upload</button></div>'
+      + '<div id="docList" style="font-size:13px;color:#888;padding:8px 0">Loading...</div></div>'
+      
+      // Actions
+      + '<div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:16px;border-top:1px solid #e8ecf1">'
+      + '<button onclick="closeView()" style="padding:11px 24px;background:#e8ecf1;color:#555;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Cancel</button>'
+      + '<button onclick="updateClient(\''+c.id+'\')" style="padding:11px 28px;background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px"><i class="fas fa-save"></i> Save Changes</button></div>';
+    document.getElementById("viewModal").style.display = "flex";
+    // Load documents
+    af(API+"/documents/"+c.id).then(function(docs){
+      var listEl = document.getElementById("docList");
+      if (!listEl) return;
+      if (!docs || docs.length === 0) { listEl.innerHTML = '<span style="color:#888">No documents uploaded yet</span>'; return; }
+      var docHtml = "";
+      docs.forEach(function(d){
+        var dateStr = d.uploadedAt || "";
+        if (dateStr) { var dt = new Date(dateStr); if (!isNaN(dt.getTime())) { dateStr = String(dt.getDate()).padStart(2,'0')+'/'+String(dt.getMonth()+1).padStart(2,'0')+'/'+dt.getFullYear(); } }
+        var size = d.fileSize ? (d.fileSize/1024).toFixed(1)+' KB' : '';
+        docHtml += '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border:1px solid #e8ecf1;border-radius:8px;margin-bottom:6px;background:#f8f9fb">'
+          + '<div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0">'
+          + '<i class="fas fa-file-alt" style="color:#0f3460;font-size:16px"></i>'
+          + '<div style="min-width:0"><div style="font-size:13px;font-weight:600;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+d.originalName+'</div>'
+          + '<div style="font-size:11px;color:#888">'+(d.category||"Other")+' &middot; '+dateStr+' &middot; '+size+'</div></div></div>'
+          + '<div style="display:flex;gap:4px;flex-shrink:0">'
+          + '<a href="'+d.url+'" target="_blank" style="padding:4px 10px;background:#0f3460;color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;text-decoration:none"><i class="fas fa-eye"></i></a>'
+          + '<button onclick="deleteDoc(\''+d.id+'\')" style="padding:4px 10px;background:#e74c3c;color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer"><i class="fas fa-trash"></i></button></div></div>';
+      });
+      listEl.innerHTML = docHtml;
+    });
+  });
+}
+
+function deleteDoc(id) {
+  if (!confirm("Delete this document?")) return;
+  af(API+"/documents/"+id, {method:"DELETE"}).then(function(r){
+    if (r) { showToast("Document deleted", "success"); if (window._viewingClient) viewClient(window._viewingClient.id); }
+  });
+}
+
+function updateCountryLink() {
+  var country = document.getElementById("vCountry").value;
+  var id = window._viewingClient ? window._viewingClient.id : "";
+  var link = getCountryLink(country, id);
+  document.getElementById("vLink").textContent = link;
+  document.getElementById("vLink").href = link;
+}
+
+function updateClient(id) {
+  var data = {
+    name: window._viewingClient ? window._viewingClient.name : "",
+    passport: document.getElementById("vPass").value,
+    country: document.getElementById("vCountry").value,
+    visaType: document.getElementById("vVisaType").value,
+    visaSubType: document.getElementById("vVisaSub").value,
+    step: document.getElementById("vStep").value,
+    remainingDays: parseInt(document.getElementById("vDays").value) || 0,
+    password: document.getElementById("vPwd").value,
+    notes: document.getElementById("vNotes").value
+  };
+  af(API+"/clients/"+id,{method:"PUT", body:data}).then(function(r){
+    if (r) { 
+      alert("✅ Client updated successfully! Changes are now live.");
+      closeView();
+      // Refresh the current page to show updated data
+      var activeTab = document.querySelector(".nav-item.active");
+      if (activeTab) {
+        var tabText = activeTab.textContent.trim();
+        var tabId = "dashboard";
+        if (tabText.includes("Dashboard")) tabId = "dashboard";
+        else if (tabText.includes("Register")) tabId = "register";
+        else if (tabText.includes("All Clients")) tabId = "clients";
+        else if (tabText.includes("Payments")) tabId = "payments";
+        else if (tabText.includes("Norway")) tabId = "norway";
+        else if (tabText.includes("Serbia")) tabId = "serbia";
+        else if (tabText.includes("Slovakia")) tabId = "slovakia";
+        else if (tabText.includes("Australia")) tabId = "australia";
+        renderPage(tabId);
+      } else {
+        loadAll();
+      }
+    }
+  });
+}
+
+function closeView() { document.getElementById("viewModal").style.display = "none"; }
+
+function openPay() {
+  document.getElementById("payModal").style.display = "flex";
+  document.getElementById("payAmount").value = "";
+  document.getElementById("payClientSearch").value = "";
+  document.getElementById("payDate").value = new Date().toISOString().split('T')[0];
+  af(API+"/clients").then(function(cl){
+    if (!cl) return;
+    window._allPayClients = cl;
+    renderPayClientOptions(cl);
+  });
+}
+function closePay() { document.getElementById("payModal").style.display = "none"; }
+function renderPayClientOptions(clients) {
+  var o = "";
+  var flags = {"Norway":"🇳🇴","Serbia":"🇷🇸","Slovakia":"🇸🇰","Australia":"🇦🇺"};
+  clients.forEach(function(c){
+    var flag = flags[c.country] || "";
+    o += '<option value="'+c.id+'" data-name="'+c.name+'" data-pass="'+c.passport+'" data-country="'+c.country+'">'+flag+' '+c.name+' ('+c.passport+') - '+c.country+'</option>';
+  });
+  document.getElementById("payClient").innerHTML = o;
+}
+function filterPayClientOptions() {
+  var q = document.getElementById("payClientSearch").value.toLowerCase().trim();
+  var all = window._allPayClients || [];
+  if (!q) { renderPayClientOptions(all); return; }
+  var filtered = all.filter(function(c){ return (c.name||"").toLowerCase().includes(q) || (c.passport||"").toLowerCase().includes(q); });
+  renderPayClientOptions(filtered);
+}
+function recordPay() {
+  var sel = document.getElementById("payClient");
+  if (sel.selectedIndex === -1) { alert("Select a client"); return; }
+  var ci = sel.value;
+  var am = document.getElementById("payAmount").value;
+  var dt = document.getElementById("payDate").value;
+  if (!ci||!am) { alert("Select client and enter amount"); return; }
+  af(API+"/payments",{method:"POST",body:{clientId:ci,amount:parseInt(am),method:document.getElementById("payMethod").value,createdAt:dt}}).then(function(r){
+    if (r) { alert("Payment recorded successfully!"); closePay(); renderPaymentsPanel(); }
+  });
+}
+
+function logout() {
+  localStorage.removeItem("adminToken");
+  localStorage.removeItem("adminUser");
+  localStorage.removeItem("adminPass");
+  g_token = "";
+  document.getElementById("dashboardPage").style.display = "none";
+  document.getElementById("loginPage").style.display = "flex";
+  document.getElementById("loginFormSection").style.display = "block";
+  document.getElementById("fpSection").style.display = "none";
+}
+
+// ==================== TOAST NOTIFICATIONS ====================
+function showToast(msg, type) {
+  type = type || "success";
+  var container = document.getElementById("toastContainer");
+  if (!container) {
+    container = document.createElement("div"); container.id = "toastContainer"; container.className = "toast-container";
+    document.body.appendChild(container);
+  }
+  var icons = {success:"fas fa-check-circle",error:"fas fa-exclamation-circle",info:"fas fa-info-circle"};
+  var icon = icons[type] || icons.info;
+  var toast = document.createElement("div");
+  toast.className = "toast toast-" + type;
+  toast.innerHTML = '<i class="'+icon+'"></i> '+msg;
+  container.appendChild(toast);
+  setTimeout(function(){ toast.style.animation = "fadeOut .3s ease forwards"; setTimeout(function(){ toast.remove(); }, 300); }, 3000);
+  toast.onclick = function(){ toast.remove(); };
+}
+
+// Override alert() with toast
+var originalAlert = window.alert;
+window.alert = function(msg) { showToast(msg, "info"); };
+
+// ==================== DARK MODE ====================
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+  var isDark = document.body.classList.contains("dark-mode");
+  localStorage.setItem("darkMode", isDark ? "1" : "0");
+  var btn = document.getElementById("darkModeBtn");
+  if (btn) btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+}
+(function(){ if (localStorage.getItem("darkMode") === "1") { document.body.classList.add("dark-mode"); } })();
+
+// ==================== SESSION TIMEOUT ====================
+(function(){
+  var timeout;
+  function resetTimer() { clearTimeout(timeout); timeout = setTimeout(function(){ if (g_token) { showToast("Session expired. Please login again.", "error"); setTimeout(function(){ logout(); }, 1500); } }, 1800000); }
+  document.addEventListener("click", resetTimer); document.addEventListener("keydown", resetTimer); resetTimer();
+})();
+
+// ==================== EXPORT CSV ====================
+function exportClientsCSV() {
+  var all = window._allClients || [];
+  if (!all.length) { showToast("No clients to export", "info"); return; }
+  var payTotalMap = window._payTotalMap || {};
+  var csv = "Name,Passport,Country,Visa Type,Status,Amount,Remaining Days,Date\n";
+  all.forEach(function(c){
+    var total = (Number(c.amount)||0) + (payTotalMap[c.id]||0);
+    csv += '"'+c.name+'","'+c.passport+'","'+c.country+'","'+(c.visaType||"")+'","'+c.step+'","'+total+'","'+(c.remainingDays||0)+'","'+c.createdAt+'"\n';
+  });
+  var blob = new Blob([csv], {type:"text/csv"}); var url = URL.createObjectURL(blob);
+  var a = document.createElement("a"); a.href = url; a.download = "visa-clients-export.csv"; a.click();
+  URL.revokeObjectURL(url); showToast("Export downloaded!", "success");
+}
+
+// ==================== DOCUMENT UPLOAD ====================
+function openDocUpload(clientId) {
+  window._docUploadClientId = clientId;
+  var html = '<div class="modal-overlay" id="docUploadOverlay" style="display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000;padding:20px">'
+    + '<div class="modal" style="max-width:500px"><h2><i class="fas fa-upload"></i> Upload Document</h2>'
+    + '<p style="color:#888;font-size:13px;margin:8px 0 16px">Select a document to attach to this client\'s application.</p>'
+    + '<div class="form-group"><label>Document Category</label><select id="docCategory" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px">'
+    + '<option>Passport Copy</option><option>Photo</option><option>Application Form</option><option>Payment Receipt</option><option>Supporting Document</option><option>Other</option></select></div>'
+    + '<div class="form-group" style="margin-top:12px"><label>Choose File</label>'
+    + '<input type="file" id="docFileInput" style="width:100%;padding:10px;border:2px solid #e8ecf1;border-radius:8px;font-size:14px;background:#f8f9fb"></div>'
+    + '<div id="docUploadStatus" style="margin-top:8px"></div>'
+    + '<div class="btn-group" style="margin-top:16px">'
+    + '<button class="btn btn-gold" onclick="submitDocUpload()"><i class="fas fa-upload"></i> Upload</button>'
+    + '<button class="btn btn-primary" onclick="closeDocUpload()">Cancel</button></div></div></div>';
+  var div = document.createElement("div"); div.id = "docUploadWrapper"; div.innerHTML = html; document.body.appendChild(div);
+}
+function closeDocUpload() { var el = document.getElementById("docUploadWrapper"); if (el) el.remove(); }
+function submitDocUpload() {
+  var file = document.getElementById("docFileInput").files[0];
+  var category = document.getElementById("docCategory").value;
+  if (!file) { document.getElementById("docUploadStatus").innerHTML = '<span style="color:#e74c3c">Please select a file</span>'; return; }
+  var status = document.getElementById("docUploadStatus");
+  status.innerHTML = '<span style="color:#888">Uploading...</span>';
+  var fd = new FormData(); fd.append("file", file); fd.append("clientId", window._docUploadClientId); fd.append("category", category);
+  fetch(API+"/upload", {method:"POST", headers:{"Authorization":"Bearer "+g_token}, body:fd})
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if (d.error) { status.innerHTML = '<span style="color:#e74c3c">'+d.error+'</span>'; return; }
+    closeDocUpload(); showToast("Document uploaded successfully!", "success");
+    // Re-open the client view to show updated docs
+    viewClient(window._docUploadClientId);
+  })
+  .catch(function(){ status.innerHTML = '<span style="color:#e74c3c">Upload failed</span>'; });
+}
+
+// Norway-specific step options
+function getNorwaySteps() {
+  return ["Pending", "Checking Documents", "Re-submit Documents", "Documents Confirmed", "Under Processing", "Decision Made", "Ready for Collection / Couriered", "Visa Approved", "Rejected", "Cancelled"];
+}
+
+// Australia-specific step options
+function getAustraliaSteps() {
+  return ["Pending", "Checking Documents", "Re-submit Documents", "Documents Confirmed", "Under Processing", "Decision Made", "Ready for Collection / Couriered", "Visa Approved", "Rejected", "Cancelled"];
+}
+
+function getDefaultSteps() {
+  return ["Pending", "Checking Documents", "Re-submit Documents", "Documents Confirmed", "Under Processing", "Decision Made", "Ready for Collection / Couriered", "Visa Approved", "Rejected", "Cancelled"];
+}
+
+function getStepsByCountry(country) {
+  if (country === "Norway") return getNorwaySteps();
+  if (country === "Australia") return getAustraliaSteps();
+  return getDefaultSteps();
+}
+
+function updateNorwaySteps() {
+  var country = document.getElementById("rCountry").value;
+  var stepSelect = document.getElementById("rStep");
+  var steps = getStepsByCountry(country);
+  stepSelect.innerHTML = "";
+  steps.forEach(function(s) {
+    var opt = document.createElement("option");
+    opt.value = s;
+    opt.textContent = s;
+    stepSelect.appendChild(opt);
+  });
+}
+
+// Also update view modal steps based on country
+function updateViewStepDepend() {
+  var country = document.getElementById("vCountry")?.value;
+  var stepSelect = document.getElementById("vStep");
+  if (!country || !stepSelect) return;
+  var steps = getStepsByCountry(country);
+  var currentVal = stepSelect.value;
+  // Check if the current value exists in the new steps list
+  var exists = false;
+  steps.forEach(function(s) { if (s === currentVal) exists = true; });
+  stepSelect.innerHTML = "";
+  steps.forEach(function(s) {
+    var opt = document.createElement("option");
+    opt.value = s;
+    opt.textContent = s;
+    if (s === currentVal || (!exists && steps.indexOf(s) === 0)) opt.selected = true;
+    stepSelect.appendChild(opt);
+  });
+}
+
+
+</script>
+</body>
+</html>
+
+
