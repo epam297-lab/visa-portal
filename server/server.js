@@ -3,32 +3,49 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 4500;
 
-// ==================== Cloudinary Config ====================
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'your-cloud-name',
-  api_key: process.env.CLOUDINARY_API_KEY || 'your-api-key',
-  api_secret: process.env.CLOUDINARY_API_SECRET || 'your-api-secret'
-});
+// ==================== Upload Storage (Cloudinary if configured, else local disk) ====================
+const uploadsDir = path.join(__dirname, '..', 'uploads');
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
-// Multer + Cloudinary storage
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'visa-portal-docs',
-    resource_type: 'auto',
-    public_id: function (req, file) {
-      return Date.now() + '-' + Math.random().toString(36).substring(2, 8) + '-' + file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+let upload;
+
+if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_CLOUD_NAME !== 'your-cloud-name') {
+  const cloudinary = require('cloudinary').v2;
+  const { CloudinaryStorage } = require('multer-storage-cloudinary');
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  });
+  const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: 'visa-portal-docs',
+      resource_type: 'auto',
+      public_id: function (req, file) {
+        return Date.now() + '-' + Math.random().toString(36).substring(2, 8) + '-' + file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+      }
     }
-  }
-});
-const upload = multer({ storage, limits: { fileSize: 20 * 1024 * 1024 } }); // 20MB limit
+  });
+  upload = multer({ storage, limits: { fileSize: 20 * 1024 * 1024 } });
+  console.log('☁️  Using Cloudinary storage');
+} else {
+  // Fallback to local disk storage
+  const diskStorage = multer.diskStorage({
+    destination: function (req, file, cb) { cb(null, uploadsDir); },
+    filename: function (req, file, cb) {
+      const uniqueName = Date.now() + '-' + Math.random().toString(36).substring(2, 8) + '-' + file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+      cb(null, uniqueName);
+    }
+  });
+  upload = multer({ storage: diskStorage, limits: { fileSize: 20 * 1024 * 1024 } });
+  console.log('💾 Using local disk storage');
+}
 
 app.use(cors({
   origin: '*',
@@ -228,13 +245,17 @@ app.delete('/api/payments/:id', authenticate, async (req, res) => {
   } catch (e) { res.status(500).json({ error: 'Failed', details: e.message }); }
 });
 
-// ==================== Document Upload (Cloudinary) ====================
+// ==================== Document Upload ====================
 app.post('/api/upload', authenticate, upload.single('file'), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-    if (!req.file.path) return res.status(500).json({ error: 'Upload to Cloudinary failed' });
     const { clientId, category, customLabel } = req.body;
-    if (!clientId) return res.status(400).json({ error: 'clientId required' });
+    if (!clientId) {
+      if (req.file.path && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
+      return res.status(400).json({ error: 'clientId required' });
+    }
+    // Build URL: Cloudinary returns path as URL, local returns relative path
+    const fileUrl = req.file.path.startsWith('http') ? req.file.path : '/uploads/' + req.file.filename;
     const doc = await Document.create({
       clientId,
       filename: req.file.filename,
@@ -243,8 +264,8 @@ app.post('/api/upload', authenticate, upload.single('file'), async (req, res) =>
       fileType: req.file.mimetype,
       category: category || 'Other',
       customLabel: customLabel || '',
-      url: req.file.path,        // Cloudinary URL
-      publicId: req.file.filename // Cloudinary public ID
+      url: fileUrl,
+      publicId: req.file.filename
     });
     res.status(201).json(doc);
   } catch (e) { res.status(500).json({ error: 'Upload failed', details: e.message }); }
@@ -262,9 +283,15 @@ app.delete('/api/documents/:id', authenticate, async (req, res) => {
   try {
     const doc = await Document.findByIdAndDelete(req.params.id);
     if (!doc) return res.status(404).json({ error: 'Document not found' });
-    // Delete from Cloudinary
-    if (doc.publicId) {
-      try { await cloudinary.uploader.destroy(doc.publicId); } catch(e) {}
+    // Delete from Cloudinary if has publicId, else delete local file
+    if (doc.publicId && doc.url && doc.url.startsWith('http')) {
+      try {
+        const cloudinary = require('cloudinary').v2;
+        await cloudinary.uploader.destroy(doc.publicId);
+      } catch(e) {}
+    } else {
+      const filePath = path.join(uploadsDir, doc.filename);
+      if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
     }
     res.json({ message: 'Document deleted' });
   } catch (e) { res.status(500).json({ error: 'Failed', details: e.message }); }
@@ -297,12 +324,14 @@ app.get('/api/stats', authenticate, async (req, res) => {
     res.json({
       totalClients: clients.length,
       pending: clients.filter(c => c.step === 'Pending').length,
-      documentVerification: clients.filter(c => c.step === 'Document verification' || c.step === 'Checking Documents').length,
-      resubmission: clients.filter(c => c.step === 'Re-submission of documents' || c.step === 'Re-submit Documents').length,
-      confirmation: clients.filter(c => c.step === 'Confirmation of documents' || c.step === 'Documents Confirmed').length,
-      approved: clients.filter(c => c.step === 'Visa approval' || c.step === 'Visa Approved').length,
-      denied: clients.filter(c => c.step === 'Denial' || c.step === 'Rejected').length,
+      documentVerification: clients.filter(c => c.step === 'Checking Documents').length,
+      resubmission: clients.filter(c => c.step === 'Re-submit Documents').length,
+      confirmation: clients.filter(c => c.step === 'Documents Confirmed').length,
+      approved: clients.filter(c => c.step === 'Visa Approved' || c.step === 'Ready for Collection / Couriered').length,
+      denied: clients.filter(c => c.step === 'Rejected').length,
       cancelled: clients.filter(c => c.cancelled === true).length,
+      underProcessing: clients.filter(c => c.step === 'Under Processing').length,
+      decisionMade: clients.filter(c => c.step === 'Decision Made').length,
       byCountry,
       totalPayments: payments.reduce((s, p) => s + parseFloat(p.amount || 0), 0),
       paymentCount: payments.length
@@ -376,10 +405,10 @@ app.get('/track/:country', (req, res) => {
 // ==================== Start Server ====================
 app.listen(PORT, () => {
   console.log('+--------------------------------------+');
-  console.log('ï¿½    VISA PORTAL - AGENCY SYSTEM       ï¿½');
-  console.log('ï¿½--------------------------------------ï¿½');
-  console.log('ï¿½  Running at http://localhost:' + PORT + '      ï¿½');
-  console.log('ï¿½  Admin: http://localhost:' + PORT + '/admin.html  ï¿½');
+  console.log('�    VISA PORTAL - AGENCY SYSTEM       �');
+  console.log('�--------------------------------------�');
+  console.log('�  Running at http://localhost:' + PORT + '      �');
+  console.log('�  Admin: http://localhost:' + PORT + '/admin.html  �');
   console.log('+--------------------------------------+');
 });
 
