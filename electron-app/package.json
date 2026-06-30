@@ -1,0 +1,14 @@
+{
+    "name":  "visa-portal-desktop",
+    "version":  "1.0.0",
+    "description":  "Visa Portal - Multi-Country Visa Application System",
+    "main":  "main.js",
+    "scripts":  {
+                    "start":  "electron ."
+                },
+    "dependencies":  {
+                         "electron":  "28.0.0"
+                     },
+    "author":  "",
+    "license":  "ISC"
+}
