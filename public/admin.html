@@ -51,7 +51,7 @@ select{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .badge-confirmed{background:#d4edda;color:#155724}
 .badge-visa-approved{background:#d4edda;color:#155724}
 .badge-rejected{background:#f8d7da;color:#721c24}
-.badge-cancelled{background:#e2e3e5;color:#383d41}
+.badge-processing{background:#fff3cd;color:#8a6d00}.badge-decision{background:#e8daef;color:#6c3483}.badge-cancelled{background:#e2e3e5;color:#383d41}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .full{grid-column:1/-1}
@@ -242,7 +242,7 @@ select{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dark-mode input,.dark-mode select,.dark-mode textarea{background:#0f0f23!important;border-color:#2a2a4a!important;color:#ddd!important}
 .dark-mode .login-box{background:#16213e!important}
 .dark-mode .login-box h1,.dark-mode h1{color:#fff!important}
-.dark-mode .badge-pending{background:#3d3200!important;color:#ffc107!important}
+.dark-mode .badge-pending{background:#3d3200!important;color:#ffc107!important}.dark-mode .badge-processing{background:#3d2a00!important;color:#ffb300!important}.dark-mode .badge-decision{background:#2d1b3d!important;color:#bb8fce!important}
 </style>
 </head>
 <body>
@@ -448,7 +448,7 @@ function af(url, opts) {
 function loadAll() { renderPage("dashboard"); }
 
 function bclass(s) {
-  var m = {"Pending":"pending","Checking Documents":"checking","Re-submit Documents":"resubmit","Documents Confirmed":"confirmed","Under Processing":"checking","Decision Made":"confirmed","Ready for Collection / Couriered":"visa-approved","Visa Approved":"visa-approved","Rejected":"rejected","Cancelled":"cancelled"};
+  var m = {"Pending":"pending","Checking Documents":"checking","Re-submit Documents":"resubmit","Documents Confirmed":"confirmed","Under Processing":"processing","Decision Made":"decision","Ready for Collection / Couriered":"visa-approved","Visa Approved":"visa-approved","Rejected":"rejected","Cancelled":"cancelled"};
   return m[s]||"pending";
 }
 
@@ -496,6 +496,8 @@ function renderDashboard() {
       {label:"Pending", val:s.pending, color:"#f39c12", icon:"fa-clock", bg:"#fef9e7"},
       {label:"Checking", val:s.documentVerification, color:"#3498db", icon:"fa-search", bg:"#ebf5fb"},
       {label:"Re-submit", val:s.resubmission, color:"#e74c3c", icon:"fa-redo", bg:"#fdedec"},
+      {label:"Under Processing", val:s.underProcessing, color:"#e67e22", icon:"fa-cog", bg:"#fef5e7"},
+      {label:"Decision Made", val:s.decisionMade, color:"#9b59b6", icon:"fa-gavel", bg:"#f4ecf7"},
       {label:"Confirmed", val:s.confirmation, color:"#2ecc71", icon:"fa-check", bg:"#eafaf1"},
       {label:"Approved", val:s.approved, color:"#27ae60", icon:"fa-stamp", bg:"#d5f5e3"},
       {label:"Rejected", val:s.denied, color:"#c0392b", icon:"fa-times", bg:"#f2d7d5"}
@@ -556,9 +558,9 @@ function renderDashboard() {
     // ---------- Draw CSS-based charts ----------
     
     // 1) Status Distribution — horizontal bars
-    var stepLabels = ["Pending","Processing","Document Verification","Interview Scheduling","Embassy Review","Re-submission","Confirmation","Approved","Rejected","Cancelled"];
-    var stepColors = ["#f39c12","#e67e22","#3498db","#9b59b6","#e74c3c","#e74c3c","#2ecc71","#27ae60","#c0392b","#95a5a6"];
-    var stepIcons = ["fa-clock","fa-cog","fa-search","fa-calendar","fa-building","fa-redo","fa-check","fa-stamp","fa-times","fa-ban"];
+    var stepLabels = ["Pending","Checking Documents","Re-submit Documents","Documents Confirmed","Under Processing","Decision Made","Ready for Collection / Couriered","Visa Approved","Rejected","Cancelled"];
+    var stepColors = ["#f39c12","#3498db","#e74c3c","#2ecc71","#e67e22","#9b59b6","#1abc9c","#27ae60","#c0392b","#95a5a6"];
+    var stepIcons = ["fa-clock","fa-search","fa-redo","fa-check","fa-cog","fa-gavel","fa-truck","fa-stamp","fa-times","fa-ban"];
     var stepCounts = {};
     stepLabels.forEach(function(s){ stepCounts[s] = 0; });
     cl.forEach(function(c){ var st = c.step; if (stepCounts[st] !== undefined) stepCounts[st]++; });
