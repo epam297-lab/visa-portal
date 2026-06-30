@@ -1,0 +1,1047 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Australian High Commission, Kenya - Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --auv-amber:#FFBF00;
+  --auv-green:#00843D;
+  --auv-dark:#002664;
+  --auv-red:#E30A17;
+  --white:#fff;
+  --grey:#f0f3f5;
+  --grey-dark:#555;
+  --grey-darker:#333;
+  --border:#d0d5db;
+  --text:#222;
+  --text-light:#5a666d;
+  --shadow:0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg:0 8px 30px rgba(0,0,0,0.12);
+  --link:#002664;
+  --link-hover:#004d99;
+  --font:'Roboto',Arial,sans-serif;
+}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6}
+a{color:var(--link);text-decoration:underline}
+a:hover{color:var(--link-hover)}
+/* TOP AUSTRALIAN GOV BANNER */
+.aus-gov-bar{background:var(--auv-dark);color:var(--white);font-size:11px;padding:4px 0;font-family:'Inter',Arial,sans-serif;letter-spacing:0.3px}
+.aus-gov-bar .inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.aus-gov-bar a{color:rgba(255,255,255,0.8);margin-left:12px;text-decoration:none;font-size:11px}
+.aus-gov-bar a:hover{color:#fff;text-decoration:underline}
+.gov-crest{display:flex;align-items:center;gap:6px}
+.flag-icon{display:inline-block;width:26px;height:17px;flex-shrink:0;position:relative;vertical-align:middle}
+.gov-crest .flag-icon svg{width:100%;height:100%;display:block}
+.gov-crest span{color:rgba(255,255,255,0.7);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+/* SITE HEADER */
+.site-header{background:var(--white);border-bottom:2px solid #e0e5e8}
+.header-inner{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:20px}
+.aus-coat{width:50px;height:40px;flex-shrink:0;position:relative}
+.aus-coat svg{width:100%;height:100%}
+.site-id h1{font-size:18px;font-weight:800;color:var(--auv-dark);margin:0;line-height:1.2}
+.site-id p{font-size:11px;color:var(--text-light);margin:0;text-transform:uppercase;letter-spacing:0.5px;font-weight:500}
+.header-search{margin-left:auto;display:flex;gap:4px}
+.header-search input{border:1px solid var(--border);padding:6px 12px;border-radius:3px;font-size:13px;font-family:inherit;width:200px}
+.header-search input:focus{outline:none;border-color:var(--auv-dark)}
+.header-search button{background:var(--auv-dark);color:var(--white);border:none;padding:6px 14px;border-radius:3px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit}
+.header-search button:hover{background:#001a4d}
+/* NAVIGATION */
+.main-nav{background:var(--auv-dark)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap}
+.nav-item{color:rgba(255,255,255,0.9);padding:12px 18px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.15s;text-decoration:none}
+.nav-item:hover,.nav-item.active{background:rgba(255,255,255,0.1);border-bottom-color:var(--auv-amber);color:#fff;text-decoration:none}
+.nav-item i{margin-right:6px;font-size:12px}
+.nav-toggle{display:none;background:var(--auv-dark);color:var(--white);border:none;padding:12px 20px;font-size:15px;cursor:pointer;width:100%;text-align:left;font-weight:600;font-family:inherit}
+.nav-toggle:hover{background:rgba(255,255,255,0.1)}
+/* BREADCRUMB */
+.breadcrumb{background:#f0f3f5;border-bottom:1px solid var(--border);padding:8px 0;font-size:12px}
+.breadcrumb .inner{max-width:1200px;margin:0 auto;padding:0 20px}
+.breadcrumb a{color:var(--text-light);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb span{color:var(--text-light);margin:0 6px}
+.breadcrumb .current{color:var(--text);font-weight:600}
+/* HERO BANNER */
+.hero-area{background:linear-gradient(135deg,var(--auv-dark) 0%,#001a4d 100%);color:var(--white);padding:40px 20px;position:relative;overflow:hidden}
+.hero-area::before{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' opacity='0.03'%3E%3Cpath d='M200 0L400 200L200 400L0 200Z' fill='%23fff'/%3E%3C/svg%3E");pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hero-inner h2{font-size:30px;font-weight:800;margin-bottom:8px;line-height:1.2}
+.hero-inner p{font-size:16px;opacity:0.85;max-width:650px;line-height:1.5}
+.hero-stats{display:flex;gap:30px;margin-top:20px;flex-wrap:wrap}
+.hero-stat{font-size:13px;opacity:0.8}
+.hero-stat strong{font-size:18px;color:var(--auv-amber);display:block;opacity:1}
+/* MAIN LAYOUT WITH SIDEBAR */
+.main-layout{max-width:1200px;margin:0 auto;padding:30px 20px;display:grid;grid-template-columns:280px 1fr;gap:30px}
+.sidebar{min-width:0}
+.sidebar-section{margin-bottom:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.sidebar-header{background:#e8edf0;padding:10px 14px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text);border-bottom:1px solid var(--border)}
+.sidebar-item{padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;color:var(--link);text-decoration:none}
+.sidebar-item:last-child{border-bottom:none}
+.sidebar-item:hover{background:var(--grey);color:var(--link-hover);text-decoration:underline}
+.sidebar-item i{width:16px;font-size:14px;text-align:center;color:var(--auv-dark)}
+.sidebar-item .flag-icon{font-size:16px}
+/* CONTENT AREA */
+.content-area{min-width:0}
+.section-title{font-size:17px;font-weight:700;color:var(--auv-dark);margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid var(--auv-amber);display:flex;align-items:center;gap:8px}
+/* WELCOME MESSAGE BOX */
+.welcome-box{background:#f7f9fb;border-left:4px solid var(--auv-amber);padding:16px 20px;margin-bottom:20px;border-radius:0 4px 4px 0;font-size:13px;line-height:1.6}
+.welcome-box strong{color:var(--auv-dark)}
+/* SERVICE CARDS - 3 COLUMN LIKE REAL AU SITE */
+.service-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:16px}
+.service-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:20px;text-align:center;cursor:pointer;transition:all 0.2s}
+.service-card:hover{box-shadow:var(--shadow-lg);border-color:var(--auv-dark);transform:translateY(-2px)}
+.service-card .icon{font-size:36px;margin-bottom:8px;color:var(--auv-dark)}
+.service-card h3{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--link);text-decoration:underline}
+.service-card p{font-size:12px;color:var(--text-light)}
+/* NEWS */
+.news-list{display:flex;flex-direction:column;gap:0}
+.news-item{padding:14px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:90px 1fr;gap:12px}
+.news-item:last-child{border-bottom:none}
+.news-date{font-size:12px;font-weight:700;color:var(--text-light);line-height:1.3}
+.news-content h4{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--text)}
+.news-content p{font-size:12px;color:var(--text-light);line-height:1.4}
+/* QUICK LINKS */
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.quick-link-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:18px;cursor:pointer;transition:all 0.2s}
+.quick-link-card:hover{box-shadow:var(--shadow-lg);border-color:var(--auv-dark);transform:translateY(-1px)}
+.quick-link-card .icon{width:40px;height:40px;background:#e8edf0;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--auv-dark);margin-bottom:8px}
+.quick-link-card h3{font-size:14px;font-weight:700;margin-bottom:2px}
+.quick-link-card p{font-size:12px;color:var(--text-light)}
+.quick-link-card .badge{display:inline-block;margin-top:6px;padding:2px 10px;background:var(--auv-dark);color:var(--white);font-size:10px;border-radius:2px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+/* START APPLICATION PAGE */
+.start-page{max-width:600px;margin:40px auto;padding:40px;background:var(--white);border-radius:4px;box-shadow:var(--shadow-lg);border:1px solid var(--border);text-align:center}
+.start-page h2{font-size:22px;font-weight:800;color:var(--auv-dark);margin-bottom:8px}
+.start-page p{font-size:14px;color:var(--text-light);margin-bottom:24px}
+.start-page .icon-big{font-size:52px;color:var(--auv-dark);margin-bottom:16px}
+.start-btn{display:inline-block;padding:14px 36px;background:var(--auv-dark);color:var(--white);border:none;border-radius:4px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin:6px}
+.start-btn:hover{background:#001a4d}
+.start-btn.outline{background:transparent;color:var(--auv-dark);border:2px solid var(--auv-dark)}
+.start-btn.outline:hover{background:var(--auv-dark);color:var(--white)}
+/* CHECK STATUS PAGE */
+#checkStatusSection,#statusResultSection,#startApplicationPage{display:none}
+.status-page{padding:30px 20px;min-height:70vh}
+.status-page-inner{max-width:500px;margin:30px auto;background:var(--white);padding:32px;border-radius:4px;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.status-page-inner h2{font-size:20px;font-weight:700;color:var(--auv-dark);margin-bottom:6px;text-align:center}
+.status-page-inner p{font-size:13px;color:var(--text-light);text-align:center;margin-bottom:20px}
+.status-form .field{margin-bottom:14px}
+.status-form .field label{display:block;font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.status-form .field input{width:100%;padding:11px 14px;border:2px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit;transition:border-color 0.2s}
+.status-form .field input:focus{border-color:var(--auv-dark);outline:none;box-shadow:0 0 0 3px rgba(0,38,100,0.08)}
+.status-form button{width:100%;padding:12px;background:var(--auv-dark);color:var(--white);border:none;border-radius:4px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.status-form button:hover{background:#001a4d}
+.pending-msg{background:#fff7df;border:2px solid var(--auv-amber);border-radius:4px;padding:20px;text-align:center;margin-bottom:18px}
+.pending-msg .icon{font-size:40px;margin-bottom:10px}
+.pending-msg h3{font-size:16px;font-weight:700;color:#856404;margin-bottom:4px}
+.pending-msg p{font-size:13px;color:#856404}
+.pending-msg .check-btn{display:inline-block;margin-top:10px;padding:10px 24px;background:var(--auv-dark);color:var(--white);border:none;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.result-box{text-align:center;padding:20px;border-radius:4px;margin-bottom:20px}
+.result-box.approved{background:#d4edda;border:2px solid #28a745}
+.result-box.pending{background:#fff3cd;border:2px solid #ffc107}
+.result-box.rejected{background:#f8d7da;border:2px solid #dc3545}
+.result-box h3{font-size:24px;font-weight:800;margin-bottom:3px}
+.result-box p{font-size:13px;margin:6px 0}
+.result-detail{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
+.result-detail:last-child{border-bottom:none}
+.result-detail .label{color:var(--text-light);font-weight:500}
+.result-detail .value{font-weight:600}
+.back-btn{display:inline-block;margin-top:12px;padding:10px 22px;background:var(--auv-dark);color:var(--white);border-radius:4px;font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:inherit}
+.back-btn:hover{background:#001a4d}
+.cancel-btn{display:inline-block;margin-top:12px;padding:10px 22px;background:#dc3545;color:var(--white);border-radius:4px;font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:inherit}
+.cancel-btn:hover{background:#b02a37}
+#cancelFormSection{display:none}
+/* FOOTER */
+footer{background:var(--auv-dark);color:rgba(255,255,255,0.8);padding:36px 20px 16px;margin-top:40px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--white);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.footer-col p,.footer-col a{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.8}
+.footer-col a:hover{color:var(--white)}
+.footer-aus-id{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.footer-aus-id .crest{font-size:24px;color:var(--auv-amber)}
+.footer-aus-id .name{font-size:14px;font-weight:700;color:var(--white)}
+.footer-bottom{max-width:1200px;margin:24px auto 0;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);font-size:11px;color:rgba(255,255,255,0.45);text-align:center}
+.footer-bottom a{color:rgba(255,255,255,0.5)}
+.footer-bottom a:hover{color:var(--white)}
+.social-links{display:flex;gap:8px;margin-top:6px}
+.social-links a{display:inline-flex;width:30px;height:30px;background:rgba(255,255,255,0.1);border-radius:3px;align-items:center;justify-content:center;color:var(--white);font-size:14px;text-decoration:none}
+.social-links a:hover{background:var(--auv-amber);color:var(--auv-dark);text-decoration:none}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-inner{flex-direction:column;display:none}
+  .nav-inner.open{display:flex}
+  .nav-toggle{display:block}
+  .main-layout{grid-template-columns:1fr}
+  .service-grid{grid-template-columns:1fr 1fr}
+  .quick-links,.footer-inner{grid-template-columns:1fr}
+  .news-item{grid-template-columns:1fr;gap:3px}
+  .header-inner{flex-wrap:wrap}
+  .header-search{width:100%;margin-top:8px}
+  .header-search input{flex:1}
+  .hero-inner h2{font-size:22px}
+}
+@media(max-width:600px){.service-grid{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════════════
+   AUSTRALIA VISA STATUS - DETAILED RESULT STYLES
+   ═══════════════════════════════════════════════ */
+.aus-page { background: #fff; max-width: 960px; margin: 24px auto; padding: 0; border: 1px solid #d0d5db; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+/* ── Result Header ── */
+.aus-result-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px 14px; background: #fff; border-bottom: 1px solid #e0e5e8; }
+.aus-header-left { display: flex; align-items: center; gap: 14px; }
+.aus-flag-wrap { width: 56px; height: 40px; overflow: hidden; border-radius: 3px; border: 0.5px solid #bbb; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #002664; }
+.aus-flag-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.aus-header-title h1 { font-size: 20px; font-weight: 700; color: #111; margin: 0; }
+.aus-header-title p { font-size: 13px; color: #555; margin: 4px 0 0; }
+.aus-print-btn { display: flex; align-items: center; gap: 7px; color: #002664; font-size: 15px; font-weight: 500; cursor: pointer; border: none; background: none; padding: 6px 10px; font-family: inherit; }
+.aus-print-btn:hover { color: #001a4d; }
+/* ── Section ── */
+.aus-section { padding: 22px 26px 16px; }
+.aus-section-title { font-size: 16px; font-weight: 700; color: #002664; margin-bottom: 16px; padding-bottom: 6px; border-bottom: 2px solid #FFBF00; display: flex; align-items: center; gap: 8px; }
+.aus-field-grid { display: grid; gap: 7px; }
+.aus-field-row { display: flex; padding: 6px 0; }
+.aus-field-label { font-size: 13px; color: #555; min-width: 240px; font-weight: 500; }
+.aus-field-value { font-size: 14px; color: #111; font-weight: 600; }
+.aus-info-box { display: flex; align-items: flex-start; gap: 9px; background: #e8f0fc; border-left: 3px solid #002664; border-radius: 4px; padding: 11px 15px; margin-top: 14px; }
+.aus-info-box i { font-size: 18px; color: #002664; margin-top: 1px; flex-shrink: 0; }
+.aus-info-box p { font-size: 13px; color: #222; line-height: 1.5; }
+.aus-divider { border: none; border-top: 1px solid #e0e5e8; margin: 0; }
+/* ── Status Card ── */
+.aus-status-section { padding: 18px 26px 22px; }
+.aus-status-card { border-radius: 6px; padding: 18px 20px; display: flex; align-items: center; gap: 18px; margin-bottom: 0; }
+.aus-status-card.received    { background: #fff8e1; border: 1px solid #FFBF00; }
+.aus-status-card.assessment  { background: #e8f0fc; border: 1px solid #a0b9d6; }
+.aus-status-card.decision    { background: #edf7ee; border: 1px solid #a8d9ab; }
+.aus-status-card.outcome     { background: #f3eefa; border: 1px solid #c8adea; }
+.aus-status-icon-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.aus-status-icon-circle.received    { background: #FFBF00; }
+.aus-status-icon-circle.assessment  { background: #002664; }
+.aus-status-icon-circle.decision    { background: #00843D; }
+.aus-status-icon-circle.outcome     { background: #6a2fa8; }
+.aus-status-icon-circle svg { width: 30px; height: 30px; }
+.aus-status-body { flex: 1; min-width: 0; }
+.aus-status-badge { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
+.aus-status-badge.received    { color: #b8860b; }
+.aus-status-badge.assessment  { color: #002664; }
+.aus-status-badge.decision    { color: #1e7a2b; }
+.aus-status-badge.outcome     { color: #6a2fa8; }
+.aus-status-desc { font-size: 13px; color: #444; line-height: 1.5; }
+/* ── Progress Tracker ── */
+.aus-tracker { min-width: 320px; display: flex; flex-direction: column; }
+.aus-tracker-labels { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.aus-tracker-label { font-size: 10.5px; color: #444; text-align: center; flex: 1; line-height: 1.35; padding: 0 2px; }
+.aus-tracker-rail { display: flex; align-items: center; padding: 0 8px; }
+.aus-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #ccc; background: #fff; flex-shrink: 0; }
+.aus-line { flex: 1; height: 2px; }
+.aus-dot.active-gold   { background: #FFBF00; border-color: #FFBF00; }
+.aus-dot.active-blue   { background: #002664; border-color: #002664; }
+.aus-dot.active-green  { background: #00843D; border-color: #00843D; }
+.aus-dot.active-purple { background: #6a2fa8; border-color: #6a2fa8; }
+.aus-line.gold   { background: #FFBF00; }
+.aus-line.blue   { background: #002664; }
+.aus-line.green  { background: #00843D; }
+.aus-line.purple { background: #6a2fa8; }
+.aus-line.grey   { background: #ccc; }
+/* ── Your Documents ── */
+.aus-docs-wrap{border:1px solid #e0e0e0;border-radius:8px;padding:16px;margin:10px 0;background:#fafafa}
+.aus-docs-list{font-size:13px;color:#888}
+.aus-docs-list > div{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e8e8e8;border-radius:6px;margin-bottom:6px;background:#fff;transition:all .15s}
+.aus-docs-list > div:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06);border-color:#1b3b6f}
+.aus-docs-list a{text-decoration:none}
+
+/* ── What Your Status Means ── */
+.aus-means-section { padding: 0 26px 26px; }
+.aus-means-title { font-size: 16px; font-weight: 700; color: #002664; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid #FFBF00; display: flex; align-items: center; gap: 8px; }
+.aus-means-grid { display: flex; flex-direction: column; gap: 12px; }
+.aus-means-card { border-radius: 6px; padding: 16px 18px; display: flex; align-items: center; gap: 16px; }
+.aus-means-card.received    { background: #fff8e1; border: 1px solid #FFBF00; }
+.aus-means-card.assessment  { background: #e8f0fc; border: 1px solid #a0b9d6; }
+.aus-means-card.decision    { background: #edf7ee; border: 1px solid #a8d9ab; }
+.aus-means-card.outcome     { background: #f3eefa; border: 1px solid #c8adea; }
+.aus-means-icon { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.aus-means-icon.received    { background: transparent; border: 2px solid #FFBF00; }
+.aus-means-icon.assessment  { background: transparent; border: 2px solid #002664; }
+.aus-means-icon.decision    { background: #00843D; }
+.aus-means-icon.outcome     { background: #6a2fa8; }
+.aus-means-icon svg { width: 24px; height: 24px; }
+.aus-means-body { flex: 1; min-width: 0; }
+.aus-means-badge { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.aus-means-badge.received    { color: #b8860b; }
+.aus-means-badge.assessment  { color: #002664; }
+.aus-means-badge.decision    { color: #1e7a2b; }
+.aus-means-badge.outcome     { color: #6a2fa8; }
+.aus-means-desc { font-size: 12.5px; color: #444; line-height: 1.5; }
+.aus-means-tracker { min-width: 280px; display: flex; flex-direction: column; }
+.aus-means-tracker .aus-tracker-label { font-size: 10px; }
+.aus-means-tracker .aus-dot { width: 15px; height: 15px; }
+.aus-means-tracker .aus-tracker-rail { padding: 0 7px; }
+
+</style>
+</head>
+<body>
+<!-- AUSTRALIAN GOVERNMENT BAR -->
+<div class="aus-gov-bar">
+  <div class="inner">
+    <div class="gov-crest">
+      <span class="flag-icon"><img src="/images/austrlian-flag.png" alt="Australian Flag" style="width:26px;height:17px;display:block"></span>
+      <span>Australian Government</span>
+    </div>
+    <div>
+      <a href="#"><i class="fas fa-universal-access"></i> Accessibility</a>
+      <a href="#"><i class="fas fa-search"></i> Search</a>
+      <a href="#"><i class="fas fa-sitemap"></i> Site map</a>
+    </div>
+  </div>
+</div>
+
+<!-- SITE HEADER -->
+<div class="site-header">
+  <div class="header-inner">
+    <div class="aus-coat">
+      <img src="/images/austrlian-flag.png" alt="Australian Flag" style="width:50px;height:40px;display:block">
+    </div>
+    <div class="site-id">
+      <h1>Australian High Commission, Kenya</h1>
+      <p>Department of Foreign Affairs and Trade • Nairobi</p>
+    </div>
+    <div class="header-search">
+      <input type="text" placeholder="Search this site...">
+      <button><i class="fas fa-search"></i> Go</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN NAVIGATION -->
+<div class="main-nav">
+  <button class="nav-toggle" onclick="document.querySelector('.nav-inner').classList.toggle('open')"><i class="fas fa-bars"></i> Menu</button>
+  <div class="nav-inner">
+    <a href="#" class="nav-item active" onclick="goHome();return false"><i class="fas fa-home"></i> Home</a>
+    <a href="#" class="nav-item" onclick="handleApply('Visitor Visa (Subclass 600)');return false"><i class="fas fa-passport"></i> Visas & Migration</a>
+    <a href="#" class="nav-item" onclick="handleApply('Passport Services');return false"><i class="fas fa-book"></i> Passports</a>
+    <a href="#" class="nav-item" onclick="handleApply('Consular Services');return false"><i class="fas fa-concierge-bell"></i> Consular Services</a>
+    <a href="#" class="nav-item" onclick="showCheckStatus();return false"><i class="fas fa-search"></i> Check Status</a>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="inner">
+    <a href="#" onclick="goHome();return false">Home</a><span>›</span><span class="current">Australian High Commission, Nairobi</span>
+  </div>
+</div>
+
+<!-- HERO AREA -->
+<div class="hero-area" id="heroSection">
+  <div class="hero-inner">
+    <h2>Australian High Commission, Republic of Kenya</h2>
+    <p>The Australian High Commission in Nairobi represents Australia in Kenya, Uganda, Tanzania, Burundi, Rwanda, Somalia, Seychelles, Ethiopia, South Sudan, Djibouti, and Eritrea.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>11</strong> Accredited countries</div>
+      <div class="hero-stat"><strong>195+</strong> Years of diplomatic relations</div>
+      <div class="hero-stat"><strong>24/7</strong> Consular emergency support</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-layout" id="homeContent">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-header"><i class="fas fa-map-marker-alt"></i> QUICK LINKS</div>
+      <a class="sidebar-item" onclick="handleApply('Visitor Visa');return false"><i class="fas fa-passport"></i> Visitor visas</a>
+      <a class="sidebar-item" onclick="handleApply('Work & Skilled Visa');return false"><i class="fas fa-briefcase"></i> Work & skilled visas</a>
+      <a class="sidebar-item" onclick="handleApply('Student Visa');return false"><i class="fas fa-graduation-cap"></i> Student visas</a>
+      <a class="sidebar-item" onclick="handleApply('Migration Visa');return false"><i class="fas fa-home"></i> Migration & family</a>
+      <a class="sidebar-item" onclick="showCheckStatus();return false"><i class="fas fa-search"></i> Check visa status</a>
+      <a class="sidebar-item" onclick="handleApply('Citizenship');return false"><i class="fas fa-id-card"></i> Citizenship</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header"><i class="fas fa-info-circle"></i> NOTICE</div>
+      <div style="padding:10px 14px;font-size:12px;color:var(--text-light);line-height:1.5">
+        <p><strong>Visa applications</strong> are processed by the Department of Home Affairs via <a href="https://immi.homeaffairs.gov.au" target="_blank">ImmiAccount</a>.</p>
+        <p style="margin-top:6px">The High Commission <em>cannot</em> process or expedite visa applications.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-area">
+    <div class="welcome-box">
+      <strong>Welcome!</strong> Karibu! Kaze! Murakaza neza! Soo Dhahwow! Tukusanyukidde! — The Australian High Commission in Kenya is accredited to 11 countries and international organisations including UNEP and UN-Habitat.
+    </div>
+
+    <div class="section-title"><i class="fas fa-concierge-bell"></i> KEY SERVICES</div>
+    <div class="service-grid">
+      <div class="service-card" onclick="handleApply('Visitor Visa');return false">
+        <div class="icon"><i class="fas fa-passport"></i></div>
+        <h3>Visas & Migration</h3>
+        <p>Visitor, work, student, and family visas managed by Home Affairs</p>
+      </div>
+      <div class="service-card" onclick="handleApply('Passport Services');return false">
+        <div class="icon"><i class="fas fa-book"></i></div>
+        <h3>Passport Services</h3>
+        <p>Australian passport applications, renewals, and emergency passports</p>
+      </div>
+      <div class="service-card" onclick="handleApply('Consular Services');return false">
+        <div class="icon"><i class="fas fa-concierge-bell"></i></div>
+        <h3>Consular Assistance</h3>
+        <p>Emergency help for Australians in East Africa</p>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px"><i class="fas fa-newspaper"></i> NEWS AND UPDATES</div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">30 May 2025</div>
+        <div class="news-content"><h4>Australia Awards Africa program open for 2026</h4><p>Scholarship applications for Masters and PhD programs at leading Australian universities are now being accepted. Kenyan professionals encouraged to apply.</p></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">15 Apr 2025</div>
+        <div class="news-content"><h4>Australia-Kenya trade mission announced</h4><p>A delegation of Australian businesses will visit Nairobi in August 2025 focusing on infrastructure, agriculture, and digital economy opportunities.</p></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">12 Mar 2025</div>
+        <div class="news-content"><h4>New biometrics collection centre in Nairobi</h4><p>Visa applicants can now provide biometrics at the new Australian Biometrics Collection Centre in Westlands, Nairobi by appointment only.</p></div>
+      </div>
+      <div class="news-item">
+        <div class="news-date" style="color:#dc3545"><i class="fas fa-exclamation-triangle"></i> SCAM WARNING</div>
+        <div class="news-content"><h4>Be aware of visa scams and fraudulent websites</h4><p>The Australian High Commission does NOT request payment via mobile money, gift cards, or personal bank transfers. All visa applications must be lodged through the official Department of Home Affairs portal. Report suspicious activity to the High Commission.</p></div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:28px"><i class="fas fa-check-circle"></i> VISA STATUS CHECK</div>
+    <div class="quick-links">
+      <div class="quick-link-card" onclick="handleApply('Visitor Visa');return false">
+        <div class="icon"><i class="fas fa-passport"></i></div>
+        <h3>Apply for a Visa</h3>
+        <p>Start a new visa application for Australia</p>
+        <span class="badge">Apply now</span>
+      </div>
+      <div class="quick-link-card" onclick="showCheckStatus();return false">
+        <div class="icon"><i class="fas fa-search"></i></div>
+        <h3>Check Visa Status</h3>
+        <p>Track your existing Australian visa application</p>
+        <span class="badge">Check now</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- START APPLICATION PAGE -->
+<div id="startApplicationPage" class="status-page">
+  <div class="start-page">
+    <div class="icon-big"><i class="fas fa-file-alt"></i></div>
+    <h2 id="startTitle">Start Your Application</h2>
+    <p id="startDesc">You are about to begin your visa application process for Australia. Click "Start Application" to proceed.</p>
+    <div>
+      <button class="start-btn" onclick="startApplication()"><i class="fas fa-arrow-right"></i> Start Application</button>
+      <button class="start-btn outline" onclick="goHome()"><i class="fas fa-home"></i> Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHECK VISA STATUS PAGE -->
+<div id="checkStatusSection" class="status-page">
+  <div class="status-page-inner">
+    <div style="text-align:center;margin-bottom:14px">
+      <img src="/images/austrlian-flag.png" alt="Australian Flag" style="width:50px;height:40px;display:inline-block">
+    </div>
+    <h2>Check Your Visa Status</h2>
+    <p>Enter your passport number and password to view your Australian visa application status.</p>
+    <div id="pendingMessage" style="display:none" class="pending-msg">
+      <div class="icon">ℹ️</div>
+      <h3>You have a pending visa application</h3>
+      <p>You cannot submit a new application while you have a pending application. Please check your visa status below.</p>
+      <button class="check-btn" onclick="showCheckStatusForm()"><i class="fas fa-search"></i> Check My Visa Status</button>
+    </div>
+    <div id="statusForm">
+      <form class="status-form" onsubmit="event.preventDefault(); checkVisaStatus();">
+        <div class="field">
+          <label><i class="fas fa-id-card"></i> Passport Number</label>
+          <input type="text" id="statusPassport" placeholder="e.g. PA123456" required>
+        </div>
+        <div class="field">
+          <label><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="statusPassword" placeholder="Enter your password" required>
+        </div>
+        <button type="submit"><i class="fas fa-search"></i> Check Status</button>
+      </form>
+      <div style="text-align:center;margin-top:14px">
+        <a href="#" onclick="goHome();return false" style="font-size:12px"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATUS RESULT SECTION - AUSTRALIA DETAILED -->
+<div id="statusResultSection" style="display:none">
+<div class="aus-page">
+  <!-- ═══ HEADER ═══ -->
+  <div class="aus-result-header">
+    <div class="aus-header-left">
+      <div class="aus-flag-wrap">
+        <img src="/images/austrlian-flag.png" alt="Australian Flag">
+      </div>
+      <div class="aus-header-title">
+        <h1>Australian visa application</h1>
+        <p id="ausResultSubtitle">Visa application status</p>
+      </div>
+    </div>
+    <button class="aus-print-btn" onclick="window.print()">
+      <i class="fas fa-print"></i> Print
+    </button>
+  </div>
+
+  <!-- ═══ APPLICATION DETAILS ═══ -->
+  <div class="aus-section">
+    <div class="aus-section-title"><i class="fas fa-file-alt"></i> Application Details</div>
+    <div class="aus-field-grid">
+      <div class="aus-field-row">
+        <span class="aus-field-label">Application reference number</span>
+        <span class="aus-field-value" id="ausResultRef">-</span>
+      </div>
+      <div class="aus-field-row">
+        <span class="aus-field-label">Applicant name</span>
+        <span class="aus-field-value" id="ausResultName">-</span>
+      </div>
+      <div class="aus-field-row">
+        <span class="aus-field-label">Passport number</span>
+        <span class="aus-field-value" id="ausResultPassport">-</span>
+      </div>
+      <div class="aus-field-row">
+        <span class="aus-field-label">Visa type</span>
+        <span class="aus-field-value" id="ausResultVisaType">-</span>
+      </div>
+      <div class="aus-field-row">
+        <span class="aus-field-label">Processing office</span>
+        <span class="aus-field-value" id="ausResultOffice">Australian High Commission, Nairobi</span>
+      </div>
+      <div class="aus-field-row">
+        <span class="aus-field-label">Application date</span>
+        <span class="aus-field-value" id="ausResultDate">-</span>
+      </div>
+    </div>
+    <div class="aus-info-box">
+      <i class="fas fa-info-circle"></i>
+      <p>Tracking information may take up to 24 hours to appear after your application has been submitted. For further enquiries, contact the Australian High Commission in Nairobi.</p>
+    </div>
+  </div>
+  <hr class="aus-divider">
+
+  <!-- ═══ CURRENT STATUS ═══ -->
+  <div class="aus-status-section">
+    <div class="aus-section-title"><i class="fas fa-chart-line"></i> Your Current Status</div>
+    <div class="aus-status-card received" id="ausStatusCard">
+      <!-- Default icon -->
+      <div class="aus-status-icon-circle received" id="ausStatusIcon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 4a12 12 0 1 1-8.49 3.51" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M4 4l4 4V4H4z" fill="#fff"/>
+          <path d="M16 9v7l4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="aus-status-body">
+        <div class="aus-status-badge received" id="ausStatusBadge">APPLICATION RECEIVED</div>
+        <div class="aus-status-desc" id="ausStatusDesc">Your application has been received by the Australian High Commission and is pending assessment.</div>
+      </div>
+      <div class="aus-tracker" id="ausMainTracker">
+        <div class="aus-tracker-labels">
+          <div class="aus-tracker-label">Application<br>Received</div>
+          <div class="aus-tracker-label">Under<br>Assessment</div>
+          <div class="aus-tracker-label">Decision<br>Made</div>
+          <div class="aus-tracker-label">Visa<br>Outcome</div>
+        </div>
+        <div class="aus-tracker-rail">
+          <div class="aus-dot active-gold"></div>
+          <div class="aus-line grey"></div>
+          <div class="aus-dot"></div>
+          <div class="aus-line grey"></div>
+          <div class="aus-dot"></div>
+          <div class="aus-line grey"></div>
+          <div class="aus-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="aus-divider">
+
+  <!-- ═══ YOUR DOCUMENTS ═══ -->
+  <hr class="aus-divider">
+  <div class="aus-means-section">
+    <div class="aus-means-title"><i class="fas fa-file-alt"></i> Your Documents</div>
+    <div class="aus-docs-wrap">
+      <div id="ausDocsList" class="aus-docs-list">No documents uploaded yet.</div>
+    </div>
+  </div>
+
+  <hr class="aus-divider">
+
+  <!-- ═══ WHAT YOUR STATUS MEANS ═══ -->
+  <div class="aus-means-section">
+    <div style="padding-top:20px;"></div>
+    <div class="aus-means-title"><i class="fas fa-question-circle"></i> What Your Status Means</div>
+    <div class="aus-means-grid">
+      <!-- 1. APPLICATION RECEIVED -->
+      <div class="aus-means-card received" id="ausMeans1">
+        <div class="aus-means-icon received">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 4a12 12 0 1 1-8.49 3.51" stroke="#FFBF00" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M4 4l4 4V4H4z" fill="#FFBF00"/>
+            <path d="M16 9v7l4 4" stroke="#FFBF00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="aus-means-body">
+          <div class="aus-means-badge received">APPLICATION RECEIVED</div>
+          <div class="aus-means-desc">Your application has been received by the Australian High Commission. It is pending initial assessment and will be transferred to the Department of Home Affairs for processing.</div>
+        </div>
+        <div class="aus-means-tracker">
+          <div class="aus-tracker-labels">
+            <div class="aus-tracker-label">Application<br>Received</div>
+            <div class="aus-tracker-label">Under<br>Assessment</div>
+            <div class="aus-tracker-label">Decision<br>Made</div>
+            <div class="aus-tracker-label">Visa<br>Outcome</div>
+          </div>
+          <div class="aus-tracker-rail">
+            <div class="aus-dot active-gold"></div>
+            <div class="aus-line grey"></div>
+            <div class="aus-dot"></div>
+            <div class="aus-line grey"></div>
+            <div class="aus-dot"></div>
+            <div class="aus-line grey"></div>
+            <div class="aus-dot"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 2. UNDER ASSESSMENT -->
+      <div class="aus-means-card assessment" id="ausMeans2">
+        <div class="aus-means-icon assessment">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="12" stroke="#002664" stroke-width="2.2" fill="none"/>
+            <path d="M10 16l4 4 8-8" stroke="#002664" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="aus-means-body">
+          <div class="aus-means-badge assessment">UNDER ASSESSMENT</div>
+          <div class="aus-means-desc">Your application is being assessed by the Department of Home Affairs. This includes background checks, document verification, and eligibility assessment. Processing times vary by visa type.</div>
+        </div>
+        <div class="aus-means-tracker">
+          <div class="aus-tracker-labels">
+            <div class="aus-tracker-label">Application<br>Received</div>
+            <div class="aus-tracker-label">Under<br>Assessment</div>
+            <div class="aus-tracker-label">Decision<br>Made</div>
+            <div class="aus-tracker-label">Visa<br>Outcome</div>
+          </div>
+          <div class="aus-tracker-rail">
+            <div class="aus-dot"></div>
+            <div class="aus-line blue"></div>
+            <div class="aus-dot active-blue"></div>
+            <div class="aus-line grey"></div>
+            <div class="aus-dot"></div>
+            <div class="aus-line grey"></div>
+            <div class="aus-dot"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 3. DECISION MADE -->
+      <div class="aus-means-card decision" id="ausMeans3">
+        <div class="aus-means-icon decision">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="12" fill="#00843D"/>
+            <path d="M10 16l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="aus-means-body">
+          <div class="aus-means-badge decision">DECISION MADE</div>
+          <div class="aus-means-desc">A decision has been made on your application. Please check your email for the decision notification. You will receive instructions on next steps, including passport submission if your visa is granted.</div>
+        </div>
+        <div class="aus-means-tracker">
+          <div class="aus-tracker-labels">
+            <div class="aus-tracker-label">Application<br>Received</div>
+            <div class="aus-tracker-label">Under<br>Assessment</div>
+            <div class="aus-tracker-label">Decision<br>Made</div>
+            <div class="aus-tracker-label">Visa<br>Outcome</div>
+          </div>
+          <div class="aus-tracker-rail">
+            <div class="aus-dot"></div>
+            <div class="aus-line green"></div>
+            <div class="aus-dot"></div>
+            <div class="aus-line green"></div>
+            <div class="aus-dot active-green"></div>
+            <div class="aus-line grey"></div>
+            <div class="aus-dot"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 4. VISA OUTCOME -->
+      <div class="aus-means-card outcome" id="ausMeans4">
+        <div class="aus-means-icon outcome">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="8" width="20" height="16" rx="2" stroke="#fff" stroke-width="2"/>
+            <path d="M6 13h20" stroke="#fff" stroke-width="2"/>
+            <circle cx="11" cy="18" r="1.5" fill="#fff"/>
+            <rect x="14" y="17" width="7" height="2" rx="1" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="aus-means-body">
+          <div class="aus-means-badge outcome">VISA OUTCOME</div>
+          <div class="aus-means-desc">Your passport with the visa outcome (if approved) is ready for collection at the Australian High Commission or has been dispatched. If your application was not successful, you will receive information about review rights.</div>
+        </div>
+        <div class="aus-means-tracker">
+          <div class="aus-tracker-labels">
+            <div class="aus-tracker-label">Application<br>Received</div>
+            <div class="aus-tracker-label">Under<br>Assessment</div>
+            <div class="aus-tracker-label">Decision<br>Made</div>
+            <div class="aus-tracker-label">Visa<br>Outcome</div>
+          </div>
+          <div class="aus-tracker-rail">
+            <div class="aus-dot"></div>
+            <div class="aus-line purple"></div>
+            <div class="aus-dot"></div>
+            <div class="aus-line purple"></div>
+            <div class="aus-dot"></div>
+            <div class="aus-line purple"></div>
+            <div class="aus-dot active-purple"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ACTIONS ═══ -->
+  <div style="padding:16px 26px 24px;display:flex;gap:12px;justify-content:center;border-top:1px solid #e0e5e8;">
+    <button onclick="goHome()" class="back-btn" style="width:auto;padding:10px 24px;display:inline-flex;align-items:center;gap:6px"><i class="fas fa-home"></i> Back to Homepage</button>
+    <button id="ausCancelBtn" onclick="showCancelForm()" style="display:none;align-items:center;gap:6px;padding:10px 24px;background:#dc3545;color:#fff;border-radius:4px;font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:inherit"><i class="fas fa-times-circle"></i> Cancel Application</button>
+  </div>
+</div>
+</div>
+
+<!-- CANCEL FORM SECTION -->
+<div id="cancelFormSection" class="status-page">
+  <div class="status-page-inner">
+    <div style="text-align:center;margin-bottom:14px"><i class="fas fa-exclamation-triangle" style="font-size:44px;color:#dc3545"></i></div>
+    <h2 style="color:#dc3545">Cancel Application</h2>
+    <div style="background:#f8d7da;border:2px solid #dc3545;border-radius:4px;padding:14px;margin-bottom:18px;text-align:center">
+      <p style="color:#721c24;font-weight:700;font-size:13px;margin-bottom:4px"><i class="fas fa-exclamation-circle"></i> IMPORTANT NOTICE</p>
+      <p style="color:#721c24;font-size:12px">Once your application has been cancelled, <strong>there will be NO REFUND</strong> of the application fee. This action is final and cannot be undone.</p>
+    </div>
+    <form class="status-form" onsubmit="event.preventDefault(); submitCancel();">
+      <div class="field"><label><i class="fas fa-user"></i> Full Name</label><input type="text" id="cancelName" readonly placeholder="Auto-filled"></div>
+      <div class="field"><label><i class="fas fa-id-card"></i> Re-confirm Passport Number</label><input type="text" id="cancelPassport" placeholder="Re-enter passport number" required></div>
+      <div class="field"><label><i class="fas fa-id-badge"></i> National ID Number</label><input type="text" id="cancelId" placeholder="Enter national ID" required></div>
+      <div class="field"><label><i class="fas fa-envelope"></i> Email Address</label><input type="email" id="cancelEmail" placeholder="Enter email" required></div>
+      <div class="field"><label><i class="fas fa-phone"></i> Phone Number</label><input type="tel" id="cancelPhone" placeholder="Enter phone number" required></div>
+      <div class="field"><label><i class="fas fa-comment"></i> Reason for Cancellation</label><textarea id="cancelReason" rows="3" placeholder="Explain why you wish to cancel" style="width:100%;padding:11px;border:2px solid var(--border);border-radius:4px;font-family:inherit;font-size:13px;resize:vertical" required></textarea></div>
+      <button type="submit" style="background:#dc3545"><i class="fas fa-times-circle"></i> Submit Cancellation</button>
+      <p style="text-align:center;margin-top:10px;font-size:11px;color:#999;font-style:italic">This action <strong>cannot be undone</strong>.</p>
+    </form>
+    <div style="text-align:center;margin-top:14px">
+      <a href="#" onclick="showResultsAgain();return false" style="font-size:12px"><i class="fas fa-arrow-left"></i> Back to Status</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-aus-id">
+        <span class="flag-icon"><img src="/images/austrlian-flag.png" alt="Australian Flag" style="width:26px;height:17px;display:block"></span>
+        <span class="name">Australian Government</span>
+      </div>
+      <h4><i class="fas fa-map-marker-alt"></i> Australian High Commission, Nairobi</h4>
+      <p>Riverside Drive, Chiromo<br>P.O. Box 39341 - 00623<br>Nairobi, Kenya</p>
+      <p style="margin-top:6px"><strong>Phone:</strong> +254 20 427 7100<br><strong>Email:</strong> ahc.nairobi@dfat.gov.au</p>
+      <p style="margin-top:6px"><strong>Consular emergency (24hrs):</strong> +61 2 6261 3305</p>
+    </div>
+    <div class="footer-col">
+      <h4><i class="fas fa-passport"></i> VISA & CITIZENSHIP</h4>
+      <p>Visa applications are processed by the Department of Home Affairs.</p>
+      <p><strong>Website:</strong><br><a href="https://immi.homeaffairs.gov.au" target="_blank">immi.homeaffairs.gov.au</a></p>
+      <p><strong>Global Service Centre:</strong><br>+61 2 6196 0196</p>
+      <p><strong>Biometrics:</strong><br>By appointment in Nairobi</p>
+    </div>
+    <div class="footer-col">
+      <h4><i class="fas fa-link"></i> USEFUL LINKS</h4>
+      <p><a href="https://www.dfat.gov.au" target="_blank">Department of Foreign Affairs & Trade</a></p>
+      <p><a href="https://www.smartraveller.gov.au" target="_blank">Smartraveller - Travel Advice</a></p>
+      <p><a href="https://homeaffairs.gov.au" target="_blank">Department of Home Affairs</a></p>
+      <p><a href="https://www.australiaawardsafrica.org" target="_blank">Australia Awards Africa</a></p>
+      <p style="margin-top:8px"><strong>Follow us:</strong></p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; Australian High Commission, Nairobi, Kenya. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Copyright</a> | <a href="#">Disclaimer</a></p>
+  </div>
+</footer>
+
+<script>
+const API = "/api";
+var pendingServiceType = "";
+var currentClientData = null;
+
+function goHome() {
+  document.getElementById('startApplicationPage').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('heroSection').style.display = 'block';
+  document.getElementById('homeContent').style.display = 'grid';
+  var items = document.querySelectorAll('.nav-item');
+  items.forEach(function(n){n.classList.remove('active');});
+  if(items[0]) items[0].classList.add('active');
+}
+
+function handleApply(type) {
+  pendingServiceType = type;
+  document.getElementById('heroSection').style.display = 'none';
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('startApplicationPage').style.display = 'block';
+  document.getElementById('startTitle').textContent = type + ' Application';
+  document.getElementById('startDesc').textContent = 'You are about to begin your application for ' + type + '. Click "Start Application" to proceed.';
+}
+
+function startApplication() {
+  document.getElementById('startApplicationPage').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'block';
+  document.getElementById('pendingMessage').style.display = 'block';
+  document.getElementById('statusForm').style.display = 'none';
+}
+
+function showCheckStatusForm() {
+  document.getElementById('pendingMessage').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('statusForm').style.display = 'block';
+}
+
+function showCheckStatus() {
+  document.getElementById('heroSection').style.display = 'none';
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('startApplicationPage').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'block';
+  document.getElementById('pendingMessage').style.display = 'none';
+  document.getElementById('statusForm').style.display = 'block';
+  var items = document.querySelectorAll('.nav-item');
+  items.forEach(function(n){n.classList.remove('active');});
+  items.forEach(function(n){
+    if(n.textContent.trim().includes('Check Status')) n.classList.add('active');
+  });
+}
+
+function getStepMessage(step, cancelled, cancelReason) {
+  if (cancelled) {
+    return { cls: 'rejected', icon: '❌', title: 'Cancelled', msg: 'Your application has been cancelled. Reason: ' + (cancelReason || 'Not specified') };
+  }
+  var s = (step || '').toLowerCase();
+  if (s === 'visa approved' || s === 'visa approval') {
+    return { cls: 'approved', icon: '✅', title: 'Visa Approved', msg: 'Your visa has been approved. You can travel within the validity period.' };
+  }
+  if (s === 'documents confirmed' || s === 'confirmation of documents') {
+    return { cls: 'approved', icon: '✅', title: 'Documents Confirmed', msg: 'Your documents have been confirmed. We will notify you once a decision is made.' };
+  }
+  if (s === 'rejected' || s === 'denial') {
+    return { cls: 'rejected', icon: '❌', title: 'Rejected', msg: 'Your visa application has been rejected.' };
+  }
+  if (s === 're-submit documents' || s === 're-submission of documents') {
+    return { cls: 'pending', icon: '⏳', title: 'Re-submission of Documents', msg: 'Your application requires re-submission of documents. Please upload the requested documents.' };
+  }
+  if (s === 'checking documents' || s === 'document verification') {
+    return { cls: 'pending', icon: '⏳', title: 'Document Verification', msg: 'Your application is currently being reviewed.' };
+  }
+  if (s === 'pending') {
+    return { cls: 'pending', icon: '⏳', title: 'Pending', msg: 'Your application is currently pending.' };
+  }
+  return { cls: 'pending', icon: '⏳', title: step || 'Pending', msg: 'Status: ' + (step || 'pending') };
+}
+
+function getAusStepInfo(step, cancelled, cancelReason) {
+  if (cancelled) return { state: 'outcome', label: 'CANCELLED', badge: 'CANCELLED', desc: 'Your application has been cancelled. Reason: ' + (cancelReason || 'Not specified') };
+  var s = (step || '').toLowerCase();
+  if (s === 'visa approved' || s === 'visa approval') return { state: 'outcome', label: 'VISA GRANTED', badge: 'VISA GRANTED', desc: 'Your visa has been approved. Please check your email for the grant notification letter with full details of your visa conditions.' };
+  if (s === 'decision made') return { state: 'decision', label: 'DECISION MADE', badge: 'DECISION MADE', desc: 'A decision has been made on your application. Please check your email for the decision notification with next steps.' };
+  if (s === 'ready for collection / couriered') return { state: 'outcome', label: 'READY FOR COLLECTION', badge: 'READY FOR COLLECTION', desc: 'Your passport with the visa outcome is ready for collection at the Australian High Commission or has been dispatched.' };
+  if (s === 'documents confirmed' || s === 'confirmation of documents') return { state: 'decision', label: 'DECISION MADE', badge: 'DECISION MADE', desc: 'Your documents have been confirmed. A decision is pending. You will be notified once the assessment is complete.' };
+  if (s === 'rejected' || s === 'denial') return { state: 'outcome', label: 'APPLICATION REFUSED', badge: 'REFUSED', desc: 'Your visa application has been refused. Please check your email for the refusal notification letter which outlines the reasons and review rights.' };
+  if (s === 're-submit documents' || s === 're-submission of documents') return { state: 'assessment', label: 'ADDITIONAL DOCUMENTS REQUIRED', badge: 'ACTION REQUIRED', desc: 'Your application requires additional documents. Please check your email for details on what documents are needed and how to submit them.' };
+  if (s === 'checking documents' || s === 'document verification' || s === 'under processing') return { state: 'assessment', label: 'UNDER ASSESSMENT', badge: 'UNDER ASSESSMENT', desc: 'Your application is currently being assessed by the Department of Home Affairs. This includes document verification and background checks.' };
+  if (s === 'pending') return { state: 'received', label: 'APPLICATION RECEIVED', badge: 'APPLICATION RECEIVED', desc: 'Your application has been received by the Australian High Commission and is pending initial assessment.' };
+  return { state: 'received', label: step || 'APPLICATION RECEIVED', badge: step || 'RECEIVED', desc: 'Status: ' + (step || 'Application Received') };
+}
+
+function checkVisaStatus() {
+  var passport = document.getElementById('statusPassport').value.trim();
+  var password = document.getElementById('statusPassword').value;
+  if (!passport || !password) { alert('Please enter your passport number and password.'); return; }
+
+  fetch(API + '/public/verify', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({passport: passport, password: password, country: 'Australia'})
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(d){
+    if (d.error) { alert(d.error); return; }
+    currentClientData = d;
+    currentClientData.password = password;
+    document.getElementById('checkStatusSection').style.display = 'none';
+    
+    // Populate the Australia detailed result section
+    document.getElementById('ausResultRef').textContent = d.trackingId || d.applicationRef || d.id || 'AUS-' + d.passport;
+    document.getElementById('ausResultName').textContent = d.name || 'N/A';
+    document.getElementById('ausResultPassport').textContent = d.passport;
+    document.getElementById('ausResultVisaType').textContent = (d.visaType || 'Visitor') + (d.visaSubType ? ' (' + d.visaSubType + ')' : '');
+    document.getElementById('ausResultOffice').textContent = d.processingOffice || 'Australian High Commission, Nairobi';
+    document.getElementById('ausResultDate').textContent = d.createdAt ? new Date(d.createdAt).toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'}) : 'N/A';
+    document.getElementById('ausResultSubtitle').textContent = (d.visaType || 'Visa') + (d.visaSubType ? ' (' + d.visaSubType + ')' : '') + ' - Kenya';
+
+    var info = getAusStepInfo(d.step, d.cancelled, d.cancelReason);
+    var state = info.state;
+    var isCancelled = d.cancelled === true;
+    
+    // Define state order and colors
+    var states = ['received', 'assessment', 'decision', 'outcome'];
+    var icons = {
+      received: '<svg viewBox="0 0 32 32" fill="none"><path d="M16 4a12 12 0 1 1-8.49 3.51" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M4 4l4 4V4H4z" fill="#fff"/><path d="M16 9v7l4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      assessment: '<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M10 16l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      decision: '<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" fill="#00843D"/><path d="M10 16l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      outcome: '<svg viewBox="0 0 32 32" fill="none"><rect x="6" y="8" width="20" height="16" rx="2" stroke="#fff" stroke-width="2"/><path d="M6 13h20" stroke="#fff" stroke-width="2"/><circle cx="11" cy="18" r="1.5" fill="#fff"/><rect x="14" y="17" width="7" height="2" rx="1" fill="#fff"/></svg>'
+    };
+    var labelClasses = { received: 'received', assessment: 'assessment', decision: 'decision', outcome: 'outcome' };
+    var dotClasses = { received: 'active-gold', assessment: 'active-blue', decision: 'active-green', outcome: 'active-purple' };
+    var lineClasses = { received: 'gold', assessment: 'blue', decision: 'green', outcome: 'purple' };
+    
+    var idx = states.indexOf(state);
+    if (idx === -1) idx = 0;
+    
+    // Update status card
+    var card = document.getElementById('ausStatusCard');
+    var iconDiv = document.getElementById('ausStatusIcon');
+    var badge = document.getElementById('ausStatusBadge');
+    var desc = document.getElementById('ausStatusDesc');
+    
+    if (card) { card.className = 'aus-status-card'; card.classList.add(labelClasses[state]); }
+    if (iconDiv) { iconDiv.className = 'aus-status-icon-circle'; iconDiv.classList.add(labelClasses[state]); iconDiv.innerHTML = icons[state]; }
+    if (badge) { badge.className = 'aus-status-badge'; badge.classList.add(labelClasses[state]); badge.textContent = info.badge; }
+    if (desc) desc.textContent = info.desc;
+    
+    // Update main tracker
+    var mainRail = document.querySelector('#ausStatusCard .aus-tracker-rail');
+    if (mainRail) {
+      var dots = mainRail.querySelectorAll('.aus-dot');
+      var lines = mainRail.querySelectorAll('.aus-line');
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].className = 'aus-dot';
+        if (i <= idx) dots[i].classList.add(dotClasses[state]);
+      }
+      for (var i = 0; i < lines.length; i++) {
+        lines[i].className = 'aus-line';
+        lines[i].classList.add(i < idx ? lineClasses[state] : 'grey');
+      }
+    }
+    
+    // Show all means cards
+    var cards = document.querySelectorAll('.aus-means-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].style.display = 'flex';
+    }
+    
+    // Show/hide cancel button
+    var canCancel = !d.cancelled && state !== 'decision' && d.step !== 'visa approved' && d.step !== 'visa approval' && d.step !== 'rejected' && d.step !== 'denial';
+    document.getElementById('ausCancelBtn').style.display = canCancel ? 'inline-flex' : 'none';
+    
+    document.getElementById('statusResultSection').style.display = 'block';
+    // Load documents
+    loadClientDocs(passport, password, 'ausDocsList');
+  })
+  .catch(function(){ alert('Connection error. Please try again.'); });
+}
+
+function loadClientDocs(passport, password, listId) {
+  fetch('/api/public/documents', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({passport:passport, password:password})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(docs){
+    var el = document.getElementById(listId);
+    if (!el) return;
+    if (!docs || docs.length === 0) { el.innerHTML = 'No documents uploaded yet.'; return; }
+    var h = '';
+    docs.forEach(function(d){
+      var dt = d.uploadedAt || '';
+      if (dt) { var dd = new Date(dt); if (!isNaN(dd.getTime())) { dt = String(dd.getDate()).padStart(2,'0')+'/'+String(dd.getMonth()+1).padStart(2,'0')+'/'+dd.getFullYear(); } }
+      h += '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid #e0e0e0;border-radius:6px;margin-bottom:6px">'
+        + '<i class="fas fa-file-alt" style="color:#002664;font-size:16px"></i>'
+        + '<div style="flex:1"><div style="font-size:13px;font-weight:600;color:#333">'+d.originalName+'</div>'
+        + '<div style="font-size:11px;color:#888">'+(d.category||'Document')+' &middot; '+dt+'</div></div>'
+        + '<a href="'+d.url+'" target="_blank" style="padding:5px 12px;background:#002664;color:#fff;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600"><i class="fas fa-eye"></i> View</a></div>';
+    });
+    el.innerHTML = h;
+  })
+  .catch(function(){ });
+}
+
+function showCancelForm() {
+  if (!currentClientData) return;
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'block';
+  document.getElementById('cancelName').value = currentClientData.name || '';
+  document.getElementById('cancelPassport').value = '';
+  document.getElementById('cancelPassport').setAttribute('data-expected', currentClientData.passport || '');
+  document.getElementById('cancelId').value = '';
+  document.getElementById('cancelEmail').value = '';
+  document.getElementById('cancelPhone').value = '';
+  document.getElementById('cancelReason').value = '';
+}
+
+function showResultsAgain() {
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'block';
+}
+
+function submitCancel() {
+  var name = document.getElementById('cancelName').value.trim();
+  var passport = document.getElementById('cancelPassport').value.trim();
+  var expectedPassport = document.getElementById('cancelPassport').getAttribute('data-expected');
+  var idNum = document.getElementById('cancelId').value.trim();
+  var email = document.getElementById('cancelEmail').value.trim();
+  var phone = document.getElementById('cancelPhone').value.trim();
+  var reason = document.getElementById('cancelReason').value.trim();
+  if (!passport || !idNum || !email || !phone || !reason) { alert('All fields are required.'); return; }
+  if (passport !== expectedPassport) { alert('Passport number does not match.'); return; }
+  if (!confirm('Are you sure you want to cancel your visa application? There will be NO REFUND.')) { return; }
+  fetch(API + '/public/cancel', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      passport: expectedPassport,
+      password: currentClientData.password || '',
+      reason: 'Cancelled by applicant. ID: ' + idNum + ', Email: ' + email + ', Phone: ' + phone + '. Reason: ' + reason
+    })
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(d){
+    if (d.error) { alert('Error: ' + d.error); return; }
+    alert('Your application has been cancelled successfully.');
+    goHome();
+  })
+  .catch(function(){ alert('Connection error.'); });
+}
+</script>
+</body>
+</html>
+
