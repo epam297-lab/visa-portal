@@ -1,0 +1,476 @@
+﻿
+================================================================================
+                       VISA PORTAL APPLICATION
+                    PROJECT REQUIREMENTS DOCUMENT (PRD)
+                       
+                         Document Version: 1.0
+                            Date: June 2026
+================================================================================
+
+TABLE OF CONTENTS
+-----------------
+1.  PROJECT OVERVIEW
+2.  BUSINESS OBJECTIVES
+3.  TARGET USERS
+4.  SYSTEM ARCHITECTURE
+5.  TECHNOLOGY STACK
+6.  CORE FEATURES & MODULES
+7.  DATABASE SCHEMA
+8.  API ENDPOINTS
+9.  PUBLIC PAGES & CLIENT PORTAL
+10. USER INTERFACE
+11. INSTALLATION & SETUP
+12. DEPLOYMENT GUIDE
+13. FUTURE ENHANCEMENTS
+
+
+
+================================================================================
+1. PROJECT OVERVIEW
+================================================================================
+
+Project Name:      Visa Portal - Multi-Country Visa Application System
+Project Type:      Web Application with Desktop Wrapper
+Developer:         [Your Name / Agency Name]
+Database:          MongoDB (Local)
+Port:              4500
+Status:            Launched / Active
+
+The Visa Portal is a complete visa application management system designed for
+travel agencies and visa processing offices. It allows admins to register
+clients, track application status across multiple countries, record payments,
+and generate tracking links for clients to check their application status
+online.
+
+Countries supported:
+  - Canada
+  - Norway
+  - Serbia
+  - Slovakia
+  - Australia
+
+
+
+================================================================================
+2. BUSINESS OBJECTIVES
+================================================================================
+
+- Provide a centralized system to manage visa applications for multiple countries
+- Replace paper-based or spreadsheet-based client tracking
+- Enable clients to track their application status online using passport + password
+- Allow admin to update application status at each stage of the process
+- Record and track payments made by clients
+- Generate real-time statistics and dashboard insights
+- Work offline locally (no internet required beyond initial setup)
+
+
+
+================================================================================
+3. TARGET USERS
+================================================================================
+
+A) Admin Users (Agency Staff)
+   - Login to admin dashboard
+   - Register new clients
+   - Update application status
+   - Record payments
+   - View statistics and reports
+   - Generate client tracking links
+
+B) Public Users (Visa Applicants / Clients)
+   - Track application status using passport number + password
+   - Cancel application if needed
+   - View their country-specific landing page
+
+
+
+================================================================================
+4. SYSTEM ARCHITECTURE
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                        CLIENT-SIDE (Browser)                        │
+│                                                                     │
+│   ┌──────────────┐  ┌──────────────┐  ┌─────────────────────────┐  │
+│   │  Admin Page  │  │ Public Pages │  │ Country Landing Pages  │  │
+│   │ (admin.html) │  │ (apply.html, │  │ (norway-landing.html,  │  │
+│   │              │  │  check.html) │  │  serbia-auth.html, etc)│  │
+│   └──────────────┘  └──────────────┘  └─────────────────────────┘  │
+└────────────────────────────┬────────────────────────────────────────┘
+                             │ HTTP (localhost:4500)
+                             ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                        SERVER-SIDE (Node.js + Express)              │
+│                                                                     │
+│   ┌─────────────────────────────────────────────────────────────┐  │
+│   │  REST API Endpoints                                         │  │
+│   │  - /api/admin/login     (Admin Authentication)              │  │
+│   │  - /api/clients         (CRUD Operations)                   │  │
+│   │  - /api/payments        (Payment Recording)                 │  │
+│   │  - /api/stats           (Dashboard Statistics)              │  │
+│   │  - /api/public/verify   (Client Status Check)               │  │
+│   │  - /api/public/cancel   (Client Cancellation)               │  │
+│   └─────────────────────────────────────────────────────────────┘  │
+│                             │                                       │
+│                             ▼                                       │
+│   ┌─────────────────────────────────────────────────────────────┐  │
+│   │  MongoDB Database (visa_portal)                            │  │
+│   │  ┌────────────────┐  ┌────────────────┐                   │  │
+│   │  │  clients       │  │  payments      │                   │  │
+│   │  └────────────────┘  └────────────────┘                   │  │
+│   └─────────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────┘
+
+Desktop Launch Mechanism:
+  - Windows: launch-visa-portal.vbs (runs server silently in background)
+  - Opens in Chrome App Mode (standalone window, no URL bar)
+  - Desktop shortcut with custom icon (icon.ico)
+
+
+
+================================================================================
+5. TECHNOLOGY STACK
+================================================================================
+
+┌────────────────────────┬────────────────────────────────────────────┐
+│ Component              │ Technology                                │
+├────────────────────────┼────────────────────────────────────────────┤
+│ Backend Framework      │ Node.js with Express.js v5.2.1            │
+│ Database               │ MongoDB 7+ with Mongoose ODM v9.6.3       │
+│ Frontend (Admin)       │ Vanilla HTML, CSS, JavaScript             │
+│ Frontend (Public)      │ Vanilla HTML, CSS, JavaScript             │
+│ API Security           │ Bearer Token Authentication               │
+│ CORS                   │ Enabled (all origins allowed)             │
+│ Desktop Wrapper        │ Chrome App Mode (--app flag)              │
+│ Desktop Icon           │ Custom ICO (16px - 256px multi-res)       │
+│ Server Port            │ 4500                                      │
+│ Node.js Version        │ v24.x (any modern version)               │
+├────────────────────────┼────────────────────────────────────────────┤
+│ NPM Packages           │                                            │
+│                        │ - express v5.2.1                          │
+│                        │ - mongoose v9.6.3                         │
+│                        │ - cors v2.8.6                             │
+│                        │ - uuid v14.0.0                            │
+└────────────────────────┴────────────────────────────────────────────┘
+
+
+
+================================================================================
+6. CORE FEATURES & MODULES
+================================================================================
+
+6.1 ADMIN MODULE
+─────────────────
+- Login page with username/password authentication
+- Default credentials: admin / admin123
+- Session stored in localStorage (Bearer token)
+
+6.2 DASHBOARD
+─────────────
+- Statistics cards showing:
+  • Total clients
+  • Pending applications
+  • Documents under checking
+  • Re-submission required
+  • Documents confirmed
+  • Visa approved
+  • Rejected
+  • Cancelled
+- Recent applications table (last 5)
+- Client counts grouped by country
+
+6.3 CLIENT REGISTRATION
+───────────────────────
+Fields captured:
+  • Full Name (required)
+  • Passport Number (required)
+  • Country (Canada, Norway, Serbia, Slovakia, Australia)
+  • Visa Type (Tourist, Student, Business, Work)
+  • Amount Paid (Ksh)
+  • Remaining Days (default: 30)
+  • Current Status (Pending, Checking Documents, etc.)
+  • Client Password (for public tracking)
+  • Processing Office
+  • Auto-generated Tracking ID (format: VISA-XXX-XXXXXX-XXXX)
+
+6.4 CLIENT MANAGEMENT
+──────────────────────
+- View all clients in sortable table
+- Search by name or passport number
+- Filter by country
+- View detailed client information in modal popup
+- Edit client fields: status, remaining days, password, country
+- Delete client (with server-side endpoint)
+
+6.5 STATUS WORKFLOW
+───────────────────
+Default steps:  Pending → Checking Documents → Re-submit Documents
+               → Documents Confirmed → Visa Approved / Rejected / Cancelled
+
+Norway-specific steps:  Pending → Checking Documents → Re-submit Documents
+                       → Documents Confirmed → Under Processing → Decision Made
+                       → Ready for Collection / Couriered → Visa Approved
+                       / Rejected / Cancelled
+
+6.6 PAYMENT TRACKING
+────────────────────
+- Record payments against client records
+- Payment methods: Cash, M-Pesa, Bank Transfer, Card
+- View all payments in searchable table
+- Automatic calculation of total amount paid (base + additional payments)
+- Payment history visible in client detail view
+
+6.7 STATISTICS & REPORTS
+────────────────────────
+- Real-time dashboard stats
+- Country-wise client distribution
+- Total payments collected
+- Payment count
+
+
+
+================================================================================
+7. DATABASE SCHEMA
+================================================================================
+
+Database Name: visa_portal
+MongoDB URI: mongodb://127.0.0.1:27017/visa_portal
+
+7.1 COLLECTION: clients
+───────────────────────
+┌──────────────────┬───────────┬──────────┬──────────────────────────────┐
+│ Field            │ Type      │ Required │ Notes                        │
+├──────────────────┼───────────┼──────────┼──────────────────────────────┤
+│ _id              │ ObjectId  │ Auto     │ MongoDB auto-generated       │
+│ name             │ String    │ YES      │ Client full name             │
+│ passport         │ String    │ YES      │ Passport number              │
+│ country          │ String    │ YES      │ Enum: Canada, Norway, etc.   │
+│ amount           │ String    │ No       │ Base amount paid (Ksh)       │
+│ step             │ String    │ No       │ Current application status    │
+│ password         │ String    │ No       │ Client tracking password     │
+│ visaType         │ String    │ No       │ Tourist, Student, etc.       │
+│ visaSubType      │ String    │ No       │ Additional visa category     │
+│ remainingDays    │ Number    │ No       │ Days remaining               │
+│ cancelled        │ Boolean   │ No       │ Is application cancelled?    │
+│ cancelReason     │ String    │ No       │ Reason for cancellation      │
+│ processingOffice │ String    │ No       │ Embassy/office name          │
+│ applicationRef   │ String    │ No       │ Reference number             │
+│ trackingId       │ String    │ No       │ Auto-generated tracking ID   │
+│ notes            │ String    │ No       │ Internal notes               │
+│ createdAt        │ String    │ Auto     │ Date (YYYY-MM-DD format)     │
+└──────────────────┴───────────┴──────────┴──────────────────────────────┘
+
+7.2 COLLECTION: payments
+────────────────────────
+┌──────────────────┬───────────┬──────────┬──────────────────────────────┐
+│ Field            │ Type      │ Required │ Notes                        │
+├──────────────────┼───────────┼──────────┼──────────────────────────────┤
+│ _id              │ ObjectId  │ Auto     │ MongoDB auto-generated       │
+│ clientId         │ String    │ YES      │ Links to client _id          │
+│ amount           │ String    │ YES      │ Payment amount (Ksh)         │
+│ method           │ String    │ No       │ Cash, M-Pesa, Bank, Card     │
+│ note             │ String    │ No       │ Optional payment note        │
+│ createdAt        │ String    │ Auto     │ Date (YYYY-MM-DD format)     │
+└──────────────────┴───────────┴──────────┴──────────────────────────────┘
+
+
+
+================================================================================
+8. API ENDPOINTS
+================================================================================
+
+Base URL: http://localhost:4500/api
+
+8.1 AUTHENTICATION
+───────────────────
+POST /api/admin/login
+  Body: { username, password }
+  Response: { token: "admin-token-123" }
+
+8.2 CLIENTS (All require Authorization: Bearer admin-token-123)
+────────────────────────────────────────────────────────────────
+GET    /api/clients              - List all clients (supports ?country=&step=)
+GET    /api/clients/:id          - Get single client
+POST   /api/clients              - Create new client
+PUT    /api/clients/:id          - Update client fields
+DELETE /api/clients/:id          - Delete client
+
+8.3 PAYMENTS (Requires auth)
+─────────────────────────────
+GET    /api/payments             - List all payments
+POST   /api/payments             - Record a payment
+
+8.4 STATISTICS (Requires auth)
+──────────────────────────────
+GET    /api/stats                - Dashboard statistics
+
+8.5 PUBLIC (No authentication required)
+────────────────────────────────────────
+POST   /api/public/verify        - Client checks status via passport+password
+POST   /api/public/cancel        - Client cancels application
+
+
+
+================================================================================
+9. PUBLIC PAGES & CLIENT PORTAL
+================================================================================
+
+Clients can track their application via country-specific landing pages:
+
+┌─────────────────┬──────────────────────────────────────────────────┐
+│ Country         │ URL                                              │
+├─────────────────┼──────────────────────────────────────────────────┤
+│ Norway          │ /pages/norway-landing.html                       │
+│ Serbia          │ /pages/serbia-auth.html                          │
+│ Slovakia        │ /pages/slovakia-landing.html                     │
+│ Australia       │ /pages/australia-landing.html                    │
+│ Canada          │ /pages/apply.html (or /track/canada)             │
+├─────────────────┼──────────────────────────────────────────────────┤
+│ General         │ /pages/check-status.html (verify by passport)    │
+│                 │ /pages/register.html (new registration)          │
+└─────────────────┴──────────────────────────────────────────────────┘
+
+Each client receives a unique tracking link when registered, e.g.:
+  http://localhost:4500/pages/norway-landing.html
+
+They enter their passport number + password to view:
+  - Application status
+  - Visa type and sub-type
+  - Remaining processing days
+  - Amount paid
+  - Processing office
+  - Tracking ID
+  - Cancellation option
+
+
+
+================================================================================
+10. USER INTERFACE
+================================================================================
+
+10.1 COLOR SCHEME
+─────────────────
+  Primary Dark:    #1a1a2e (Navy)
+  Secondary Blue:  #0f3460 (Deep Blue)
+  Accent Red:      #e94560 (Coral Red)
+  Background:      #f0f2f5 (Light Gray)
+  White:           #ffffff
+  Success Green:   #27ae60
+
+10.2 ADMIN DASHBOARD SECTIONS
+─────────────────────────────
+  - Login Page: Centered card with gradient background
+  - Sidebar Navigation: Main Menu + Countries list
+  - Dashboard: Statistics cards + recent applications
+  - Register Client: Form with validation
+  - All Clients: Searchable table with pagination
+  - Payments: Searchable table with record button
+  - Country View: Filtered by selected country
+
+10.3 RESPONSIVE DESIGN
+──────────────────────
+  - Ultra-wide 30" screens (2560px+): Max-width 1600px, larger cards
+  - Desktop 24" (1920px): Standard layout
+  - Desktop 19" (1440px): Compact layout
+  - Small laptops 15" (1366px): Smaller sidebar, compact cards
+  - Tablets (991px and below): Vertical layout, collapsible sidebar
+  - Mobile (480px): Full-width cards, stacked layout
+
+10.4 ICON (Application Icon)
+────────────────────────────
+  - Custom-designed passport & globe icon
+  - Multi-resolution ICO file (16px to 256px)
+  - Dark blue background with gold ring
+  - White globe, passport, and green checkmark
+
+
+
+================================================================================
+11. INSTALLATION & SETUP
+================================================================================
+
+11.1 PREREQUISITES
+──────────────────
+  - Node.js (v18 or higher)
+  - MongoDB (v7 or higher, running as a service)
+  - Google Chrome or Microsoft Edge (for app mode)
+  - Windows 10/11 (for desktop launch scripts)
+
+11.2 INSTALLATION STEPS
+───────────────────────
+  1. Copy the visa-portal-app folder to the target machine
+  2. Open Command Prompt in the project folder
+  3. Run: npm install
+  4. Ensure MongoDB service is running (auto-checked on launch)
+
+11.3 LAUNCHING THE APP
+──────────────────────
+  Option A: Desktop Shortcut (Recommended)
+    - Double-click "Visa Portal.lnk" on desktop
+    - Server runs hidden in background
+    - Opens standalone app window (no URL bar)
+
+  Option B: Batch File
+    - Double-click "start-visa-portal.bat"
+    - Shows CMD window with server logs
+    - Opens standalone app window
+
+  Option C: Manual
+    - Open CMD in project folder
+    - Run: node server\server.js
+    - Open http://localhost:4500 in browser
+
+
+
+================================================================================
+12. DEPLOYMENT GUIDE
+================================================================================
+
+12.1 FIRST TIME ON A NEW MACHINE
+─────────────────────────────────
+  Step 1: Install Node.js from https://nodejs.org
+  Step 2: Install MongoDB Community Edition
+  Step 3: Copy the entire "visa-portal-app" folder
+  Step 4: Open CMD in project folder → npm install
+  Step 5: Double-click "start-visa-portal.bat" or desktop shortcut
+
+12.2 DATA BACKUP
+─────────────────
+  To backup the database (MongoDB):
+    mongodump --db visa_portal --out C:\backup\visa-portal-backup
+
+  To restore:
+    mongorestore --db visa_portal C:\backup\visa-portal-backup\visa_portal
+
+12.3 MOVING TO ANOTHER LAPTOP
+──────────────────────────────
+  1. Backup database on old machine (mongodump)
+  2. Copy project folder to new machine
+  3. Install Node.js + MongoDB on new machine
+  4. Run npm install in project folder
+  5. Restore database on new machine (mongorestore)
+  6. Launch the app
+
+
+
+================================================================================
+13. FUTURE ENHANCEMENTS (Optional)
+================================================================================
+
+- Multi-user authentication (different admin accounts)
+- Email/SMS notifications for status changes
+- Document upload functionality (passport scans, photos)
+- Printable visa application forms
+- Export to Excel/PDF reports
+- Cloud database option (MongoDB Atlas)
+- Multi-language support
+- Real-time notifications via WebSocket
+- Mobile app (React Native or Flutter)
+- Online payment integration (M-Pesa API, PayPal, etc.)
+
+
+
+================================================================================
+                       END OF DOCUMENT
+================================================================================
+
