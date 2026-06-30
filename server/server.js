@@ -376,10 +376,10 @@ app.get('/track/:country', (req, res) => {
 // ==================== Start Server ====================
 app.listen(PORT, () => {
   console.log('+--------------------------------------+');
-  console.log('�    VISA PORTAL - AGENCY SYSTEM       �');
-  console.log('�--------------------------------------�');
-  console.log('�  Running at http://localhost:' + PORT + '      �');
-  console.log('�  Admin: http://localhost:' + PORT + '/admin.html  �');
+  console.log('ï¿½    VISA PORTAL - AGENCY SYSTEM       ï¿½');
+  console.log('ï¿½--------------------------------------ï¿½');
+  console.log('ï¿½  Running at http://localhost:' + PORT + '      ï¿½');
+  console.log('ï¿½  Admin: http://localhost:' + PORT + '/admin.html  ï¿½');
   console.log('+--------------------------------------+');
 });
 
