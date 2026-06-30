@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Immigration to Norway - UDI</title>
 <style>
@@ -919,9 +920,9 @@ function checkVisaStatus() {
     var isCancelled = d.cancelled === true;
     var state = "pending";
     if (isCancelled) state = "collection";
-    else if (step === "visa approved" || step === "visa approval" || step === "documents confirmed") state = "decision";
-    else if (step === "rejected" || step === "denial") state = "collection";
-    else if (step === "checking documents" || step === "under processing") state = "processing";
+    else if (step === "visa approved" || step === "visa approval" || step === "documents confirmed" || step === "decision made") state = "decision";
+    else if (step === "rejected" || step === "denial" || step === "ready for collection / couriered") state = "collection";
+    else if (step === "checking documents" || step === "under processing" || step === "re-submit documents") state = "processing";
     
     var card = sec.querySelector(".status-card");
     var iconDiv = sec.querySelector(".status-icon-circle");
