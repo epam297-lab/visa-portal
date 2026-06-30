@@ -1,0 +1,955 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Slovak Republic - Ministry of Foreign and European Affairs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1A3A5C;--primary-light:#2B5A8C;--accent:#E51E25;--accent-dark:#B8181E;--accent-light:#fce8e9;--white:#fff;--gold:#D4A843;--gold-light:#F0E6CC;--bg:#F5F0EB;--bg-card:#fff;--grey:#f0f0f0;--border:#D0CEC8;--text:#1C1B1A;--text-light:#6B6560;--shadow:0 4px 16px rgba(26,58,92,0.08);--shadow-lg:0 12px 40px rgba(26,58,92,0.12);--radius:14px;--radius-sm:8px}
+body{font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+a{color:var(--primary-light);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* TOP BAR */
+.top-bar{background:var(--primary);color:rgba(255,255,255,0.85);font-size:12px;padding:7px 0;border-bottom:2px solid var(--gold)}
+.top-bar-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.top-bar a{color:rgba(255,255,255,0.75);margin-left:16px;font-size:12px}
+.top-bar a:hover{color:var(--gold);text-decoration:none}
+
+/* HEADER */
+.main-header{background:var(--white);border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.header-inner{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px}
+.logo-flag{width:46px;height:34px;border-radius:3px;flex-shrink:0;overflow:hidden;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.logo-flag img{width:100%;height:100%;object-fit:cover;display:block}
+.site-title h1{font-size:19px;font-weight:800;color:var(--primary);margin:0;letter-spacing:-0.3px}
+.site-title p{font-size:11px;color:var(--text-light);margin:0;font-weight:500;text-transform:uppercase;letter-spacing:0.8px}
+.language-toggle{margin-left:auto;display:flex;gap:2px;background:var(--bg);padding:3px;border-radius:8px}
+.language-toggle a{display:inline-block;padding:5px 14px;font-size:12px;font-weight:600;border-radius:6px;transition:all .15s;cursor:pointer;color:var(--text-light)}
+.language-toggle a.active{background:var(--white);color:var(--primary);box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.language-toggle a.active:hover{text-decoration:none}
+
+/* NAVIGATION */
+.nav-bar{background:var(--primary)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex}
+.nav-item{padding:13px 20px;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;position:relative;white-space:nowrap;transition:background .15s}
+.nav-item:hover,.nav-item.active{background:rgba(255,255,255,0.12)}
+.nav-item.active::after{content:'';position:absolute;bottom:0;left:20px;right:20px;height:3px;background:var(--gold);border-radius:3px 3px 0 0}
+.nav-item i{margin-right:6px}
+.nav-toggle{display:none;background:var(--primary);color:var(--white);border:none;padding:12px 20px;font-size:16px;cursor:pointer;width:100%;text-align:left;font-weight:600}
+
+/* HERO */
+.hero-banner{background:linear-gradient(135deg,var(--primary) 0%,#1F4A72 50%,var(--primary-light) 100%);color:var(--white);padding:44px 20px 40px;position:relative;overflow:hidden}
+.hero-banner::before{content:'SLOVENSKO';position:absolute;font-size:240px;font-weight:900;color:rgba(255,255,255,0.02);right:-40px;top:-50px;letter-spacing:-12px;pointer-events:none;font-family:'Georgia',serif}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border:1px solid rgba(255,255,255,0.1)}
+.hero-badge i{color:var(--gold)}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hero-inner h2{font-size:30px;font-weight:800;margin-bottom:8px;line-height:1.2}
+.hero-inner p{font-size:15px;opacity:0.85;max-width:620px;line-height:1.7}
+.hero-inner .hero-extra{margin-top:20px;display:flex;gap:24px}
+.hero-inner .hero-stat{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.7)}
+.hero-inner .hero-stat strong{color:var(--gold);font-size:18px}
+
+/* MAIN LAYOUT */
+.main-layout{max-width:1200px;margin:0 auto;padding:30px 20px;display:grid;grid-template-columns:280px 1fr;gap:30px}
+.sidebar{min-width:0}
+.sidebar-section{margin-bottom:20px;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)}
+.sidebar-header{background:var(--primary);color:var(--white);padding:12px 16px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+.sidebar-header i{color:var(--gold)}
+.sidebar-item{padding:10px 16px;border-bottom:1px solid var(--border);font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .1s}
+.sidebar-item:last-child{border-bottom:none}
+.sidebar-item:hover{background:var(--bg);color:var(--primary-light)}
+.sidebar-item i{width:18px;color:var(--accent);font-size:13px;text-align:center}
+.content-area{min-width:0}
+.section-title{font-size:16px;font-weight:800;color:var(--primary);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:0.5px}
+
+/* NEWS */
+.news-list{display:flex;flex-direction:column;gap:0}
+.news-item{padding:16px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:100px 1fr;gap:16px;transition:all .15s}
+.news-item:last-child{border-bottom:none}
+.news-item:hover{background:var(--bg);margin:0 -12px;padding:16px 12px;border-radius:var(--radius-sm)}
+.news-date{font-size:12px;font-weight:700;color:var(--accent);line-height:1.4}
+.news-content h4{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text)}
+.news-content p{font-size:13px;color:var(--text-light);line-height:1.6}
+
+/* QUICK LINK CARDS */
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.quick-link-card{background:var(--white);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .25s;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.quick-link-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:opacity .2s}
+.quick-link-card:hover{box-shadow:var(--shadow-lg);border-color:var(--primary-light);transform:translateY(-3px)}
+.quick-link-card:hover::before{opacity:1}
+.quick-link-card .icon{width:44px;height:44px;background:linear-gradient(135deg,rgba(26,58,92,0.08),rgba(229,30,37,0.08));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--primary);margin-bottom:12px}
+.quick-link-card h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.quick-link-card p{font-size:12px;color:var(--text-light);line-height:1.5}
+.quick-link-card .badge{display:inline-block;margin-top:8px;padding:3px 12px;background:var(--accent);color:var(--white);font-size:10px;border-radius:12px;font-weight:600;letter-spacing:0.3px}
+
+/* Status Form Pages */
+#checkStatusSection,#statusResultSection,#startApplicationPage{display:none}
+.status-page{padding:40px 20px;min-height:70vh}
+.status-page-inner{max-width:480px;margin:36px auto;background:var(--white);padding:36px;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.status-page-inner h2{font-size:22px;font-weight:800;color:var(--primary);margin-bottom:6px;text-align:center}
+.status-page-inner p{font-size:13px;color:var(--text-light);text-align:center;margin-bottom:24px}
+.status-form .field{margin-bottom:16px}
+.status-form .field label{display:block;font-size:11px;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px}
+.status-form .field input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;transition:border-color .15s;background:var(--bg)}
+.status-form .field input:focus{border-color:var(--primary-light);outline:none;box-shadow:0 0 0 3px rgba(43,90,140,0.1);background:var(--white)}
+.status-form button{width:100%;padding:14px;background:var(--primary);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.status-form button:hover{background:var(--primary-light)}
+
+/* Start page */
+.start-page{max-width:520px;margin:36px auto;padding:40px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--border);text-align:center}
+.start-page h2{font-size:22px;font-weight:800;color:var(--primary);margin-bottom:8px}
+.start-page p{font-size:14px;color:var(--text-light);margin-bottom:24px}
+.start-page .icon-big{font-size:52px;color:var(--accent);margin-bottom:16px}
+.start-btn{display:inline-block;padding:14px 36px;background:var(--primary);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin:6px;transition:background .2s}
+.start-btn:hover{background:var(--primary-light)}
+.start-btn.outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.start-btn.outline:hover{background:var(--primary);color:var(--white)}
+
+/* Pending msg */
+.pending-msg{background:#FFFBEB;border:2px solid #F59E0B;border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:20px}
+.pending-msg .icon{font-size:42px;margin-bottom:10px}
+.pending-msg h3{font-size:17px;font-weight:800;color:#92400E;margin-bottom:6px}
+.pending-msg p{font-size:13px;color:#92400E}
+.pending-msg .check-btn{display:inline-block;margin-top:12px;padding:10px 28px;background:var(--primary);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.pending-msg .check-btn:hover{background:var(--primary-light)}
+
+/* Result box */
+.result-box{text-align:center;padding:24px;border-radius:var(--radius);margin-bottom:24px}
+.result-box.approved{background:#ECFDF5;border:2px solid #10B981}
+.result-box.pending{background:#FFFBEB;border:2px solid #F59E0B}
+.result-box.rejected{background:#FEF2F2;border:2px solid #EF4444}
+.result-box h3{font-size:24px;font-weight:900;margin-bottom:4px}
+.result-box p{font-size:14px;margin:8px 0}
+.result-detail{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
+.result-detail:last-child{border-bottom:none}
+.result-detail .label{color:var(--text-light);font-weight:500}
+.result-detail .value{font-weight:700}
+.back-btn,.cancel-btn{display:block;width:100%;padding:12px;border-radius:var(--radius-sm);font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:inherit;text-align:center;margin-top:8px}
+.back-btn{background:var(--primary);color:var(--white)}
+.back-btn:hover{background:var(--primary-light)}
+.cancel-btn{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA}
+.cancel-btn:hover{background:#FEE2E2}
+#cancelFormSection{display:none}
+#cancelFormSection .status-page-inner{border-top:4px solid #DC2626}
+#cancelFormSection .field textarea{width:100%;padding:12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:14px;resize:vertical;background:var(--bg)}
+#cancelFormSection .field textarea:focus{border-color:#DC2626;outline:none;box-shadow:0 0 0 3px rgba(220,38,38,0.1);background:var(--white)}
+
+/* FOOTER */
+footer{background:var(--primary);color:rgba(255,255,255,0.85);padding:40px 20px 20px;margin-top:40px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px}
+.footer-col h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.footer-col h4 i{color:var(--gold)}
+.footer-col p,.footer-col a{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.9}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{max-width:1200px;margin:30px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);font-size:12px;color:rgba(255,255,255,0.4);text-align:center}
+.social-links{display:flex;gap:8px;margin-top:8px}
+.social-links a{display:inline-flex;width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:50%;align-items:center;justify-content:center;color:var(--white);font-size:15px;transition:all .2s}
+.social-links a:hover{background:var(--gold);color:var(--primary);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-inner{flex-direction:column;display:none}
+  .nav-inner.open{display:flex}
+  .nav-toggle{display:block}
+  .main-layout{grid-template-columns:1fr}
+  .quick-links,.footer-inner{grid-template-columns:1fr}
+  .news-item{grid-template-columns:1fr;gap:4px}
+  .header-inner{flex-wrap:wrap}
+  .language-toggle{margin-left:0;width:100%;margin-top:8px}
+  .hero-inner h2{font-size:24px}
+  .hero-inner .hero-extra{flex-direction:column;gap:8px}
+}
+@media(max-width:480px){
+  .quick-links{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════
+   SLOVAKIA VISA STATUS - VERTICAL TIMELINE STYLE
+   ═══════════════════════════════════════════════ */
+.svk-page { background: var(--white); max-width: 920px; margin: 24px auto; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--border); }
+/* ── Header ── */
+.svk-header { background: var(--primary); color: var(--white); padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; }
+.svk-header-left { display: flex; align-items: center; gap: 14px; }
+.svk-flag-wrap { width: 48px; height: 34px; border-radius: 3px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2); flex-shrink: 0; }
+.svk-flag-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.svk-header-title h1 { font-size: 18px; font-weight: 800; margin: 0; letter-spacing: -0.3px; }
+.svk-header-title p { font-size: 12px; color: rgba(255,255,255,0.7); margin: 3px 0 0; }
+.svk-print-btn { display: flex; align-items: center; gap: 7px; color: var(--gold); font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: var(--radius-sm); font-family: inherit; transition: background .15s; }
+.svk-print-btn:hover { background: rgba(255,255,255,0.2); }
+/* ── Body ── */
+.svk-body { padding: 0; }
+.svk-section { padding: 24px 28px 20px; }
+.svk-section-title { font-size: 15px; font-weight: 800; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.svk-section-title i { color: var(--accent); }
+.svk-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+/* ── Info Grid ── */
+.svk-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+.svk-info-item { padding: 6px 0; }
+.svk-info-label { font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 2px; }
+.svk-info-value { font-size: 14px; color: var(--text); font-weight: 600; }
+.svk-notice { background: var(--gold-light); border-left: 3px solid var(--gold); padding: 12px 16px; margin-top: 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; display: flex; align-items: flex-start; gap: 10px; }
+.svk-notice i { color: var(--gold); font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+.svk-notice p { font-size: 12px; color: var(--text); line-height: 1.5; }
+/* ── Status Card ── */
+.svk-status { background: linear-gradient(135deg, var(--bg), var(--white)); padding: 24px 28px; }
+.svk-status-card { background: var(--white); border-radius: var(--radius); padding: 0; overflow: hidden; box-shadow: var(--shadow); }
+.svk-status-ribbon { padding: 14px 20px; display: flex; align-items: center; gap: 14px; }
+.svk-status-ribbon.received { background: linear-gradient(135deg, #EBF5FB, #D6EAF8); }
+.svk-status-ribbon.verification { background: linear-gradient(135deg, #FEF9E7, #FDEBD0); }
+.svk-status-ribbon.decision { background: linear-gradient(135deg, #F5EEF8, #E8DAEF); }
+.svk-status-ribbon.outcome { background: linear-gradient(135deg, #FDEDEC, #FADBD8); }
+.svk-status-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.svk-status-icon.received { background: var(--primary-light); }
+.svk-status-icon.verification { background: var(--gold); }
+.svk-status-icon.decision { background: #7D3C98; }
+.svk-status-icon.outcome { background: var(--accent); }
+.svk-status-icon svg { width: 26px; height: 26px; }
+.svk-status-text { flex: 1; }
+.svk-status-badge { font-size: 13px; font-weight: 800; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.8px; }
+.svk-status-badge.received { color: var(--primary-light); }
+.svk-status-badge.verification { color: #B7950B; }
+.svk-status-badge.decision { color: #7D3C98; }
+.svk-status-badge.outcome { color: var(--accent); }
+.svk-status-desc { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+/* ── Vertical Timeline ── */
+.svk-timeline { padding: 20px 20px 12px; background: var(--bg); }
+.svk-timeline-inner { display: flex; flex-direction: column; gap: 0; position: relative; padding-left: 38px; }
+.svk-timeline-inner::before { content: ''; position: absolute; left: 17px; top: 22px; bottom: 22px; width: 2px; background: var(--border); }
+.svk-tl-item { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; position: relative; }
+.svk-tl-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--white); flex-shrink: 0; position: absolute; left: -38px; z-index: 1; }
+.svk-tl-dot.completed { background: var(--primary-light); }
+.svk-tl-dot.active { background: var(--gold); box-shadow: 0 0 0 4px rgba(212,168,67,0.25); }
+.svk-tl-dot.pending { background: #ccc; }
+.svk-tl-content { flex: 1; min-width: 0; }
+.svk-tl-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.svk-tl-desc { font-size: 11.5px; color: var(--text-light); line-height: 1.4; margin-top: 2px; }
+.svk-tl-date { font-size: 10.5px; color: #999; margin-top: 2px; }
+/* ── Your Documents ── */
+.svk-docs-wrap{border:1px solid #e0e0e0;border-radius:8px;padding:16px;margin:10px 0;background:#fafafa}
+.svk-docs-list{font-size:13px;color:#888}
+.svk-docs-list > div{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e8e8e8;border-radius:6px;margin-bottom:6px;background:#fff;transition:all .15s}
+.svk-docs-list > div:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06);border-color:#0b4ea2}
+.svk-docs-list a{text-decoration:none}
+
+/* ── What Your Status Means ── */
+.svk-means { padding: 20px 28px 24px; }
+.svk-means-title { font-size: 15px; font-weight: 800; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.svk-means-title i { color: var(--accent); }
+.svk-means-grid { display: flex; flex-direction: column; gap: 10px; }
+.svk-means-card { display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; border-radius: var(--radius-sm); }
+.svk-means-card.received { background: #EBF5FB; border: 1px solid #AED6F1; }
+.svk-means-card.verification { background: #FEF9E7; border: 1px solid #F9E79F; }
+.svk-means-card.decision { background: #F5EEF8; border: 1px solid #D2B4DE; }
+.svk-means-card.outcome { background: #FDEDEC; border: 1px solid #F5B7B1; }
+.svk-means-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--white); flex-shrink: 0; }
+.svk-means-num.received { background: var(--primary-light); }
+.svk-means-num.verification { background: var(--gold); }
+.svk-means-num.decision { background: #7D3C98; }
+.svk-means-num.outcome { background: var(--accent); }
+.svk-means-body { flex: 1; min-width: 0; }
+.svk-means-label { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+.svk-means-desc { font-size: 12px; color: var(--text-light); line-height: 1.5; }
+/* ── Actions ── */
+.svk-actions { padding: 16px 28px 24px; display: flex; gap: 12px; justify-content: center; border-top: 1px solid var(--border); }
+.svk-btn { padding: 10px 24px; border-radius: var(--radius-sm); font-weight: 600; font-size: 13px; border: none; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; transition: all .15s; }
+.svk-btn-primary { background: var(--primary); color: var(--white); }
+.svk-btn-primary:hover { background: var(--primary-light); }
+.svk-btn-danger { background: var(--accent); color: var(--white); }
+.svk-btn-danger:hover { background: var(--accent-dark); }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <span><i class="fas fa-crown" style="color:#D4A843"></i> Official website of the Slovak Republic - Ministry of Foreign and European Affairs</span>
+    <div><a href="#"><i class="fas fa-universal-access"></i> Accessibility</a><a href="#"><i class="fas fa-search"></i> Search</a></div>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="main-header">
+  <div class="header-inner">
+    <div class="logo-flag"><img src="/images/slovakia-flag.png" alt="Slovak Flag"></div>
+    <div class="site-title">
+      <h1>Slovak Republic</h1>
+      <p>Ministry of Foreign and European Affairs</p>
+    </div>
+    <div class="language-toggle">
+      <a href="#" class="active" onclick="switchLang('en');return false">EN</a>
+            <a href="#" onclick="switchLang('sk');return false">SK</a>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav-bar">
+  <button class="nav-toggle" onclick="document.querySelector('.nav-inner').classList.toggle('open')"><i class="fas fa-bars"></i> Menu</button>
+  <div class="nav-inner">
+    <div class="nav-item active" onclick="goHome()"><i class="fas fa-home"></i> Home</div>
+    <div class="nav-item" onclick="handleApply('Schengen Visa')"><i class="fas fa-passport"></i> Schengen Visa</div>
+    <div class="nav-item" onclick="handleApply('National Visa')"><i class="fas fa-id-card"></i> National Visa (D)</div>
+    <div class="nav-item" onclick="handleApply('Work Visa')"><i class="fas fa-briefcase"></i> Work Visa</div>
+    <div class="nav-item" onclick="handleApply('Student Visa')"><i class="fas fa-graduation-cap"></i> Student Visa</div>
+  </div>
+</div>
+
+<!-- Hero Banner -->
+<div class="hero-banner" id="heroSection">
+  <div class="hero-inner">
+    <div class="hero-badge"><i class="fas fa-check-circle"></i> Official Visa Information Portal</div>
+    <h2>Vítajte! Welcome to the Visa Portal of the Slovak Republic</h2>
+    <p>The Ministry of Foreign and European Affairs processes visa applications and provides consular services for international travellers. Our digital platform allows you to apply and track your visa status online.</p>
+    <div class="hero-extra">
+      <div class="hero-stat"><strong>15</strong> <span>Days avg. processing</span></div>
+      <div class="hero-stat"><strong>26</strong> <span>Schengen Member States</span></div>
+      <div class="hero-stat"><strong>✓</strong> <span>Digital application tracking</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-layout" id="homeContent">
+  <!-- Sidebar -->
+  <div class="sidebar">
+        <!-- Embassy Info Badge -->
+    <div class="sidebar-section" style="margin-bottom:16px;text-align:center">
+      <div style="padding:16px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:var(--white)">
+        <div style="font-size:32px;margin-bottom:6px;opacity:0.3">&#10091;</div>
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;opacity:0.9">Embassy of the Slovak Republic</div>
+        <div style="font-size:11px;opacity:0.7;margin-top:4px">Nairobi, Kenya</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-header"><i class="fas fa-passport"></i> VISA SERVICES</div>
+      <div class="sidebar-item"><i class="fas fa-passport"></i> Schengen Visa</div>
+      <div class="sidebar-item"><i class="fas fa-id-card"></i> National Visa (D)</div>
+      <div class="sidebar-item"><i class="fas fa-briefcase"></i> Work Visa</div>
+      <div class="sidebar-item"><i class="fas fa-graduation-cap"></i> Student Visa</div>
+      <div class="sidebar-item"><i class="fas fa-plane"></i> Transit Visa</div>
+      <div class="sidebar-item"><i class="fas fa-search"></i> Check visa status</div>
+      <div class="sidebar-item"><i class="fas fa-info-circle"></i> Visa Info</div>
+      <div class="sidebar-item"><i class="fas fa-phone"></i> Contact Us</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header"><i class="fas fa-link"></i> QUICK LINKS</div>
+      <div class="sidebar-item" onclick="handleApply('Schengen Visa')"><i class="fas fa-passport"></i> Schengen Visa</div>
+      <div class="sidebar-item" onclick="handleApply('National Visa (D)')"><i class="fas fa-id-card"></i> National Visa (D)</div>
+      <div class="sidebar-item" onclick="handleApply('Work Visa')"><i class="fas fa-briefcase"></i> Work Visa</div>
+      <div class="sidebar-item" onclick="handleApply('Student Visa')"><i class="fas fa-graduation-cap"></i> Student visa</div>
+      <div class="sidebar-item" onclick="showCheckStatus()"><i class="fas fa-search"></i> Check visa status</div>
+      <div class="sidebar-item"><i class="fas fa-phone"></i> Contact us</div>
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content-area">
+    <div class="section-title"><i class="fas fa-newspaper"></i> NEWS AND UPDATES</div>
+    <div class="news-list">
+      <div class="news-item">
+        <div class="news-date">15 Jan 2025</div>
+        <div class="news-content">
+          <h4>New Schengen visa procedures announced</h4>
+          <p>The Ministry of Foreign Affairs of the Slovak Republic has announced streamlined Schengen visa procedures for Kenyan nationals. Applicants are advised to apply at least 15 days before the intended travel date.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">05 Mar 2025</div>
+        <div class="news-content">
+          <h4>Slovakia enhances digital visa services</h4>
+          <p>The Slovak Republic has launched enhanced digital visa application tracking, allowing applicants to monitor their status in real-time through the official portal.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">22 Apr 2025</div>
+        <div class="news-content">
+          <h4>Slovak Embassy Nairobi - New Services</h4>
+          <p>The Embassy of the Slovak Republic in Nairobi has announced extended visa submission hours and improved consular services for applicants from Kenya and neighbouring countries.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-date" style="color:#dc3545"><i class="fas fa-exclamation-triangle"></i> FRAUD ALERT</div>
+        <div class="news-content">
+          <h4>Beware of visa fraud and scams</h4>
+          <p>The Embassy has received reports of fraudulent individuals posing as embassy officials offering visa services for a fee. The Ministry never requests direct payment to personal accounts or mobile money. All official payments are processed through designated banking channels only.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="section-title" style="margin-top:32px"><i class="fas fa-star"></i> OUR SERVICES</div>
+    <div class="quick-links">
+      <div class="quick-link-card" onclick="handleApply('Schengen Visa')">
+        <div class="icon"><i class="fas fa-passport"></i></div>
+        <h3>Schengen Visa</h3>
+        <p>Apply for a Schengen visa to visit Slovakia</p>
+        <span class="badge">Apply now</span>
+      </div>
+      <div class="quick-link-card" onclick="handleApply('National Visa (D)')">
+        <div class="icon"><i class="fas fa-id-card"></i></div>
+        <h3>National Visa (D)</h3>
+        <p>For long-term stays in the Slovak Republic</p>
+        <span class="badge">Apply now</span>
+      </div>
+      <div class="quick-link-card" onclick="showCheckStatus()">
+        <div class="icon"><i class="fas fa-search"></i></div>
+        <h3>Check Visa Status</h3>
+        <p>Track your Slovakia visa application progress</p>
+        <span class="badge">Check now</span>
+      </div>
+      <div class="quick-link-card" onclick="handleApply('Work Visa')">
+        <div class="icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Work Visa</h3>
+        <p>Work visa information for the Slovak Republic</p>
+        <span class="badge">Apply now</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Start Application Page (intermediate before showing pending) -->
+<div id="startApplicationPage" class="status-page">
+  <div class="start-page">
+    <div class="icon-big"><i class="fas fa-file-alt"></i></div>
+    <h2 id="startTitle">Start Your Application</h2>
+    <p id="startDesc">You are about to begin your application process for Slovak Republic visa services. Please click "Start Application" to proceed.</p>
+    <div>
+      <button class="start-btn" onclick="startApplication()"><i class="fas fa-arrow-right"></i> Start Application</button>
+      <button class="start-btn outline" onclick="goHome()"><i class="fas fa-home"></i> Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- Check Visa Status Page -->
+<div id="checkStatusSection" class="status-page">
+  <div class="status-page-inner">
+    <div style="text-align:center;margin-bottom:16px"><i class="fas fa-passport" style="font-size:48px;color:var(--red)"></i></div>
+    <h2>Check Your Visa Status</h2>
+    <p>Enter your passport number and password to view your current visa application status with the Ministry of Foreign Affairs of the Slovak Republic.</p>
+    <div id="pendingMessage" style="display:none" class="pending-msg">
+      <div class="icon">⚠️</div>
+      <h3>You have a pending visa application</h3>
+      <p>You cannot submit a new application while you have a pending visa application. Please check your visa status below.</p>
+      <button class="check-btn" onclick="showCheckStatusForm()"><i class="fas fa-search"></i> Check My Visa Status</button>
+    </div>
+    <div id="statusForm">
+      <form class="status-form" onsubmit="event.preventDefault(); checkVisaStatus();">
+        <div class="field">
+          <label><i class="fas fa-id-card"></i> Passport Number</label>
+          <input type="text" id="statusPassport" placeholder="e.g. KW789012" required>
+        </div>
+        <div class="field">
+          <label><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="statusPassword" placeholder="Enter your password" required>
+        </div>
+        <button type="submit"><i class="fas fa-search"></i> Check Status</button>
+      </form>
+      <div style="text-align:center;margin-top:16px">
+        <a href="#" onclick="goHome();return false" style="font-size:13px"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Visa Status Result - Slovakia Detailed Vertical Timeline -->
+<div id="statusResultSection" style="display:none">
+<div class="svk-page">
+  <!-- ═══ HEADER ═══ -->
+  <div class="svk-header">
+    <div class="svk-header-left">
+      <div class="svk-flag-wrap">
+        <img src="/images/slovakia-flag.png" alt="Slovak Flag">
+      </div>
+      <div class="svk-header-title">
+        <h1>Visa Application Status</h1>
+        <p id="svkResultSubtitle">Ministry of Foreign and European Affairs - Slovak Republic</p>
+      </div>
+    </div>
+    <button class="svk-print-btn" onclick="window.print()">
+      <i class="fas fa-print"></i> Print
+    </button>
+  </div>
+
+  <div class="svk-body">
+    <!-- ═══ APPLICATION DETAILS ═══ -->
+    <div class="svk-section">
+      <div class="svk-section-title"><i class="fas fa-file-alt"></i> Application Details</div>
+      <div class="svk-info-grid">
+        <div class="svk-info-item">
+          <div class="svk-info-label">Reference Number</div>
+          <div class="svk-info-value" id="svkResultRef">-</div>
+        </div>
+        <div class="svk-info-item">
+          <div class="svk-info-label">Applicant Name</div>
+          <div class="svk-info-value" id="svkResultName">-</div>
+        </div>
+        <div class="svk-info-item">
+          <div class="svk-info-label">Passport Number</div>
+          <div class="svk-info-value" id="svkResultPassport">-</div>
+        </div>
+        <div class="svk-info-item">
+          <div class="svk-info-label">Visa Type</div>
+          <div class="svk-info-value" id="svkResultVisaType">-</div>
+        </div>
+        <div class="svk-info-item">
+          <div class="svk-info-label">Processing Office</div>
+          <div class="svk-info-value" id="svkResultOffice">Embassy of the Slovak Republic, Nairobi</div>
+        </div>
+        <div class="svk-info-item">
+          <div class="svk-info-label">Application Date</div>
+          <div class="svk-info-value" id="svkResultDate">-</div>
+        </div>
+      </div>
+      <div class="svk-notice">
+        <i class="fas fa-info-circle"></i>
+        <p>Tracking information may take up to 24 hours to appear. For enquiries, contact the Embassy of the Slovak Republic in Nairobi: <strong>consulate.nairobi@mzv.sk</strong></p>
+      </div>
+    </div>
+    <hr class="svk-divider">
+
+    <!-- ═══ CURRENT STATUS ═══ -->
+    <div class="svk-status">
+      <div class="svk-section-title" style="margin-bottom:14px"><i class="fas fa-chart-line"></i> Current Status</div>
+      <div class="svk-status-card">
+        <div class="svk-status-ribbon received" id="svkStatusRibbon">
+          <div class="svk-status-icon received" id="svkStatusIcon">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 4a12 12 0 1 1-8.49 3.51" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M4 4l4 4V4H4z" fill="#fff"/>
+              <path d="M16 9v7l4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="svk-status-text">
+            <div class="svk-status-badge received" id="svkStatusBadge">APPLICATION RECEIVED</div>
+            <div class="svk-status-desc" id="svkStatusDesc">Your application has been received by the Ministry of Foreign Affairs of the Slovak Republic and is awaiting processing.</div>
+          </div>
+        </div>
+        <!-- ═══ Vertical Timeline ═══ -->
+        <div class="svk-timeline">
+          <div class="svk-timeline-inner" id="svkTimeline">
+            <div class="svk-tl-item">
+              <div class="svk-tl-dot completed" data-stage="0">1</div>
+              <div class="svk-tl-content">
+                <div class="svk-tl-title">Application Received</div>
+                <div class="svk-tl-desc">Your documents have been submitted and received by the embassy.</div>
+              </div>
+            </div>
+            <div class="svk-tl-item">
+              <div class="svk-tl-dot pending" data-stage="1">2</div>
+              <div class="svk-tl-content">
+                <div class="svk-tl-title">Document Verification</div>
+                <div class="svk-tl-desc">Your documents are being verified by the consular section.</div>
+              </div>
+            </div>
+            <div class="svk-tl-item">
+              <div class="svk-tl-dot pending" data-stage="2">3</div>
+              <div class="svk-tl-content">
+                <div class="svk-tl-title">Under Review</div>
+                <div class="svk-tl-desc">Your application is under review by the Ministry authorities.</div>
+              </div>
+            </div>
+            <div class="svk-tl-item">
+              <div class="svk-tl-dot pending" data-stage="3">4</div>
+              <div class="svk-tl-content">
+                <div class="svk-tl-title">Final Outcome</div>
+                <div class="svk-tl-desc">A decision has been made. Check your email for the official notification.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ═══ YOUR DOCUMENTS ═══ -->
+    <hr class="svk-divider">
+    <div class="svk-means">
+      <div class="svk-means-title"><i class="fas fa-file-alt"></i> Your Documents</div>
+      <div class="svk-docs-wrap">
+        <div id="svkDocsList" class="svk-docs-list">No documents uploaded yet.</div>
+      </div>
+    </div>
+
+    <hr class="svk-divider">
+
+    <!-- ═══ WHAT YOUR STATUS MEANS ═══ -->
+    <div class="svk-means">
+      <div class="svk-means-title"><i class="fas fa-question-circle"></i> What Your Status Means</div>
+      <div class="svk-means-grid">
+        <div class="svk-means-card received" id="svkMeans1">
+          <div class="svk-means-num received">1</div>
+          <div class="svk-means-body">
+            <div class="svk-means-label">Application Received</div>
+            <div class="svk-means-desc">Your application has been received by the Embassy of the Slovak Republic in Nairobi. It is pending initial review and document checklist verification.</div>
+          </div>
+        </div>
+        <div class="svk-means-card verification" id="svkMeans2">
+          <div class="svk-means-num verification">2</div>
+          <div class="svk-means-body">
+            <div class="svk-means-label">Document Verification</div>
+            <div class="svk-means-desc">Your documents are being verified by the consular section. This includes checking the completeness and authenticity of all submitted documents. Additional documents may be requested if needed.</div>
+          </div>
+        </div>
+        <div class="svk-means-card decision" id="svkMeans3">
+          <div class="svk-means-num decision">3</div>
+          <div class="svk-means-body">
+            <div class="svk-means-label">Under Review</div>
+            <div class="svk-means-desc">Your application is under substantive review by the Ministry of Foreign Affairs. Background checks and eligibility assessment are being carried out. Processing times vary depending on the visa type.</div>
+          </div>
+        </div>
+        <div class="svk-means-card outcome" id="svkMeans4">
+          <div class="svk-means-num outcome">4</div>
+          <div class="svk-means-body">
+            <div class="svk-means-label">Final Outcome</div>
+            <div class="svk-means-desc">A final decision has been made on your application. You will receive an official notification via email. If approved, further instructions on passport collection or visa issuance will be provided. If refused, you will receive information about appeal options.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ACTIONS ═══ -->
+    <div class="svk-actions">
+      <button onclick="goHome()" class="svk-btn svk-btn-primary"><i class="fas fa-home"></i> Back to Homepage</button>
+      <button id="svkCancelBtn" onclick="showCancelForm()" class="svk-btn svk-btn-danger" style="display:none"><i class="fas fa-times-circle"></i> Cancel Application</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Cancel Application Form -->
+<div id="cancelFormSection" class="status-page">
+  <div class="status-page-inner">
+    <div style="text-align:center;margin-bottom:16px"><i class="fas fa-exclamation-triangle" style="font-size:48px;color:#dc3545"></i></div>
+    <h2 style="color:#dc3545">Cancel Application</h2>
+    <div style="background:#f8d7da;border:2px solid #dc3545;border-radius:12px;padding:16px;margin-bottom:20px;text-align:center">
+      <p style="color:#721c24;font-weight:700;font-size:14px;margin-bottom:6px"><i class="fas fa-exclamation-circle"></i> IMPORTANT NOTICE</p>
+      <p style="color:#721c24;font-size:13px">Once your application has been cancelled, <strong>there will be NO REFUND</strong> of the application fee. This action is final and cannot be undone.</p>
+    </div>
+    <form class="status-form" onsubmit="event.preventDefault(); submitCancel();">
+      <div class="field">
+        <label><i class="fas fa-user"></i> Full Name</label>
+        <input type="text" id="cancelName" readonly placeholder="Auto-filled from your application">
+      </div>
+      <div class="field">
+        <label><i class="fas fa-id-card"></i> Re-confirm Passport Number</label>
+        <input type="text" id="cancelPassport" placeholder="Re-enter your passport number" required>
+      </div>
+      <div class="field">
+        <label><i class="fas fa-id-badge"></i> National ID Number</label>
+        <input type="text" id="cancelId" placeholder="Enter your national ID number" required>
+      </div>
+      <div class="field">
+        <label><i class="fas fa-envelope"></i> Email Address</label>
+        <input type="email" id="cancelEmail" placeholder="Enter your email address" required>
+      </div>
+      <div class="field">
+        <label><i class="fas fa-phone"></i> Phone Number</label>
+        <input type="tel" id="cancelPhone" placeholder="Enter your phone number" required>
+      </div>
+      <div class="field">
+        <label><i class="fas fa-comment"></i> Reason for Cancellation</label>
+        <textarea id="cancelReason" rows="3" placeholder="Please explain why you wish to cancel your application" style="width:100%;padding:12px;border:2px solid var(--border);border-radius:8px;font-family:inherit;font-size:14px;resize:vertical" required></textarea>
+      </div>
+      <button type="submit" style="background:#dc3545"><i class="fas fa-times-circle"></i> Submit Cancellation</button>
+      <p style="text-align:center;margin-top:12px;font-size:12px;color:#999;font-style:italic">Once you submit, this action <strong>cannot be undone</strong>.</p>
+    </form>
+    <div style="text-align:center;margin-top:16px">
+      <a href="#" onclick="showResultsAgain();return false" style="font-size:13px"><i class="fas fa-arrow-left"></i> Back to Status</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4><i class="fas fa-map-marker-alt"></i> Ministry of Foreign Affairs</h4>
+      <p>Hviezdoslavovo namestie 9<br>813 02 Bratislava<br>Slovak Republic</p>
+      <p style="margin-top:8px"><strong>Phone:</strong> +421 2 5978 2222<br><strong>Email:</strong> info@mzv.sk</p>
+    </div>
+    <div class="footer-col">
+      <h4><i class="fas fa-passport"></i> Visa & Immigration</h4>
+      <p>Visa applications are processed by:</p>
+      <p><strong>Embassy of the Slovak Republic</strong><br>Kabarnet Road, off Ngong Road<br>Nairobi, Kenya</p>
+      <p><strong>Email:</strong> consulate.nairobi@mzv.sk<br><strong>Tel:</strong> +254 20 387 7222</p>
+      <p style="margin-top:8px"><strong>Embassy visa email:</strong> visa.nairobi@mzv.sk</p>
+    </div>
+    <div class="footer-col">
+      <h4><i class="fas fa-share-alt"></i> Follow Us</h4>
+      <p>Stay connected with the Ministry</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p style="margin-top:12px"><strong>Emergency:</strong> Slovak citizens abroad can contact the nearest embassy or consulate. In urgent cases, contact the Ministry in Bratislava at +421 2 5978 2222.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Ministry of Foreign and European Affairs, Slovak Republic. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+  </div>
+</footer>
+
+<script>
+const API = "/api";
+var pendingServiceType = "";
+var currentClientData = null;
+
+function goHome() {
+  document.getElementById('startApplicationPage').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('heroSection').style.display = 'block';
+  document.getElementById('homeContent').style.display = 'grid';
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+  document.querySelector('.nav-item:first-child').classList.add('active');
+}
+
+function handleApply(type) {
+  pendingServiceType = type;
+  // Show the Start Application page
+  document.getElementById('heroSection').style.display = 'none';
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('startApplicationPage').style.display = 'block';
+  document.getElementById('startTitle').textContent = type + ' Application';
+  document.getElementById('startDesc').textContent = 'You are about to begin your application for ' + type + '. Click "Start Application" to proceed.';
+}
+
+function startApplication() {
+  // Instead of showing the form, show the pending message
+  document.getElementById('startApplicationPage').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'block';
+  document.getElementById('pendingMessage').style.display = 'block';
+  document.getElementById('statusForm').style.display = 'none';
+}
+
+function showCheckStatusForm() {
+  document.getElementById('pendingMessage').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('statusForm').style.display = 'block';
+}
+
+function showCheckStatus() {
+  document.getElementById('heroSection').style.display = 'none';
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('startApplicationPage').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('checkStatusSection').style.display = 'block';
+  document.getElementById('pendingMessage').style.display = 'none';
+  document.getElementById('statusForm').style.display = 'block';
+}
+
+function getSvkStepInfo(step, cancelled, cancelReason) {
+  if (cancelled) return { state: 3, cls: 'outcome', badge: 'APPLICATION CANCELLED', desc: 'Your visa application has been cancelled. Reason: ' + (cancelReason || 'Not specified') };
+  var s = (step || '').toLowerCase();
+  if (s === 'visa approved' || s === 'visa approval') return { state: 3, cls: 'outcome', badge: 'VISA GRANTED', desc: 'Your visa has been approved. You will receive your visa and further instructions via email from the Embassy.' };
+  if (s === 'decision made') return { state: 2, cls: 'decision', badge: 'DECISION MADE', desc: 'A decision has been made on your application. Please check your email for the decision notification with next steps.' };
+  if (s === 'ready for collection / couriered') return { state: 3, cls: 'outcome', badge: 'READY FOR COLLECTION', desc: 'Your passport with the visa outcome is ready for collection at the Embassy or has been dispatched to your delivery address.' };
+  if (s === 'documents confirmed' || s === 'confirmation of documents') return { state: 2, cls: 'decision', badge: 'UNDER REVIEW', desc: 'Your documents have been confirmed. Your application is now under substantive review by the Ministry authorities.' };
+  if (s === 'rejected' || s === 'denial') return { state: 3, cls: 'outcome', badge: 'APPLICATION DENIED', desc: 'Your visa application has been denied. Please check your email for the official refusal notification with reasons and appeal options.' };
+  if (s === 're-submit documents' || s === 're-submission of documents') return { state: 1, cls: 'verification', badge: 'ADDITIONAL DOCUMENTS NEEDED', desc: 'Your application requires additional documents. Please check your email for the list of documents needed and resubmit them through the embassy.' };
+  if (s === 'checking documents' || s === 'document verification' || s === 'under processing') return { state: 1, cls: 'verification', badge: 'DOCUMENT VERIFICATION', desc: 'Your documents are being verified by the consular section of the Embassy of the Slovak Republic.' };
+  if (s === 'pending') return { state: 0, cls: 'received', badge: 'APPLICATION RECEIVED', desc: 'Your application has been received by the Ministry of Foreign Affairs and is awaiting processing.' };
+  return { state: 0, cls: 'received', badge: step || 'APPLICATION RECEIVED', desc: 'Status: ' + (step || 'Application Received') };
+}
+
+function checkVisaStatus() {
+  var passport = document.getElementById('statusPassport').value.trim();
+  var password = document.getElementById('statusPassword').value;
+  if (!passport || !password) { alert('Please enter your passport number and password.'); return; }
+
+  fetch(API + '/public/verify', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({passport: passport, password: password, country: 'Slovakia'})
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(d){
+    if (d.error) { alert(d.error); return; }
+    currentClientData = d;
+    currentClientData.password = password;
+    document.getElementById('checkStatusSection').style.display = 'none';
+
+    // Populate Slovakia detailed result
+    document.getElementById('svkResultRef').textContent = d.trackingId || d.applicationRef || d.id || 'SVK-' + d.passport;
+    document.getElementById('svkResultName').textContent = d.name || 'N/A';
+    document.getElementById('svkResultPassport').textContent = d.passport;
+    document.getElementById('svkResultVisaType').textContent = (d.visaType || 'Tourist') + (d.visaSubType ? ' (' + d.visaSubType + ')' : '');
+    document.getElementById('svkResultOffice').textContent = d.processingOffice || 'Embassy of the Slovak Republic, Nairobi';
+    document.getElementById('svkResultDate').textContent = d.createdAt ? new Date(d.createdAt).toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'}) : 'N/A';
+    document.getElementById('svkResultSubtitle').textContent = (d.visaType || 'Visa') + (d.visaSubType ? ' (' + d.visaSubType + ')' : '') + ' - Kenya';
+
+    var info = getSvkStepInfo(d.step, d.cancelled, d.cancelReason);
+    var state = info.state;
+    var stateCls = info.cls;
+    var isCancelled = d.cancelled === true;
+
+    // Stage names and icons
+    var stageNames = ['received', 'verification', 'decision', 'outcome'];
+    var stageLabels = ['APPLICATION RECEIVED', 'DOCUMENT VERIFICATION', 'UNDER REVIEW', 'FINAL OUTCOME'];
+    var stageDescs = [
+      'Your application has been received by the Embassy of the Slovak Republic. It is pending initial review.',
+      'Your documents are being verified. Additional documents may be requested.',
+      'Your application is under substantive review by the Ministry authorities.',
+      'A final decision has been made. You will receive the official notification via email.'
+    ];
+    var icons = [
+      '<svg viewBox="0 0 32 32" fill="none"><path d="M16 4a12 12 0 1 1-8.49 3.51" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M4 4l4 4V4H4z" fill="#fff"/><path d="M16 9v7l4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      '<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M10 16l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      '<svg viewBox="0 0 32 32" fill="none"><path d="M16 4a12 12 0 1 1-8.49 3.51" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M4 4l4 4V4H4z" fill="#fff"/><path d="M16 9v7l4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      '<svg viewBox="0 0 32 32" fill="none"><rect x="6" y="8" width="20" height="16" rx="2" stroke="#fff" stroke-width="2"/><path d="M6 13h20" stroke="#fff" stroke-width="2"/><circle cx="11" cy="18" r="1.5" fill="#fff"/><rect x="14" y="17" width="7" height="2" rx="1" fill="#fff"/></svg>'
+    ];
+    // For rejected/cancelled, use red X icon
+    if (isCancelled || d.step === 'Rejected' || d.step === 'Denial') {
+      icons[3] = '<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" fill="#E51E25"/><path d="M12 12l8 8M20 12l-8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>';
+    }
+
+    // Update status ribbon
+    var ribbon = document.getElementById('svkStatusRibbon');
+    var iconDiv = document.getElementById('svkStatusIcon');
+    var badge = document.getElementById('svkStatusBadge');
+    var desc = document.getElementById('svkStatusDesc');
+    if (ribbon) { ribbon.className = 'svk-status-ribbon ' + stageNames[state]; }
+    if (iconDiv) { iconDiv.className = 'svk-status-icon ' + stageNames[state]; iconDiv.innerHTML = icons[state]; }
+    if (badge) { badge.className = 'svk-status-badge ' + stageNames[state]; badge.textContent = info.badge; }
+    if (desc) desc.textContent = info.desc;
+
+    // Update vertical timeline
+    var items = document.querySelectorAll('#svkTimeline .svk-tl-item');
+    for (var i = 0; i < items.length; i++) {
+      var dot = items[i].querySelector('.svk-tl-dot');
+      var title = items[i].querySelector('.svk-tl-title');
+      var descEl = items[i].querySelector('.svk-tl-desc');
+      if (dot) {
+        dot.className = 'svk-tl-dot';
+        if (i < state) dot.classList.add('completed');
+        else if (i === state) dot.classList.add('active');
+        else dot.classList.add('pending');
+        dot.textContent = (i + 1).toString();
+      }
+      if (title) title.textContent = stageLabels[i];
+      if (descEl) descEl.textContent = stageDescs[i];
+    }
+
+    // Show/hide cancel button
+    var canCancel = !d.cancelled && state < 3 && d.step !== 'visa approved' && d.step !== 'visa approval' && d.step !== 'rejected' && d.step !== 'denial';
+    document.getElementById('svkCancelBtn').style.display = canCancel ? 'inline-flex' : 'none';
+
+    document.getElementById('statusResultSection').style.display = 'block';
+    loadClientDocs(passport, password, 'svkDocsList');
+  })
+  .catch(function(){ alert('Connection error. Please try again.'); });
+}
+
+function loadClientDocs(passport, password, listId) {
+  fetch('/api/public/documents', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({passport:passport, password:password})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(docs){
+    var el = document.getElementById(listId); if (!el) return;
+    if (!docs || docs.length === 0) { el.innerHTML = 'No documents uploaded yet.'; return; }
+    var h = '';
+    docs.forEach(function(d){
+      var dt = d.uploadedAt || '';
+      if (dt) { var dd = new Date(dt); if (!isNaN(dd.getTime())) { dt = String(dd.getDate()).padStart(2,'0')+'/'+String(dd.getMonth()+1).padStart(2,'0')+'/'+dd.getFullYear(); } }
+      h += '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid #e0e0e0;border-radius:6px;margin-bottom:6px">'
+        + '<i class="fas fa-file-alt" style="color:#1A3A5C;font-size:16px"></i>'
+        + '<div style="flex:1"><div style="font-size:13px;font-weight:600;color:#333">'+d.originalName+'</div>'
+        + '<div style="font-size:11px;color:#888">'+(d.category||'Document')+' &middot; '+dt+'</div></div>'
+        + '<a href="'+d.url+'" target="_blank" style="padding:5px 12px;background:#1A3A5C;color:#fff;border-radius:6px;font-size:11px;text-decoration:none;font-weight:600"><i class="fas fa-eye"></i> View</a></div>';
+    });
+    el.innerHTML = h;
+  })
+  .catch(function(){ });
+}
+
+function showCancelForm() {
+  if (!currentClientData) return;
+  document.getElementById('statusResultSection').style.display = 'none';
+  document.getElementById('cancelFormSection').style.display = 'block';
+  document.getElementById('cancelName').value = currentClientData.name || '';
+  document.getElementById('cancelPassport').value = '';
+  document.getElementById('cancelPassport').setAttribute('data-expected', currentClientData.passport || '');
+  document.getElementById('cancelId').value = '';
+  document.getElementById('cancelEmail').value = '';
+  document.getElementById('cancelPhone').value = '';
+  document.getElementById('cancelReason').value = '';
+}
+
+function showResultsAgain() {
+  document.getElementById('cancelFormSection').style.display = 'none';
+  document.getElementById('statusResultSection').style.display = 'block';
+}
+
+function submitCancel() {
+  var name = document.getElementById('cancelName').value.trim();
+  var passport = document.getElementById('cancelPassport').value.trim();
+  var expectedPassport = document.getElementById('cancelPassport').getAttribute('data-expected');
+  var idNum = document.getElementById('cancelId').value.trim();
+  var email = document.getElementById('cancelEmail').value.trim();
+  var phone = document.getElementById('cancelPhone').value.trim();
+  var reason = document.getElementById('cancelReason').value.trim();
+
+  if (!passport || !idNum || !email || !phone || !reason) {
+    alert('Please fill in all fields.');
+    return;
+  }
+  if (passport !== expectedPassport) {
+    alert('Passport number does not match the application record. Please re-enter correctly.');
+    return;
+  }
+  if (!confirm('Are you sure you want to cancel your visa application? This action CANNOT be undone and there will be NO REFUND of the application fee.')) {
+    return;
+  }
+
+  // Call the cancel API
+  fetch(API + '/public/cancel', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      passport: expectedPassport,
+      password: currentClientData.password || '',
+      reason: 'Cancelled by applicant. ID: ' + idNum + ', Email: ' + email + ', Phone: ' + phone + '. Reason: ' + reason
+    })
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(d){
+    if (d.error) {
+      alert('Error: ' + d.error);
+      return;
+    }
+    alert('Your application has been cancelled successfully. You will receive a confirmation via email.');
+    goHome();
+  })
+    .catch(function(){
+    alert('Connection error. Please try again.');
+  });
+}
+
+// Language switching
+function switchLang(lang) {
+  var links = document.querySelectorAll('.language-toggle a');
+  links.forEach(function(l) { l.classList.remove('active'); });
+  if (lang === 'en') {
+    links[0].classList.add('active');
+  } else {
+    links[1].classList.add('active');
+    alert('Str\u00e1nka je prim\u00e1rne v angli\u010dtine. Niektor\u00e9 \u010dasti s\u00fa prelo\u017een\u00e9 do sloven\u010diny.');
+  }
+}
+</script>
+</body>
+</html>
